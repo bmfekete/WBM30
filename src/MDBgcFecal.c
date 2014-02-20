@@ -2,7 +2,7 @@
 
 GHAAS Water Balance/Transport Model V3.0
 Global Hydrologic Archive and Analysis System
-Copyright 1994-2011, UNH - CCNY/CUNY
+Copyright 1994-2014, UNH - CCNY/CUNY
 
 MDFecal.c  - Routing and processing of fecal coliform
 
