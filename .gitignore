@@ -2,3 +2,4 @@
 obj/
 *.swp
 *.swo
+/nbproject/
