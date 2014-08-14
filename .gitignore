@@ -1,5 +1,3 @@
-/bin/wbmplus.bin
-obj/
-*.swp
-*.swo
-/nbproject/
+*.o
+bin/*
+nbproject/
