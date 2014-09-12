@@ -6,7 +6,6 @@ BIN    = ../bin
 CC     = gcc $(UNIXCCOPS) -I$(INC) -I$(GHAASDIR)/include
 LINK   = gcc
 LIBS   = -L$(GHAASDIR)/lib -lMF10 -lCM10 $(UNIXLIBS)
-#LIBS   = -L../../CMlib/lib -L../../MFlib/lib 
 
 TARGET = $(BIN)/wbmplus.bin
 
@@ -99,12 +98,13 @@ OBJS = $(OBJ)/WBMMain.o\
        $(OBJ)/MDThermalInputs.o\
        $(OBJ)/MDThermalInputs2.o\
        $(OBJ)/MDThermalInputs3.o\
-       $(OBJ)/MDSedimentFlux.o\
-	   $(OBJ)/MDBQARTpreprocess.o\
-	   $(OBJ)/hydroran2.o\
-	   $(OBJ)/MDBedloadFlux.o\
-	   $(OBJ)/MDBankfullQcalc.o\
-	   $(OBJ)/MDDischarge_w_overbank.o
+       $(OBJ)/MDWWTP.o\
+       $(OBJ)/MDIrrigation.o\
+       $(OBJ)/MDDOC.o\
+       $(OBJ)/MDLitterFall.o\
+       $(OBJ)/MDHydropower.o\
+       $(OBJ)/MDSpecCond.o\
+       $(OBJ)/MDChloride.o
 
 all: ${TARGET}
 

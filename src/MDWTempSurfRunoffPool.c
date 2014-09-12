@@ -31,10 +31,10 @@ static int _MDOutWTempSurfRunoffPoolID  = MFUnset;
 static void _MDWTempSurfRunoffPool (int itemID) {
 
 	float SurfRunoffT;
-    float SurfRunoffPoolT;
+        float SurfRunoffPoolT;
 
 	float SurfRunoff;
-    float SurfRunoffPool;
+        float SurfRunoffPool;
 
 	SurfRunoffT     = MFVarGetFloat (_MDInWTempSurfRunoffID,      itemID, 0.0);
 	SurfRunoffPoolT = MFVarGetFloat (_MDOutWTempSurfRunoffPoolID, itemID, 0.0);
@@ -76,11 +76,11 @@ static void _MDWTempNoSurfRunoffPool (int itemID) {
 }
 
 
-enum {MDnone, MDcalculate, MDinput};																							// RJS 061312 added MDinput
+enum {MDnone, MDcalculate, MDinput, MDinput2};																							// RJS 061312 added MDinput
 int MDWTempSurfRunoffPoolDef () {
 	int  optID = MDnone;	// was MFUnset
-	const char *optStr, *optName = MDOptSurfRunoffPool;
-	const char *options [] = { MDNoneStr, MDCalculateStr, MDInputStr, (char *) NULL };											// RJS 061312 added MDInputStr
+	const char *optStr, *optName = MDOptGrdWaterTemp;
+	const char *options [] = { MDNoneStr, MDCalculateStr, MDInputStr, MDInput2Str, (char *) NULL };											// RJS 061312 added MDInputStr
 
 	if ((optStr = MFOptionGet (optName)) != (char *) NULL) optID = CMoptLookup (options, optStr, true);
 
@@ -107,6 +107,8 @@ int MDWTempSurfRunoffPoolDef () {
 
 	case MDinput:	_MDOutWTempSurfRunoffPoolID = MFVarGetID (MDVarWTempSurfRunoffPool, "degC", MFInput,  MFState, MFBoundary); break;		// RJS 061312	MFInitial changed to MFBoundary in order to read in																														// RJS 061312
 
+        case MDinput2:	_MDOutWTempSurfRunoffPoolID = MFVarGetID (MDVarWTempSurfRunoffPool, "degC", MFInput,  MFState, MFBoundary); break;		// RJS 061312	MFInitial changed to MFBoundary in order to read in																														// RJS 061312
+        
 	default: MFOptionMessage (optName, optStr, options); return (CMfailed);
 	}
 

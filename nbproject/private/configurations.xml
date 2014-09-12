@@ -27,8 +27,10 @@
         <in>MDBgcRiverGPP.c</in>
         <in>MDBgcRiverLight.c</in>
         <in>MDCParams.c</in>
+        <in>MDChloride.c</in>
         <in>MDDIN.c</in>
         <in>MDDO2.c</in>
+        <in>MDDOC.c</in>
         <in>MDDischLevel1.c</in>
         <in>MDDischLevel2.c</in>
         <in>MDDischLevel3.c</in>
@@ -42,6 +44,7 @@
         <in>MDEnergyDemand.c</in>
         <in>MDEvapotransp.c</in>
         <in>MDGrossRad.c</in>
+        <in>MDHydropower.c</in>
         <in>MDIrrGrossDemand.c</in>
         <in>MDIrrRefET.c</in>
         <in>MDIrrRefETFAO.c</in>
@@ -51,8 +54,10 @@
         <in>MDIrrUptakeGrdWater.c</in>
         <in>MDIrrUptakeRiver.c</in>
         <in>MDIrrigatedArea.c</in>
+        <in>MDIrrigation.c</in>
         <in>MDLSAreaIndex.c</in>
         <in>MDLandCover.c</in>
+        <in>MDLitterFall.c</in>
         <in>MDNitrogenInputs.c</in>
         <in>MDPermafrost.c</in>
         <in>MDPotETHamon.c</in>
@@ -76,6 +81,7 @@
         <in>MDRainWaterSurplus.c</in>
         <in>MDRelHumidity.c</in>
         <in>MDReservoirs.c</in>
+        <in>MDRiverLakeAET.c</in>
         <in>MDRiverStorage.c</in>
         <in>MDRiverWidth.c</in>
         <in>MDRiverbedShapeExp.c</in>
@@ -89,6 +95,7 @@
         <in>MDSmallReservoirs.c</in>
         <in>MDSoilAvailWaterCap.c</in>
         <in>MDSolarRad.c</in>
+        <in>MDSpecCond.c</in>
         <in>MDStormRunoff.c</in>
         <in>MDSurfRunoff.c</in>
         <in>MDSurfRunoffPool.c</in>
@@ -100,6 +107,7 @@
         <in>MDWTempRiverRoute.c</in>
         <in>MDWTempSurfRunoff.c</in>
         <in>MDWTempSurfRunoffPool.c</in>
+        <in>MDWWTP.c</in>
         <in>MDWaterBalance.c</in>
         <in>MDWetDays.c</in>
         <in>MDWetlandArea.c</in>

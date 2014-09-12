@@ -56,21 +56,56 @@ static void _MDWTempRiver (int itemID) {
 
 }
 
+enum { MDcalculate, MDinput, MDinput2 };         // RJS 060214
 int MDWTempRiverDef () {
-
+	const char *optStr;
+        
 	if (_MDOutWTempRiverID != MFUnset) return (_MDOutWTempRiverID);
 
 	MFDefEntering ("River temperature");
+        
+        int  optID = MFUnset;                                                                                   // RJS 060214
+	const char *optName = MDVarRunoff;                                                                      // RJS 060214
+	const char *options [] = { MDCalculateStr, MDInputStr, MDInput2Str, (char *) NULL };                    // RJS 060214
+    
+        if ((optStr  = MFOptionGet (optName)) != (char *) NULL) optID = CMoptLookup (options, optStr, true);    // RJS 060214
 
-	if (((_MDInSurfRunoffID      = MDRainSurfRunoffDef ()) == CMfailed) ||
-	    ((_MDInBaseFlowID        = MDBaseFlowDef       ()) == CMfailed) ||
+        
+        switch (optID) {
+        case MDcalculate: 	
+            
+	if (
+            ((_MDInSurfRunoffID      = MDRainSurfRunoffDef ()) == CMfailed) ||
+//	    ((_MDInBaseFlowID        = MDBaseFlowDef       ()) == CMfailed) ||          // commented out 051614 so that input BaseFlow isn't overwritten
+            ((_MDInBaseFlowID        = MFVarGetID (MDVarBaseFlow,          "mm",    MFInput,  MFFlux, MFBoundary)) == CMfailed) ||     
 //	    ((_MDInWTempSurfRunoffID = MDWTempSurfRunoffDef ()) == CMfailed) ||		// commented out RJS 060512
 	    ((_MDInWTempSurfRunoffPoolID = MDWTempSurfRunoffPoolDef ()) == CMfailed) ||		// RJS 060512
 	    ((_MDInWTempGrdWaterID   = MDWTempGrdWaterDef   ()) == CMfailed) ||
 	    ((_MDInTotalSurfRunoffID = MFVarGetID (MDVarTotalSurfRunoff, "mm",  MFInput,  MFFlux, MFBoundary)) == CMfailed) ||	//RJS 082812
 	    ((_MDOutWTempRiverID     = MFVarGetID (MDVarWTempRiver,    "degC", MFOutput, MFState, MFBoundary)) == CMfailed) ||	
 	    (MFModelAddFunction (_MDWTempRiver) == CMfailed)) return (CMfailed);
-
+                break;
+       case MDinput:
+        if (
+            ((_MDInTotalSurfRunoffID   = MFVarGetID (MDVarTotalSurfRunoff, "mm",    MFInput,  MFFlux, MFBoundary)) == CMfailed) ||
+            ((_MDInBaseFlowID        = MFVarGetID (MDVarBaseFlow,       "mm",    MFInput,  MFFlux, MFBoundary)) == CMfailed) ||     
+	    ((_MDInWTempSurfRunoffPoolID = MDWTempSurfRunoffPoolDef ()) == CMfailed) ||		// RJS 060512
+	    ((_MDInWTempGrdWaterID   = MDWTempGrdWaterDef   ()) == CMfailed) ||
+//	    ((_MDInTotalSurfRunoffID = MFVarGetID (MDVarTotalSurfRunoff, "mm",  MFInput,  MFFlux, MFBoundary)) == CMfailed) ||	//RJS 082812
+	    ((_MDOutWTempRiverID     = MFVarGetID (MDVarWTempRiver,    "degC", MFOutput, MFState, MFBoundary)) == CMfailed) ||	
+	    (MFModelAddFunction (_MDWTempRiver) == CMfailed)) return (CMfailed);
+                break;
+         case MDinput2:
+        if (
+            ((_MDInSurfRunoffID      = MFVarGetID (MDVarRainSurfRunoff, "mm",    MFInput,  MFFlux, MFBoundary)) == CMfailed) ||
+            ((_MDInBaseFlowID        = MFVarGetID (MDVarBaseFlow,       "mm",    MFInput,  MFFlux, MFBoundary)) == CMfailed) ||     
+	    ((_MDInWTempSurfRunoffPoolID = MDWTempSurfRunoffPoolDef ()) == CMfailed) ||		// RJS 060512
+	    ((_MDInWTempGrdWaterID   = MDWTempGrdWaterDef   ()) == CMfailed) ||
+	    ((_MDInTotalSurfRunoffID = MFVarGetID (MDVarTotalSurfRunoff, "mm",  MFInput,  MFFlux, MFBoundary)) == CMfailed) ||	//RJS 082812
+	    ((_MDOutWTempRiverID     = MFVarGetID (MDVarWTempRiver,    "degC", MFOutput, MFState, MFBoundary)) == CMfailed) ||	
+	    (MFModelAddFunction (_MDWTempRiver) == CMfailed)) return (CMfailed);
+                break;   
+        }
 	MFDefLeaving ("River temperature");
 	return (_MDOutWTempRiverID);
 }

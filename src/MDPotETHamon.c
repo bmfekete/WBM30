@@ -48,7 +48,7 @@ int MDPotETHamonDef () {
 	if (((_MDInDayLengthID = MDSRadDayLengthDef ()) == CMfailed) ||
 	    ((_MDInAtMeanID    = MFVarGetID (MDVarAirTemperature, "degC", MFInput,  MFState, MFBoundary)) == CMfailed) ||
 	    ((_MDOutPetID      = MFVarGetID (MDVarPotEvapotrans,  "mm",   MFOutput, MFFlux,  MFBoundary)) == CMfailed) ||
-	    (MFModelAddFunction (_MDPotETHamon) == CMfailed)) return (CMfailed);
+            (MFModelAddFunction (_MDPotETHamon) == CMfailed)) return (CMfailed);
 	MFDefLeaving ("PotET Hamon");
 	return (_MDOutPetID);
 }

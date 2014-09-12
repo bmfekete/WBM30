@@ -19,8 +19,10 @@
         <in>MDBgcRiverGPP.c</in>
         <in>MDBgcRiverLight.c</in>
         <in>MDCParams.c</in>
+        <in>MDChloride.c</in>
         <in>MDDIN.c</in>
         <in>MDDO2.c</in>
+        <in>MDDOC.c</in>
         <in>MDDischLevel1.c</in>
         <in>MDDischLevel2.c</in>
         <in>MDDischLevel3.c</in>
@@ -34,6 +36,7 @@
         <in>MDEnergyDemand.c</in>
         <in>MDEvapotransp.c</in>
         <in>MDGrossRad.c</in>
+        <in>MDHydropower.c</in>
         <in>MDIrrGrossDemand.c</in>
         <in>MDIrrRefET.c</in>
         <in>MDIrrRefETFAO.c</in>
@@ -43,8 +46,10 @@
         <in>MDIrrUptakeGrdWater.c</in>
         <in>MDIrrUptakeRiver.c</in>
         <in>MDIrrigatedArea.c</in>
+        <in>MDIrrigation.c</in>
         <in>MDLSAreaIndex.c</in>
         <in>MDLandCover.c</in>
+        <in>MDLitterFall.c</in>
         <in>MDNitrogenInputs.c</in>
         <in>MDPermafrost.c</in>
         <in>MDPotETHamon.c</in>
@@ -81,6 +86,7 @@
         <in>MDSmallReservoirs.c</in>
         <in>MDSoilAvailWaterCap.c</in>
         <in>MDSolarRad.c</in>
+        <in>MDSpecCond.c</in>
         <in>MDStormRunoff.c</in>
         <in>MDSurfRunoff.c</in>
         <in>MDSurfRunoffPool.c</in>
@@ -92,6 +98,7 @@
         <in>MDWTempRiverRoute.c</in>
         <in>MDWTempSurfRunoff.c</in>
         <in>MDWTempSurfRunoffPool.c</in>
+        <in>MDWWTP.c</in>
         <in>MDWaterBalance.c</in>
         <in>MDWetDays.c</in>
         <in>MDWetlandArea.c</in>
@@ -120,6 +127,9 @@
         <dependencyChecking>false</dependencyChecking>
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
+      <flagsDictionary>
+        <element flagsID="0" commonFlags="-g"/>
+      </flagsDictionary>
       <codeAssistance>
       </codeAssistance>
       <makefileType>
@@ -130,8 +140,8 @@
           <executablePath></executablePath>
         </makeTool>
       </makefileType>
-      <item path="src/MDAccBalance.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDAccBalance.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -141,8 +151,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDAccumulate.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDAccumulate.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -152,8 +162,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDAvgNSteps.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDAvgNSteps.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -172,7 +182,7 @@
           </incDir>
         </cTool>
       </item>
-      <item path="src/MDBQARTpreprocess.c" ex="false" tool="0" flavor2="0">
+      <item path="src/MDBQARTpreprocess.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
             <pElem>include</pElem>
@@ -183,7 +193,7 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDBankfullQcalc.c" ex="false" tool="0" flavor2="0">
+      <item path="src/MDBankfullQcalc.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
             <pElem>include</pElem>
@@ -194,7 +204,18 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDBaseFlow.c" ex="false" tool="0" flavor2="0">
+      <item path="src/MDBaseFlow.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDBedloadFlux.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
             <pElem>include</pElem>
@@ -205,7 +226,238 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDBedloadFlux.c" ex="false" tool="0" flavor2="0">
+      <item path="src/MDBgc.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDBgcDIN.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDBgcDINPlusBiomass.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDBgcDOC.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDBgcFecal.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDBgcRiverGPP.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDBgcRiverLight.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDCParams.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDChloride.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDDIN.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDDO2.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDDOC.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDDischLevel1.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDDischLevel2.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDDischLevel3.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDDischLevel3Accum.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDDischLevel3Cascade.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDDischLevel3Muskingum.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDDischLevel3MuskingumCoeff.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDDischMean.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDDischarge.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDDischarge_w_overbank.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
             <pElem>include</pElem>
@@ -216,8 +468,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDBgc.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDEnergyDemand.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -227,8 +479,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDBgcDIN.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDEvapotransp.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -238,8 +490,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDBgcDINPlusBiomass.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDGrossRad.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -249,8 +501,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDBgcDOC.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDHydropower.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -260,8 +512,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDBgcFecal.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDIrrGrossDemand.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -271,8 +523,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDBgcRiverGPP.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDIrrRefET.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -282,8 +534,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDBgcRiverLight.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDIrrRefETFAO.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -293,8 +545,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDCParams.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDIrrRefETHamon.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -304,8 +556,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDDIN.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDIrrSoilMoistChg.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -315,8 +567,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDDO2.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDIrrSoilMoisture.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -326,8 +578,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDDischLevel1.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDIrrUptakeGrdWater.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -337,8 +589,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDDischLevel2.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDIrrUptakeRiver.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -348,8 +600,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDDischLevel3.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDIrrigatedArea.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -359,8 +611,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDDischLevel3Accum.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDIrrigation.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -370,8 +622,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDDischLevel3Cascade.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDLSAreaIndex.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -381,8 +633,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDDischLevel3Muskingum.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDLandCover.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -392,8 +644,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDDischLevel3MuskingumCoeff.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDLitterFall.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -403,8 +655,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDDischMean.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDNitrogenInputs.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -414,195 +666,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDDischarge.c" ex="false" tool="0" flavor2="0">
-        <cTool>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>/usr/local/share/ghaas/include</pElem>
-          </incDir>
-          <preprocessorList>
-            <Elem>_GNU_SOURCE</Elem>
-          </preprocessorList>
-        </cTool>
-      </item>
-      <item path="src/MDDischarge_w_overbank.c" ex="false" tool="0" flavor2="0">
-        <cTool>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>/usr/local/share/ghaas/include</pElem>
-          </incDir>
-          <preprocessorList>
-            <Elem>_GNU_SOURCE</Elem>
-          </preprocessorList>
-        </cTool>
-      </item>
-      <item path="src/MDEnergyDemand.c" ex="false" tool="0" flavor2="0">
-        <cTool>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>/usr/local/share/ghaas/include</pElem>
-          </incDir>
-          <preprocessorList>
-            <Elem>_GNU_SOURCE</Elem>
-          </preprocessorList>
-        </cTool>
-      </item>
-      <item path="src/MDEvapotransp.c" ex="false" tool="0" flavor2="0">
-        <cTool>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>/usr/local/share/ghaas/include</pElem>
-          </incDir>
-          <preprocessorList>
-            <Elem>_GNU_SOURCE</Elem>
-          </preprocessorList>
-        </cTool>
-      </item>
-      <item path="src/MDGrossRad.c" ex="false" tool="0" flavor2="0">
-        <cTool>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>/usr/local/share/ghaas/include</pElem>
-          </incDir>
-          <preprocessorList>
-            <Elem>_GNU_SOURCE</Elem>
-          </preprocessorList>
-        </cTool>
-      </item>
-      <item path="src/MDIrrGrossDemand.c" ex="false" tool="0" flavor2="0">
-        <cTool>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>/usr/local/share/ghaas/include</pElem>
-          </incDir>
-          <preprocessorList>
-            <Elem>_GNU_SOURCE</Elem>
-          </preprocessorList>
-        </cTool>
-      </item>
-      <item path="src/MDIrrRefET.c" ex="false" tool="0" flavor2="0">
-        <cTool>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>/usr/local/share/ghaas/include</pElem>
-          </incDir>
-          <preprocessorList>
-            <Elem>_GNU_SOURCE</Elem>
-          </preprocessorList>
-        </cTool>
-      </item>
-      <item path="src/MDIrrRefETFAO.c" ex="false" tool="0" flavor2="0">
-        <cTool>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>/usr/local/share/ghaas/include</pElem>
-          </incDir>
-          <preprocessorList>
-            <Elem>_GNU_SOURCE</Elem>
-          </preprocessorList>
-        </cTool>
-      </item>
-      <item path="src/MDIrrRefETHamon.c" ex="false" tool="0" flavor2="0">
-        <cTool>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>/usr/local/share/ghaas/include</pElem>
-          </incDir>
-          <preprocessorList>
-            <Elem>_GNU_SOURCE</Elem>
-          </preprocessorList>
-        </cTool>
-      </item>
-      <item path="src/MDIrrSoilMoistChg.c" ex="false" tool="0" flavor2="0">
-        <cTool>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>/usr/local/share/ghaas/include</pElem>
-          </incDir>
-          <preprocessorList>
-            <Elem>_GNU_SOURCE</Elem>
-          </preprocessorList>
-        </cTool>
-      </item>
-      <item path="src/MDIrrSoilMoisture.c" ex="false" tool="0" flavor2="0">
-        <cTool>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>/usr/local/share/ghaas/include</pElem>
-          </incDir>
-          <preprocessorList>
-            <Elem>_GNU_SOURCE</Elem>
-          </preprocessorList>
-        </cTool>
-      </item>
-      <item path="src/MDIrrUptakeGrdWater.c" ex="false" tool="0" flavor2="0">
-        <cTool>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>/usr/local/share/ghaas/include</pElem>
-          </incDir>
-          <preprocessorList>
-            <Elem>_GNU_SOURCE</Elem>
-          </preprocessorList>
-        </cTool>
-      </item>
-      <item path="src/MDIrrUptakeRiver.c" ex="false" tool="0" flavor2="0">
-        <cTool>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>/usr/local/share/ghaas/include</pElem>
-          </incDir>
-          <preprocessorList>
-            <Elem>_GNU_SOURCE</Elem>
-          </preprocessorList>
-        </cTool>
-      </item>
-      <item path="src/MDIrrigatedArea.c" ex="false" tool="0" flavor2="0">
-        <cTool>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>/usr/local/share/ghaas/include</pElem>
-          </incDir>
-          <preprocessorList>
-            <Elem>_GNU_SOURCE</Elem>
-          </preprocessorList>
-        </cTool>
-      </item>
-      <item path="src/MDLSAreaIndex.c" ex="false" tool="0" flavor2="0">
-        <cTool>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>/usr/local/share/ghaas/include</pElem>
-          </incDir>
-          <preprocessorList>
-            <Elem>_GNU_SOURCE</Elem>
-          </preprocessorList>
-        </cTool>
-      </item>
-      <item path="src/MDLandCover.c" ex="false" tool="0" flavor2="0">
-        <cTool>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>/usr/local/share/ghaas/include</pElem>
-          </incDir>
-          <preprocessorList>
-            <Elem>_GNU_SOURCE</Elem>
-          </preprocessorList>
-        </cTool>
-      </item>
-      <item path="src/MDNitrogenInputs.c" ex="false" tool="0" flavor2="0">
-        <cTool>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>/usr/local/share/ghaas/include</pElem>
-          </incDir>
-          <preprocessorList>
-            <Elem>_GNU_SOURCE</Elem>
-          </preprocessorList>
-        </cTool>
-      </item>
-      <item path="src/MDPermafrost.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDPermafrost.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -621,8 +686,8 @@
           </incDir>
         </cTool>
       </item>
-      <item path="src/MDPotETlib.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDPotETlib.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -632,8 +697,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDPrecipitation.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDPrecipitation.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -643,8 +708,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDRainInfiltration.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDRainInfiltration.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -654,8 +719,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDRainIntercept.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDRainIntercept.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -665,8 +730,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDRainPotET.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDRainPotET.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -676,8 +741,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDRainPotETHamon.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDRainPotETHamon.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -687,8 +752,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDRainPotETJensen.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDRainPotETJensen.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -698,8 +763,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDRainPotETPMday.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDRainPotETPMday.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -709,8 +774,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDRainPotETPMdn.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDRainPotETPMdn.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -720,8 +785,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDRainPotETPsTaylor.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDRainPotETPsTaylor.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -731,8 +796,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDRainPotETPstd.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDRainPotETPstd.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -742,8 +807,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDRainPotETSWGday.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDRainPotETSWGday.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -753,8 +818,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDRainPotETSWGdn.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDRainPotETSWGdn.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -764,8 +829,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDRainPotETTurc.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDRainPotETTurc.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -775,8 +840,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDRainSMoistChg.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDRainSMoistChg.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -786,8 +851,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDRainSMoistLayered.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDRainSMoistLayered.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -797,8 +862,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDRainSurfRunoff.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDRainSurfRunoff.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -808,8 +873,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDRainWaterSurplus.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDRainWaterSurplus.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -819,8 +884,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDRelHumidity.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDRelHumidity.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -830,8 +895,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDReservoirs.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDReservoirs.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -850,7 +915,84 @@
           </incDir>
         </cTool>
       </item>
-      <item path="src/MDRiverWidth.c" ex="false" tool="0" flavor2="0">
+      <item path="src/MDRiverWidth.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDRiverbedShapeExp.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDRunoff.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDRunoffMean.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDRunoffVolume.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDSMoistChg.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDSPackChg.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>/usr/local/share/ghaas/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_GNU_SOURCE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="src/MDSedimentFlux.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
             <pElem>include</pElem>
@@ -861,8 +1003,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDRiverbedShapeExp.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDSmallReservoirCap.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -872,8 +1014,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDRunoff.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDSmallReservoirs.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -883,8 +1025,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDRunoffMean.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDSoilAvailWaterCap.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -894,8 +1036,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDRunoffVolume.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDSolarRad.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -905,8 +1047,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDSMoistChg.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDSpecCond.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -916,8 +1058,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDSPackChg.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDStormRunoff.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -927,8 +1069,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDSedimentFlux.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDSurfRunoff.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -938,8 +1080,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDSmallReservoirCap.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDSurfRunoffPool.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -949,8 +1091,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDSmallReservoirs.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDThermalInputs.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -960,8 +1102,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDSoilAvailWaterCap.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDThermalInputs2.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -971,8 +1113,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDSolarRad.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDThermalInputs3.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -982,8 +1124,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDStormRunoff.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDWTempGrdWater.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -993,8 +1135,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDSurfRunoff.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDWTempRiver.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -1004,8 +1146,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDSurfRunoffPool.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDWTempRiverRoute.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -1015,8 +1157,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDThermalInputs.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDWTempSurfRunoff.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -1026,8 +1168,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDThermalInputs2.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDWTempSurfRunoffPool.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -1037,8 +1179,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDThermalInputs3.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDWWTP.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -1048,8 +1190,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDWTempGrdWater.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDWaterBalance.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -1059,8 +1201,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDWTempRiver.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDWetDays.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -1070,8 +1212,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDWTempRiverRoute.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDWetlandArea.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -1081,8 +1223,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDWTempSurfRunoff.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDWetlands.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -1092,63 +1234,8 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/MDWTempSurfRunoffPool.c" ex="false" tool="0" flavor2="0">
-        <cTool>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>/usr/local/share/ghaas/include</pElem>
-          </incDir>
-          <preprocessorList>
-            <Elem>_GNU_SOURCE</Elem>
-          </preprocessorList>
-        </cTool>
-      </item>
-      <item path="src/MDWaterBalance.c" ex="false" tool="0" flavor2="0">
-        <cTool>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>/usr/local/share/ghaas/include</pElem>
-          </incDir>
-          <preprocessorList>
-            <Elem>_GNU_SOURCE</Elem>
-          </preprocessorList>
-        </cTool>
-      </item>
-      <item path="src/MDWetDays.c" ex="false" tool="0" flavor2="0">
-        <cTool>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>/usr/local/share/ghaas/include</pElem>
-          </incDir>
-          <preprocessorList>
-            <Elem>_GNU_SOURCE</Elem>
-          </preprocessorList>
-        </cTool>
-      </item>
-      <item path="src/MDWetlandArea.c" ex="false" tool="0" flavor2="0">
-        <cTool>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>/usr/local/share/ghaas/include</pElem>
-          </incDir>
-          <preprocessorList>
-            <Elem>_GNU_SOURCE</Elem>
-          </preprocessorList>
-        </cTool>
-      </item>
-      <item path="src/MDWetlands.c" ex="false" tool="0" flavor2="0">
-        <cTool>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>/usr/local/share/ghaas/include</pElem>
-          </incDir>
-          <preprocessorList>
-            <Elem>_GNU_SOURCE</Elem>
-          </preprocessorList>
-        </cTool>
-      </item>
-      <item path="src/MDWind.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+      <item path="src/MDWind.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -1159,7 +1246,7 @@
         </cTool>
       </item>
       <item path="src/WBMMain.c" ex="false" tool="0" flavor2="0">
-        <cTool>
+        <cTool flags="0">
           <incDir>
             <pElem>include</pElem>
             <pElem>/usr/local/share/ghaas/include</pElem>
@@ -1169,7 +1256,7 @@
           </preprocessorList>
         </cTool>
       </item>
-      <item path="src/hydroran2.c" ex="false" tool="0" flavor2="0">
+      <item path="src/hydroran2.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
             <pElem>include</pElem>
