@@ -164,7 +164,7 @@ int MDBQARTpreprocessDef() {
 	((_MDInAirTempAcc_timeID    = MFVarGetID (MDVarAirTemperatureAcc_time,"degC",MFOutput,  MFState, MFInitial)) == CMfailed) ||
 	((_MDInAirTempAcc_spaceID    = MFVarGetID (MDVarAirTemperatureAcc_space,"degC",MFRoute,  MFState, MFBoundary)) == CMfailed) ||
 	//((_MDOutElevationMaxID    = MFVarGetID (MDVarElevationMax,"km",MFRoute,  MFState, MFBoundary)) == CMfailed) ||
-	((_MDInDischargeAccID  = MFVarGetID (MDVarDischargeAcc,     "m3/s",MFOutput, MFState, MFInitial)) == CMfailed) ||
+	((_MDInDischargeAccID  = MFVarGetID (MDVarDischarge,     "m3/s",MFOutput, MFState, MFInitial)) == CMfailed) || // TODO Sagy referred to an undefined MDVarDischargeACC variable here.
 	((_MDInTimeStepsID     = MFVarGetID (MDVarTimeSteps,      MFNoUnit,MFOutput, MFState, MFInitial)) == CMfailed) ||
 
         // output

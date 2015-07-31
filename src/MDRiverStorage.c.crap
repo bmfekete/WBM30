@@ -35,7 +35,7 @@ int MDRiverDepthDef() {
 
 	MFDefEntering ("River Storage");
 	if (((_MDInDischargeID            = MDDischargeDef ())     == CMfailed) ||
-	    ((_MDInRiverbedShapeExpID     = MDRiverbedShapeExp ()) == CMfailed) ||
+	    ((_MDInRiverbedShapeExpID     = MDRiverbedShapeExponentDef ()) == CMfailed) ||
 		((_MDInRiverbedAvgDepthMeanID = MFVarGetID (MDVarRiverbedAvgDepthMean,  "m",  MFInput,  MFState, MFBoundary)) == CMfailed) ||
 		((_MDInRiverbedWidthMeanID    = MFVarGetID (MDVarRiverbedWidthMean,     "m",  MFInput,  MFState, MFBoundary)) == CMfailed) ||
 	    ((_MDOutRiverStorChgID        = MFVarGetID (MDVarRiverStorageChg,       "m3", MDOutput, MFFlux,  MFBoundary)) == CMfailed) ||

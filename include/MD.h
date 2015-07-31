@@ -225,6 +225,8 @@ extern "C" {
 #define MDVarLHFractPost					 "LHFractPost"		// RJS 071112
 
 #define	MDVarMeanElevation                   "Elevation"
+#define	MDVarElevationMax                    "ElevationMax"
+#define	MDVarElevationMin                    "ElevationMin"
 #define MDVarMuskingumC0                     "MuskingumC0"
 #define MDVarMuskingumC1                     "MuskingumC1"
 #define MDVarMuskingumC2                     "MuskingumC2"
@@ -597,6 +599,8 @@ extern "C" {
 #define MDVarBankfullQ100		"BankfullQ100"
 #define MDVarBankfullQ200		"BankfullQ200"
 #define MDVarBankfull_Qn		"Bankfull_Qn"
+#define MDVarBankfull_Qn		"Bankfull_Qn"
+#define MDVarOverBankQ		"OverBankQ"
 #define MDVarFlowCoefficient		"FlowCoefficient"
 
 

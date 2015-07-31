@@ -70,7 +70,7 @@ int MDBQARTinputsDef() {
 	MFDefEntering ("BQARTinputs");
 	
 	if (((_MDInAirTempID   = MFVarGetID (MDVarAirTemperature,"degC", MFInput,  MFState, MFBoundary)) == CMfailed) ||
-	   ((_MDInElevationID   = MFVarGetID (MDVarElevation,"m", MFInput,  MFState, MFBoundary)) == CMfailed) ||
+	   ((_MDInElevationID   = MFVarGetID (MDVarMeanElevation,"m", MFInput,  MFState, MFBoundary)) == CMfailed) ||
 	   ((_MDOutElevationMaxID   = MFVarGetID (MDVarElevationMax,"m", MFRoute,  MFFlux, MFBoundary)) == CMfailed) ||
 	((_MDInBQART_LithologyID  = MFVarGetID (MDVarBQART_Lithology,	       MFNoUnit,MFInput,  MFState, MFBoundary)) == CMfailed) ||
 	((_MDInPopulationID   	= MFVarGetID (MDVarPopulation,	       MFNoUnit,MFInput,  MFState, MFBoundary)) == CMfailed) ||
@@ -78,7 +78,7 @@ int MDBQARTinputsDef() {
         // output
 
 	((_MDInContributingAreaID  	= MFVarGetID (MDVarContributingArea, 	"km2", 	MFRoute,  MFState, MFBoundary)) == CMfailed) ||
-	((_MDOutPopulationAreaAccID 	= MFVarGetID (MDVarPopulationAreaAcc, 	"", 	MFRoute,  MFState, MFBoundary)) == CMfailed) ||
+	((_MDOutPopulationAreaAccID 	= MFVarGetID (MDVarPopulationAcc, 	"", 	MFRoute,  MFState, MFBoundary)) == CMfailed) ||
 	((_MDOutNumPixelsID 		= MFVarGetID (MDVarNumPixels, 		"", 	MFRoute,  MFState, MFBoundary)) == CMfailed) ||
 	((_MDOutLithologyAreaAccID 	= MFVarGetID (MDVarLithologyAreaAcc,	"" , 	MFRoute,  MFState, MFBoundary)) == CMfailed) ||
 	((_MDOutLithologyMeanID  	= MFVarGetID (MDVarLithologyMean,	"" , 	MFOutput, MFState, MFBoundary)) == CMfailed) ||

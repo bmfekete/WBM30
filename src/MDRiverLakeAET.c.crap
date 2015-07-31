@@ -19,6 +19,7 @@ rob.stewart@unh.edu
 // Inputs
 static int _MDInDischLevel3ID       = MFUnset;		//
 static int _MDInPetID		    = MFUnset;		//
+static int _MDInRiverOrderID		    = MFUnset;		//
 static int _MDInEvaptrsID	    = MFUnset;		//
 static int _MDInH2OFractionID       = MFUnset;		//
 static int _MDInRiverWidthID        = MFUnset;		//
@@ -42,6 +43,7 @@ static void _MDRiverLakeAet (int itemID) {
 	float combinedFrac  = 0.0;	// combined river and h2o area frac
 	float width	    = 0.0;	// river width
 	float dL	    = 0.0; // river length
+	int   riverOrder = MFVarGetInt (_MDInRiverOrderID,itemID,0);    // river length
 	float lakeyesno	    = 0.0;	//
 	float lakearea      = 0.0; //
 
@@ -67,7 +69,7 @@ static void _MDRiverLakeAet (int itemID) {
 		if (lakearea > 0.0) {
 
 			if (pet - aet > 0.0) {
-				lakeAet  = discharge - ((pet - aet) / 1000 * lakearea / 86400) > 0.0 ? (pet - aet) / 1000 * lakearea / 86400 : discharge - (aet / 1000 * 14400 / 86400);	// m3/s
+				lakeAet  = dischargePre - ((pet - aet) / 1000 * lakearea / 86400) > 0.0 ? (pet - aet) / 1000 * lakearea / 86400 : dischargePre - (aet / 1000 * 14400 / 86400);	// m3/s
 				lakeAet  = lakeAet * 86400 * 1000 / 14400; // mm/d
 				riverAet = 0.0;	// mm/d
 			}
@@ -85,7 +87,7 @@ static void _MDRiverLakeAet (int itemID) {
 
 	else {
 
-	if (riverOrder > 2.0 && discharge > 0.0) { 		// RJS 03-15-09
+	if (riverOrder > 2.0 && dischargePre > 0.0) { 		// RJS 03-15-09
 
 	riverAreaFrac = (dL * width) / 14400;	// 14400 is area,  03-15-09
 
