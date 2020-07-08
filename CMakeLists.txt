@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-project(WBMplus)
+project(WBM30)
 
 set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
@@ -13,12 +13,12 @@ else(${GHAASDIR})
 endif(${GHAASDIR})
 
 FILE(GLOB sources src/*.c)
-add_executable(WBMplus ${sources})
+add_executable(WBM30 ${sources})
 
 if(${CMAKE_HOST_APPLE})
-    target_link_libraries(WBMplus CM30 MF30 m)
+    target_link_libraries(WBM30 CM30 MF30 m)
 else(${CMAKE_HOST_APPLE})
-    target_link_libraries(WBMplus CM30 MF30 m -pthread)
+    target_link_libraries(WBM30 CM30 MF30 m -pthread)
 endif(${CMAKE_HOST_APPLE})
 
-target_include_directories(WBMplus PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(WBM30 PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
