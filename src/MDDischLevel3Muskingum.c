@@ -35,7 +35,6 @@ static int _MDQGroundWaterID   = MFUnset;    // RJS 100313
 static int _MDPropRSStormWaterID   = MFUnset;    // RJS 100313
 static int _MDPropRSSurfaceWaterID = MFUnset;    // RJS 100313
 static int _MDPropRSGroundWaterID  = MFUnset;    // RJS 100313
-static int _MDRunoffFlagID	   = MFUnset;	 // RJS 011714
 // Output
 static int _MDOutDischAux0ID    = MFUnset;
 static int _MDOutDischAux1ID    = MFUnset;

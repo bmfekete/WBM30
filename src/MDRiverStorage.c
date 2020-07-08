@@ -2,11 +2,11 @@
 
 GHAAS Water Balance/Transport Model V3.0
 Global Hydrologic Archive and Analysis System
-Copyright 1994-2014, UNH - CCNY/CUNY
+Copyright 1994-2011, UNH - CCNY/CUNY
 
 MDDischarge.c
 
-bfekete@ccny.cuny.edu
+balazs.fekete@unh.edu
 
 *******************************************************************************/
 
@@ -35,7 +35,7 @@ int MDRiverDepthDef() {
 
 	MFDefEntering ("River Storage");
 	if (((_MDInDischargeID            = MDDischargeDef ())     == CMfailed) ||
-	    ((_MDInRiverbedShapeExpID     = MDRiverbedShapeExponentDef ()) == CMfailed) ||
+	    ((_MDInRiverbedShapeExpID     = MDRiverbedShapeExp ()) == CMfailed) ||
 		((_MDInRiverbedAvgDepthMeanID = MFVarGetID (MDVarRiverbedAvgDepthMean,  "m",  MFInput,  MFState, MFBoundary)) == CMfailed) ||
 		((_MDInRiverbedWidthMeanID    = MFVarGetID (MDVarRiverbedWidthMean,     "m",  MFInput,  MFState, MFBoundary)) == CMfailed) ||
 	    ((_MDOutRiverStorChgID        = MFVarGetID (MDVarRiverStorageChg,       "m3", MDOutput, MFFlux,  MFBoundary)) == CMfailed) ||
