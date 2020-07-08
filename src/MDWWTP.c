@@ -56,7 +56,7 @@ static void _MDPointSource (int itemID) {
 	month = MFDateGetCurrentMonth ();
 	year  = MFDateGetCurrentYear ();
 
-	if ((WWTP_InKgPerDay > 0.0) && (WWTP_Treatment == 0.0)) printf("itemID = %f, %d-%d-%d, WWTP_InKgPerDay = %f, WWTP_PopServed = %f, WWTP_Treatment = %f, WWTP_Removal = %f\n", itemID, year, month, day, WWTP_InKgPerDay, WWTP_PopServed, WWTP_Treatment, WWTP_Removal);
+	if ((WWTP_InKgPerDay > 0.0) && (WWTP_Treatment == 0.0)) printf("itemID = %d, %d-%d-%d, WWTP_InKgPerDay = %f, WWTP_PopServed = %f, WWTP_Treatment = %f, WWTP_Removal = %f\n", itemID, year, month, day, WWTP_InKgPerDay, WWTP_PopServed, WWTP_Treatment, WWTP_Removal);
 
 	MFVarSetFloat (_MDOutWWTP_OutKgPerDayID,   itemID, WWTP_OutKgPerDay);
 

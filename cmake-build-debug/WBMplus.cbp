@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="WBMplus"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="clang"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/balazs/GitHub/WBMplus/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/balazs/GitHub/WBMplus/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/balazs/GitHub/WBMplus/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/balazs/GitHub/WBMplus/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/balazs/GitHub/WBMplus/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/balazs/GitHub/WBMplus/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/balazs/GitHub/WBMplus/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/balazs/GitHub/WBMplus/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/balazs/GitHub/WBMplus/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/balazs/GitHub/WBMplus/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/balazs/GitHub/WBMplus/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/balazs/GitHub/WBMplus/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/balazs/GitHub/WBMplus/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/balazs/GitHub/WBMplus/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/balazs/GitHub/WBMplus/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="WBMplus">
+				<Option output="/Users/balazs/GitHub/WBMplus/cmake-build-debug/WBMplus" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/balazs/GitHub/WBMplus/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add directory="/usr/local/share/ghaas/include"/>
+					<Add directory="/Users/balazs/GitHub/WBMplus/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/balazs/GitHub/WBMplus/cmake-build-debug/Makefile&quot;  VERBOSE=1 WBMplus"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/balazs/GitHub/WBMplus/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/balazs/GitHub/WBMplus/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/balazs/GitHub/WBMplus/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="WBMplus/fast">
+				<Option output="/Users/balazs/GitHub/WBMplus/cmake-build-debug/WBMplus" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/balazs/GitHub/WBMplus/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add directory="/usr/local/share/ghaas/include"/>
+					<Add directory="/Users/balazs/GitHub/WBMplus/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/balazs/GitHub/WBMplus/cmake-build-debug/Makefile&quot;  VERBOSE=1 WBMplus/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/balazs/GitHub/WBMplus/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/balazs/GitHub/WBMplus/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/balazs/GitHub/WBMplus/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDAccBalance.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDAccumulate.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDAvgNSteps.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDBQARTinputs.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDBQARTpreprocess.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDBankfullQcalc.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDBaseFlow.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDBedloadFlux.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDBgc.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDBgcDIN.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDBgcDINPlusBiomass.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDBgcDOC.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDBgcFecal.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDBgcRiverGPP.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDBgcRiverLight.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDCParams.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDChloride.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDDIN.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDDO2.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDDOC.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDDischLevel1.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDDischLevel2.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDDischLevel3.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDDischLevel3Accum.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDDischLevel3Cascade.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDDischLevel3Muskingum.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDDischLevel3MuskingumCoeff.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDDischMean.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDDischarge.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDDischarge_w_overbank.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDEnergyDemand.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDEvapotransp.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDGrossRad.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDHydropower.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDIrrGrossDemand.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDIrrRefET.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDIrrRefETFAO.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDIrrRefETHamon.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDIrrSoilMoistChg.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDIrrSoilMoisture.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDIrrUptakeGrdWater.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDIrrUptakeRiver.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDIrrigatedArea.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDIrrigation.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDLSAreaIndex.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDLandCover.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDLitterFall.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDNitrogenInputs.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDPermafrost.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDPotETHamon.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDPotETlib.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDPrecipitation.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDRainInfiltration.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDRainIntercept.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDRainPotET.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDRainPotETHamon.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDRainPotETJensen.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDRainPotETPMday.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDRainPotETPMdn.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDRainPotETPsTaylor.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDRainPotETPstd.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDRainPotETSWGday.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDRainPotETSWGdn.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDRainPotETTurc.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDRainSMoistChg.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDRainSMoistLayered.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDRainSurfRunoff.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDRainWaterSurplus.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDRelHumidity.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDReservoirs.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDRiverWidth.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDRiverbedShapeExp.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDRunoff.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDRunoffMean.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDRunoffVolume.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDSMoistChg.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDSPackChg.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDSmallReservoirCap.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDSmallReservoirs.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDSoilAvailWaterCap.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDSolarRad.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDSpecCond.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDStormRunoff.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDSurfRunoff.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDSurfRunoffPool.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDThermalInputs.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDThermalInputs2.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDThermalInputs3.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDWTempGrdWater.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDWTempRiver.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDWTempRiverRoute.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDWTempSurfRunoff.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDWTempSurfRunoffPool.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDWWTP.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDWaterBalance.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDWetDays.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDWetlandArea.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDWetlands.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/MDWind.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/WBMMain.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/src/hydroran2.c">
+			<Option target="WBMplus"/>
+		</Unit>
+		<Unit filename="/Users/balazs/GitHub/WBMplus/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
