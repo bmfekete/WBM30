@@ -2,7 +2,7 @@
 
 GHAAS Water Balance/Transport Model V3.0
 Global Hydrologic Archive and Analysis System
-Copyright 1994-2014, UNH - CCNY/CUNY
+Copyright 1994-2020, UNH - ASRC/CUNY
 
 MDIrrigation.c
 
@@ -83,10 +83,11 @@ static void  printCrops(const MDIrrigatedCrop *);
 static int   getNumGrowingSeasons(float);
 
 static float getIrrGrossWaterDemand(float, float);
-static float irrAreaFrac;
+//static float irrAreaFrac; moving this to inside the module - first line below - ariel july 6 2020
 
 static void _MDIrrGrossDemand (int itemID) {
 //Input
+	float irrAreaFrac;
 	float irrEffeciency;
 	float dailyPrecip    = 0.0;
 	float dailyEffPrecip = 0.0;
@@ -362,7 +363,8 @@ static void _MDIrrGrossDemand (int itemID) {
 			}
  			smChange = prevSoilMstDepl - curDepl;
 			bareSoilBalance=dailyEffPrecip -smChange- cropWR - netIrrDemand -deepPercolation;
-  			MFVarSetFloat (_MDOutCropDeficitIDs [_MDNumberOfIrrCrops], itemID, curDepl);
+// TODO STUPID f (fabs(bareSoilBalance >0.0001)) printf ("bare SMBalance!! precip %f cropWR %f smchange %f dp %f\n ",dailyEffPrecip , cropWR ,smChange, deepPercolation );
+  			MFVarSetFloat (_MDOutCropDeficitIDs [_MDNumberOfIrrCrops], itemID, curDepl);	
   
 		}
 		else {

@@ -2,11 +2,11 @@
 
 GHAAS Water Balance/Transport Model V3.0
 Global Hydrologic Archive and Analysis System
-Copyright 1994-2014, UNH - CCNY/CUNY
+Copyright 1994-2020, UNH - ASRC/CUNY
 
 MDBaseFlow.c
 
-bfekete@ccny.cuny.edu
+bfekete@gc.cuny.edu
 
 *******************************************************************************/
 
@@ -87,10 +87,8 @@ static void _MDBaseFlow (int itemID) {
 	grdWater    = grdWater - baseFlow;
 	grdWaterChg = grdWater - grdWaterChg;
 
-	//if ((itemID == 486)) printf("y = %d, m = %d, d = %d, baseFlow = %f, grdWater = %f, grdWaterChg = %f, grdWaterRecharge = %f\n", MFDateGetCurrentYear(), MFDateGetCurrentMonth(), MFDateGetCurrentDay(), baseFlow, grdWater, grdWaterChg, grdWaterRecharge);	//RJS 071511
+//	if ((itemID == 25014)) printf("m = %d, d = %d, @@@@@@@@@@@@@ baseFlow = %f, grdWater = %f, grdWaterChg = %f, grdWaterRecharge = %f\n", MFDateGetCurrentMonth(), MFDateGetCurrentDay(), baseFlow * 100000, grdWater * 100000, grdWaterChg * 100000, grdWaterRecharge * 100000);	//RJS 071511
 
-  //      if (itemID == 1) printf("Beta = %f\n", _MDGroundWatBETA);
-        
 //in= irrReturnFlow+grdWaterRecharge;
 //out = irrUptakeGrdWater + grdWaterChg;
 //float balance;
@@ -105,80 +103,33 @@ static void _MDBaseFlow (int itemID) {
 	MFVarSetFloat (_MDOutBaseFlowID,       itemID, baseFlow);
 }
 
-static void _MDBaseFlow2 (int itemID) {
-// Input
-
-// Output
-	float grdWater;                // Groundwater size   [mm]
-	float grdWaterChg;             // Groundwater change [mm/dt]
-	float grdWaterRecharge;        // Groundwater recharge [mm/dt]
-	float grdWaterUptake;          // Groundwater uptake [mm/dt]
-	float baseFlow          = 0.0; // Base flow from groundwater [mm/dt]
-
-// Local
-                     
-	grdWaterChg = grdWater = MFVarGetFloat (_MDOutGrdWatID,  itemID, 0.0);
-	if (grdWater < 0.0) grdWaterChg = grdWater = 0.0;			//RJS 071511
-	grdWaterRecharge = MFVarGetFloat (_MDInRechargeID, itemID, 0.0);
-	grdWater = grdWater + grdWaterRecharge;
-
-	baseFlow    = grdWater * _MDGroundWatBETA;
-	grdWater    = grdWater - baseFlow;
-	grdWaterChg = grdWater - grdWaterChg;
-
-	
-	MFVarSetFloat (_MDOutGrdWatID,         itemID, grdWater);
-        MFVarSetFloat (_MDOutGrdWatChgID,      itemID, grdWaterChg);
-        MFVarSetFloat (_MDOutGrdWatRechargeID, itemID, grdWaterRecharge);
-	MFVarSetFloat (_MDOutBaseFlowID,       itemID, baseFlow);
-}
-
-enum { MDcalculate, MDinput2 };         // RJS 060214
-
 int MDBaseFlowDef () {
 	float par;
 	const char *optStr;
-        
-        int  optID = MFUnset;                                                                                   // RJS 060214
-	const char *optName = MDVarRunoff;                                                                      // RJS 060214
-	const char *options [] = { MDCalculateStr, MDInput2Str, (char *) NULL };                                // RJS 060214
 
 	if (_MDOutBaseFlowID != MFUnset) return (_MDOutBaseFlowID);
 
 	MFDefEntering ("Base flow");
 	if (((optStr = MFOptionGet (MDParGroundWatBETA))  != (char *) NULL) && (sscanf (optStr,"%f",&par) == 1)) _MDGroundWatBETA = par;
-	if ((optStr  = MFOptionGet (optName)) != (char *) NULL) optID = CMoptLookup (options, optStr, true);    // RJS 060214
 
-        switch (optID) {
-             case MDcalculate: 	
-                if (((_MDInRechargeID       = MDRainInfiltrationDef ()) == CMfailed) ||
-                    ((_MDInIrrGrossDemandID = MDIrrGrossDemandDef   ()) == CMfailed)) return (CMfailed);
+	if (((_MDInRechargeID       = MDRainInfiltrationDef ()) == CMfailed) ||
+	    ((_MDInIrrGrossDemandID = MDIrrGrossDemandDef   ()) == CMfailed)) return (CMfailed);
 
-                if ( _MDInIrrGrossDemandID != MFUnset) {
-                        if (((_MDInSmallResReleaseID    = MDSmallReservoirReleaseDef ()) == CMfailed) ||
-                            ((_MDInIrrAreaFracID        = MDIrrigatedAreaDef         ()) ==  CMfailed) ||
-                            ((_MDInIrrReturnFlowID      = MFVarGetID (MDVarIrrReturnFlow,     "mm", MFInput,  MFFlux,  MFBoundary)) == CMfailed) ||
-                            ((_MDOutIrrUptakeExternalID = MFVarGetID (MDVarIrrUptakeExternal, "mm", MFOutput, MFFlux,  MFBoundary)) == CMfailed) ||
-                            ((_MDOutIrrUptakeGrdWaterID = MDIrrUptakeGrdWaterDef     ()) == CMfailed))
-                            return CMfailed;
-                 }
-                if (((_MDOutGrdWatID                = MFVarGetID (MDVarGroundWater,         "mm", MFOutput, MFState, MFInitial))  == CMfailed) ||
-                    ((_MDOutGrdWatChgID             = MFVarGetID (MDVarGroundWaterChange,   "mm", MFOutput, MFFlux,  MFBoundary)) == CMfailed) ||
-                    ((_MDOutGrdWatRechargeID        = MFVarGetID (MDVarGroundWaterRecharge, "mm", MFOutput, MFFlux,  MFBoundary)) == CMfailed) ||
-                    ((_MDOutGrdWatUptakeID          = MFVarGetID (MDVarGroundWaterUptake,   "mm", MFOutput, MFFlux,  MFBoundary)) == CMfailed) ||
-                    ((_MDOutBaseFlowID              = MFVarGetID (MDVarBaseFlow,            "mm", MFOutput, MFFlux,  MFBoundary)) == CMfailed) ||
-                     (MFModelAddFunction (_MDBaseFlow) == CMfailed)) return (CMfailed);
-                break;
-            case MDinput2:
-                 if (((_MDInRechargeID               = MDRainInfiltrationDef ()) == CMfailed) ||
-                     ((_MDOutGrdWatID                = MFVarGetID (MDVarGroundWater,         "mm", MFOutput, MFState, MFInitial))  == CMfailed) ||
-                     ((_MDOutGrdWatChgID             = MFVarGetID (MDVarGroundWaterChange,   "mm", MFOutput, MFFlux,  MFBoundary)) == CMfailed) ||
-                     ((_MDOutGrdWatRechargeID        = MFVarGetID (MDVarGroundWaterRecharge, "mm", MFOutput, MFFlux,  MFBoundary)) == CMfailed) ||
-                     ((_MDOutGrdWatUptakeID          = MFVarGetID (MDVarGroundWaterUptake,   "mm", MFOutput, MFFlux,  MFBoundary)) == CMfailed) ||
-                     ((_MDOutBaseFlowID              = MFVarGetID (MDVarBaseFlow,            "mm", MFOutput, MFFlux,  MFBoundary)) == CMfailed) ||
-                     (MFModelAddFunction (_MDBaseFlow2) == CMfailed)) return (CMfailed);														// RJS 061312
-                break;	      
-        }
+	if ( _MDInIrrGrossDemandID != MFUnset) {
+		if (((_MDInSmallResReleaseID    = MDSmallReservoirReleaseDef ()) == CMfailed) ||
+		    ((_MDInIrrAreaFracID        = MDIrrigatedAreaDef         ()) ==  CMfailed) ||
+		 	((_MDInIrrReturnFlowID      = MFVarGetID (MDVarIrrReturnFlow,     "mm", MFInput,  MFFlux,  MFBoundary)) == CMfailed) ||
+		    ((_MDOutIrrUptakeExternalID = MFVarGetID (MDVarIrrUptakeExternal, "mm", MFOutput, MFFlux,  MFBoundary)) == CMfailed) ||
+		    ((_MDOutIrrUptakeGrdWaterID = MDIrrUptakeGrdWaterDef     ()) == CMfailed))
+			return CMfailed;
+	}
+	if (((_MDOutGrdWatID                = MFVarGetID (MDVarGroundWater,         "mm", MFOutput, MFState, MFInitial))  == CMfailed) ||
+	    ((_MDOutGrdWatChgID             = MFVarGetID (MDVarGroundWaterChange,   "mm", MFOutput, MFFlux,  MFBoundary)) == CMfailed) ||
+	    ((_MDOutGrdWatRechargeID        = MFVarGetID (MDVarGroundWaterRecharge, "mm", MFOutput, MFFlux,  MFBoundary)) == CMfailed) ||
+	    ((_MDOutGrdWatUptakeID          = MFVarGetID (MDVarGroundWaterUptake,   "mm", MFOutput, MFFlux,  MFBoundary)) == CMfailed) ||
+	    ((_MDOutBaseFlowID              = MFVarGetID (MDVarBaseFlow,            "mm", MFOutput, MFFlux,  MFBoundary)) == CMfailed) ||
+	    (MFModelAddFunction (_MDBaseFlow) == CMfailed)) return (CMfailed);
+
 	MFDefLeaving ("Base flow ");
 	return (_MDOutBaseFlowID);
 }

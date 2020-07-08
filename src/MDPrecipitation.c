@@ -2,11 +2,11 @@
 
 GHAAS Water Balance/Transport Model V3.0
 Global Hydrologic Archive and Analysis System
-Copyright 1994-2014, UNH - CCNY/CUNY
+Copyright 1994-2020, UNH - ASRC/CUNY
 
 MDPrecipitation.c
 
-bfekete@ccny.cuny.edu
+bfekete@gc.cuny.edu
 ******************************************************************************/
 
 #include <stdio.h>
@@ -75,7 +75,7 @@ static void _MDPrecipFraction (int itemID)
 	precipFrac = MFVarGetFloat (_MDInPrecipFracID, itemID, 1.0 / nDays);
 
 	precipOut = precipIn *  precipFrac* nDays;
-	if (precipOut <0){printf ("Precip negative! precipIn=%f precipFrac =%fprecipFrac\n", precipIn, precipFrac);}
+	if (precipOut <0){printf ("Precip negative! precipIn=%f precipFrac =%f itemID = %i \n", precipIn, precipFrac, itemID);}
 //if (itemID==2)printf("PrecipOut %f nDays %i precipFrac %f precipIn %f \n",precipOut, nDays,precipFrac,precipIn);
 	MFVarSetFloat (_MDOutPrecipID,itemID,precipOut);
 	}

@@ -2,11 +2,11 @@
 
 GHAAS Water Balance/Transport Model V3.0
 Global Hydrologic Archive and Analysis System
-Copyright 1994-2014, UNH - CCNY/CUNY
+Copyright 1994-2020, UNH - ASRC/CUNY
 
 MDSPackChg.c
 
-bfekete@ccny.cuny.edu
+bfekete@gc.cuny.edu
 
 *******************************************************************************/
 
@@ -30,7 +30,6 @@ static int _MDOutSnowDepthID = MFUnset;
 static int _MDCalculateSoilTempID = MFUnset;
 static float _MDSnowMeltThreshold = 1.0;
 static float _MDFallThreshold = -1.0;
-static int _MDOutSnowPackDaysID = MFUnset;
 
 static void _MDSPackChg (int itemID) {
 // Input
@@ -39,7 +38,6 @@ static void _MDSPackChg (int itemID) {
 	float winterOnsetDoY;
 	float initialDensity = 150;
 	float sDensitySlope = 3;
-        float snowPackDays = 0.0;
 	if( _MDCalculateSoilTempID==1)winterOnsetDoY = MFVarGetFloat(_MDInWinterOnsetID, itemID,1.0);
 //	printf ("Anf SnowPackChange \n");
 	// Local
@@ -95,16 +93,11 @@ static void _MDSPackChg (int itemID) {
 		sDensity = (initialDensity + (snowAge * sDensitySlope));
 		if (sPack > 0.0 ) sDepth = sPack  * densityOfWater / sDensity; //in mm
 	//	printf ("sAge %i sDens %f sPack %f sDepth %f \n", snowAge, sDensity, sPack, sDepth);
-                if (sPack > 0.0) snowPackDays = 1;
-     //           if (itemID == 1) printf("SnowFall = %f, SnowMelt = %f\n", _MDFallThreshold, _MDSnowMeltThreshold);
-                
+
 		MFVarSetFloat(_MDOutSnowDensityID,itemID,sDensity);  
 		MFVarSetFloat(_MDOutSnowDepthID,itemID, sDepth); 
-		MFVarSetFloat(_MDOutSnowPackDaysID, itemID, snowPackDays); 
-//	printf ("Ende SnowPackChange \n");
-
-//		if (itemID == 54914) printf("-- m = %d, d = %d, SF = %f, SM = %f, airT = %f, precip = %f, sPack = %f, sPackChg = %f\n", MFDateGetCurrentMonth(), MFDateGetCurrentDay(), _MDFallThreshold, _MDSnowMeltThreshold, airT, precip, sPack, sPackChg);
-
+	//	printf ("Ende SnowPackChange \n");
+	
 }
 
 int MDSPackChgDef () {
@@ -139,7 +132,6 @@ int MDSPackChgDef () {
 	    ((_MDOutSnowDepthID   = MFVarGetID (MDVarSnowDepth,      "mm",   MFOutput, MFState, MFBoundary)) == CMfailed) ||
 	    ((_MDOutSnowPackID    = MFVarGetID (MDVarSnowPack,       "mm",   MFOutput, MFState, MFInitial))  == CMfailed) ||
 	    ((_MDOutSPackChgID    = MFVarGetID (MDVarSnowPackChange, "mm",   MFOutput, MFFlux,  MFBoundary)) == CMfailed) ||
-	    ((_MDOutSnowPackDaysID= MFVarGetID (MDVarSnowPackDays, "-",      MFOutput, MFFlux,  MFBoundary)) == CMfailed) ||
 	    (MFModelAddFunction (_MDSPackChg) == CMfailed)) return (CMfailed);
 	MFDefLeaving ("Snow Pack Change");
 	return (_MDOutSPackChgID);

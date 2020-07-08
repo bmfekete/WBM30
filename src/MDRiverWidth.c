@@ -2,11 +2,11 @@
 
 GHAAS Water Balance/Transport Model V3.0
 Global Hydrologic Archive and Analysis System
-Copyright 1994-2014, UNH - CCNY/CUNY
+Copyright 1994-2020, UNH - ASRC/CUNY
 
 MDRiverWidth.c
 
-bfekete@ccny.cuny.edu
+bfekete@gc.cuny.edu
 
 *******************************************************************************/
 
@@ -60,7 +60,6 @@ static void _MDRiverWidth (int itemID) {
 		width = pow (((shapeExp + 1.0) * area) / (shapeExp * alpha), 1.0 / (shapeExp + 1));
 		depth = alpha * pow (width, shapeExp);
 	}
-
 	MFVarSetFloat (_MDOutRiverDepthID,   itemID, depth);
 	MFVarSetFloat (_MDOutRiverWidthID,   itemID, width);
 }
