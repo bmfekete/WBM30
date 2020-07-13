@@ -10,15 +10,14 @@ bfekete@gc.cuny.edu
 
 *******************************************************************************/
 
-#include <math.h>
-#include <cm.h>
 #include <MF.h>
 #include <MD.h>
 
 // Input
 static int _MDInRainSurfRunoffID = MFUnset;
 static int _MDInSmallResUptakeID = MFUnset;
-static int _MDInWetlandUptakeID = MFUnset;
+static int _MDInWetlandUptakeID  = MFUnset;
+
 // Output
 static int _MDOutSurfRunoffID    = MFUnset;
 

@@ -10,10 +10,9 @@ wil.wollheim@unh.edu
 
 *******************************************************************************/
 
-#include <cm.h>
+#include <math.h>
 #include <MF.h>
 #include <MD.h>
-#include <math.h>
 
 static int _MDInDischargeID            = MFUnset;
 static int _MDInRiverWidthID           = MFUnset;

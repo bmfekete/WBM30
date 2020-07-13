@@ -12,10 +12,11 @@ dominik.wisser@unh.edu
 
 #include <stdlib.h>
 #include <string.h>
-#include <cm.h>
+#include <math.h>
 #include <MF.h>
 #include <MD.h>
 #include <math.h>
+
 #define NumStages 4
 #define numSeasons 2
 #define MDParIrrigationCropFileName "CropParameterFileName"

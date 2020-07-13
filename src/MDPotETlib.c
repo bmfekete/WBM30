@@ -10,9 +10,8 @@ bfekete@gc.cuny.edu
 
 *******************************************************************************/
 
-#include <stdlib.h>
-#include <cm.h>
 #include <math.h>
+#include <MF.h>
 #include <MD.h>
 
 float MDPETlibLeafAreaIndex (float laiFac,float lpMax) {
@@ -102,7 +101,7 @@ float MDPETlibCanopySurfResistance (float airTmin,float solRad,float dd,
 	float fd;    /* dependence of leaf conductance on vpd, 0 to 1 */
 	float ft;    /* dependence of leaf conductance on temperature, 0 to 1 */
 
-   if (r5 > MDConstRM / 2) { fprintf (stderr,"R5 must be < RM/2\n"); return (0.0); }
+   if (r5 > MDConstRM / 2) { CMmsgPrint (CMmsgUsrError,"R5 must be < RM/2\n"); return (0.0); }
 
 	solRad = solRad / MDConstIGRATE;
 /* solar radiation limitation integrated down through canopy

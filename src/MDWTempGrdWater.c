@@ -18,10 +18,9 @@ Irrigation return flow is assumed to have air temperature.
 *******************************************************************************/
 
 #include <string.h>
-#include <cm.h>
+#include <math.h>
 #include <MF.h>
 #include <MD.h>
-#include <math.h>
 
 // Input
 static int _MDInAirTempID         = MFUnset;

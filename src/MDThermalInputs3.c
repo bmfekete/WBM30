@@ -13,10 +13,9 @@ Thermal Inputs, withdrawals, and energy of thermoelectric plans (August 2016)
 
 
 #include <string.h>
-#include <cm.h>
+#include <math.h>
 #include <MF.h>
 #include <MD.h>
-#include <math.h>
 
 //NEW:
 static int _MDInCWA_DeltaID              = MFUnset;   // TODO putin

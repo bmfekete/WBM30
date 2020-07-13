@@ -10,13 +10,13 @@ bfekete@gc.cuny.edu
 
 *******************************************************************************/
 
-#include <cm.h>
 #include <MF.h>
 #include <MD.h>
 
 // Inputs
 static int _MDInDischLevel3ID       = MFUnset;
 static int _MDInIrrUptakeExternalID = MFUnset;
+
 // Outputs
 static int _MDOutIrrUptakeRiverID   = MFUnset;
 static int _MDOutIrrUptakeExcessID  = MFUnset;

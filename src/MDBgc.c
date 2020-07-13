@@ -10,10 +10,9 @@ wil.wollheim@unh.edu
 
 *******************************************************************************/
 
-#include <cm.h>
+#include <math.h>
 #include <MF.h>
 #include <MD.h>
-#include <math.h>
 
 static int _MDInAirTemperatureID  = MFUnset;
 static int _MDInDischargeID       = MFUnset;

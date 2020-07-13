@@ -13,10 +13,9 @@ Converting solar radiation to cloud cover fraction (for use in water temperature
 *******************************************************************************/
 
 #include <string.h>
-#include <cm.h>
+#include <math.h>
 #include <MF.h>
 #include <MD.h>
-#include <math.h>
 
 //Input
 static int _MDInSolarRadID = MFUnset;

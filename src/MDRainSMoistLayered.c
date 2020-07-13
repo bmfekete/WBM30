@@ -12,9 +12,9 @@ dominik.wisser@unh.edu
 
 #include <stdlib.h>
 #include <math.h>
-#include <cm.h>
 #include <MF.h>
 #include <MD.h>
+
 //float ActETP (float soilMoist[],float MaxSoilMoist[],float potETP, int soilLayerNum, int numSoilLayers)
 //static float ActETP(float [], float[],float,int,int);
 static float *ActETP(float [],float [], float [], float , int , float ,float [],float);

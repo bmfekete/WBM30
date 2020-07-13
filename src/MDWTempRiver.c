@@ -13,10 +13,9 @@ Calculate the temperature in runoff from the local grid cell.  Weight groundwate
 *******************************************************************************/
 
 #include <string.h>
-#include <cm.h>
+#include <math.h>
 #include <MF.h>
 #include <MD.h>
-#include <math.h>
 
 // Input
 static int _MDInSurfRunoffID     = MFUnset;

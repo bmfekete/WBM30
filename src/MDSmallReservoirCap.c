@@ -10,17 +10,14 @@ dominik.wisser@unh.edu
 
 *******************************************************************************/
 
-#include <stdlib.h>
-#include <string.h>
-#include <cm.h>
 #include <MF.h>
 #include <MD.h>
-#include <math.h>
 
 //Input
 static int _MDInIrrAreaID                    = MFUnset;
 static int _MDInRainSurfRunoffID             = MFUnset;
 static int _MDInIrrGrossDemandID             = MFUnset;
+
 //Output
 static int _MDOutRainSurfRunoffAccumulatedID = MFUnset;
 static int _MDOutIrrGrossDemandAccumulatedID = MFUnset;

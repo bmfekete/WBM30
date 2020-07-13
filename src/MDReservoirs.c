@@ -13,7 +13,6 @@ Feb. 2009 DW
 
 *******************************************************************************/
 
-#include <cm.h>
 #include <MF.h>
 #include <MD.h>
  
@@ -21,7 +20,6 @@ Feb. 2009 DW
 static int _MDInDischargeID       = MFUnset;
 static int _MDInDischMeanID       = MFUnset;
 static int _MDInResCapacityID     = MFUnset;
-
 
 // Output
 static int _MDOutResStorageID        = MFUnset;

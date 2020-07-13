@@ -10,8 +10,6 @@ bfekete@gc.cuny.edu
 
 *******************************************************************************/
 
-#include <math.h>
-#include <cm.h>
 #include <MF.h>
 #include <MD.h>
 
@@ -21,6 +19,7 @@ static int _MDInIrrGrossDemandID     = MFUnset;
 static int _MDInIrrReturnFlowID      = MFUnset;
 static int _MDInIrrAreaFracID        = MFUnset;
 static int _MDInSmallResReleaseID    = MFUnset;
+
 // Output
 static int _MDOutGrdWatID            = MFUnset;
 static int _MDOutGrdWatChgID         = MFUnset;
@@ -86,8 +85,6 @@ static void _MDBaseFlow (int itemID) {
 	grdWater    = grdWater - baseFlow;
 	grdWaterChg = grdWater - grdWaterChg;
 
-//	if ((itemID == 25014)) printf("m = %d, d = %d, @@@@@@@@@@@@@ baseFlow = %f, grdWater = %f, grdWaterChg = %f, grdWaterRecharge = %f\n", MFDateGetCurrentMonth(), MFDateGetCurrentDay(), baseFlow * 100000, grdWater * 100000, grdWaterChg * 100000, grdWaterRecharge * 100000);	//RJS 071511
-
 //in= irrReturnFlow+grdWaterRecharge;
 //out = irrUptakeGrdWater + grdWaterChg;
 //float balance;
@@ -132,9 +129,3 @@ int MDBaseFlowDef () {
 	MFDefLeaving ("Base flow ");
 	return (_MDOutBaseFlowID);
 }
-
-
- 
-
-
-

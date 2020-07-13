@@ -20,10 +20,9 @@ better results.  If this solution does not converge,the Chappell
 approximation is returned. 
  * ******************************************************************************/
 
-#include <cm.h>
+#include <math.h>
 #include <MF.h>
 #include <MD.h>
-#include <math.h>
 
 // Input
 static int _MDInAirTemperatureID = MFUnset;

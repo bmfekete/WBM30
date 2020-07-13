@@ -13,13 +13,13 @@ Calculate GPP in rivers
 *******************************************************************************/
 
 #include <string.h>
-#include <cm.h>
+#include <math.h>
 #include <MF.h>
 #include <MD.h>
-#include <math.h>
 
 // Model
 static int _MDRiverGPPID               = MFUnset;
+
 // Input
 static int _MDInRiverLightID           = MFUnset;
 static int _MDInDischargeID            = MFUnset;
@@ -159,7 +159,6 @@ int MDBgcRiverGPPDef () {
         ((_MDBenthicRa_REACHID        = MFVarGetID (MDVarBenthicRa_REACH,        "g/m2/d",  MFOutput, MFState, MFBoundary)) == CMfailed) ||
         ((_MDBenthicNPP_REACHID       = MFVarGetID (MDVarBenthicNPP_REACH,       "g/m2/d",  MFOutput, MFState, MFBoundary)) == CMfailed) ||
         ((_MDBenthicMortality_REACHID = MFVarGetID (MDVarBenthicMortality_REACH, "g/m2/d",  MFOutput, MFState, MFBoundary)) == CMfailed) ||
-
 
        (MFModelAddFunction (_MDRiverGPP) == CMfailed)) return (CMfailed);
       

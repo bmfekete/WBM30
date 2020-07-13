@@ -12,7 +12,6 @@ bfekete@gc.cuny.edu
 
 #include <stdlib.h>
 #include <math.h>
-#include <cm.h>
 #include <MD.h>
 
 float MDWindAdjustment (float za,float disp,float z0,float fetch, float zw, float z0w)
