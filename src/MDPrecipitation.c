@@ -75,7 +75,7 @@ static void _MDPrecipFraction (int itemID)
 	precipFrac = MFVarGetFloat (_MDInPrecipFracID, itemID, 1.0 / nDays);
 
 	precipOut = precipIn *  precipFrac* nDays;
-	if (precipOut <0){printf ("Precip negative! precipIn=%f precipFrac =%f itemID = %i \n", precipIn, precipFrac, itemID);}
+	if (precipOut <0){printf ("Precip negative! precipIn=%f precipFrac =%fprecipFrac\n", precipIn, precipFrac);}
 //if (itemID==2)printf("PrecipOut %f nDays %i precipFrac %f precipIn %f \n",precipOut, nDays,precipFrac,precipIn);
 	MFVarSetFloat (_MDOutPrecipID,itemID,precipOut);
 	}

@@ -83,11 +83,10 @@ static void  printCrops(const MDIrrigatedCrop *);
 static int   getNumGrowingSeasons(float);
 
 static float getIrrGrossWaterDemand(float, float);
-//static float irrAreaFrac; moving this to inside the module - first line below - ariel july 6 2020
 
 static void _MDIrrGrossDemand (int itemID) {
 //Input
-	float irrAreaFrac;
+    float irrAreaFrac;
 	float irrEffeciency;
 	float dailyPrecip    = 0.0;
 	float dailyEffPrecip = 0.0;
@@ -363,7 +362,7 @@ static void _MDIrrGrossDemand (int itemID) {
 			}
  			smChange = prevSoilMstDepl - curDepl;
 			bareSoilBalance=dailyEffPrecip -smChange- cropWR - netIrrDemand -deepPercolation;
-// TODO STUPID f (fabs(bareSoilBalance >0.0001)) printf ("bare SMBalance!! precip %f cropWR %f smchange %f dp %f\n ",dailyEffPrecip , cropWR ,smChange, deepPercolation );
+			if (fabs(bareSoilBalance >0.0001)) printf ("bare SMBalance!! precip %f cropWR %f smchange %f dp %f\n ",dailyEffPrecip , cropWR ,smChange, deepPercolation );
   			MFVarSetFloat (_MDOutCropDeficitIDs [_MDNumberOfIrrCrops], itemID, curDepl);	
   
 		}
@@ -644,17 +643,14 @@ static int readCropParameters(const char *filename) {
 		//read headings..
 	
 		fgets (buffer,sizeof (buffer),inputCropFile);
-        
-		/*while (feof(inputCropFile) == 0) {*/
-		while (fgets(buffer, sizeof(buffer), inputCropFile) != NULL) {
+		while (feof(inputCropFile) == 0) {
 			_MDirrigCropStruct   = (MDIrrigatedCrop *) realloc (_MDirrigCropStruct, (i + 1) * sizeof (MDIrrigatedCrop));
 			_MDInCropFractionIDs = (int *) realloc (_MDInCropFractionIDs, (i + 1) * sizeof (int));
 			_MDOutCropDeficitIDs = (int *) realloc (_MDOutCropDeficitIDs, (i + 1) * sizeof (int));
 			_MDOutCropETIDs      = (int *) realloc (_MDOutCropETIDs,      (i + 1) * sizeof (int));
 			_MDOutCropGrossDemandIDs=(int *) realloc (_MDOutCropGrossDemandIDs,      (i + 1) * sizeof (int));
 			_MDInCropFractionIDs [i] =_MDOutCropETIDs[i]= _MDOutCropDeficitIDs [i] = _MDOutCropGrossDemandIDs[i]=MFUnset;
-			/*fscanf (inputCropFile, "%i" "%i" "%s" "%s" "%f" "%f" "%f" "%f" "%f" "%f" "%f" "%f" "%f",*/
-			sscanf (buffer, "%i" "%i" "%s" "%s" "%f" "%f" "%f" "%f" "%f" "%f" "%f" "%f" "%f",
+			fscanf (inputCropFile, "%i" "%i" "%s" "%s" "%f" "%f" "%f" "%f" "%f" "%f" "%f" "%f" "%f",
 		       &(_MDirrigCropStruct [i].ID),
 		       &(_MDirrigCropStruct [i].DW_ID),
 		         _MDirrigCropStruct [i].cropName,
