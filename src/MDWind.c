@@ -10,7 +10,6 @@ bfekete@gc.cuny.edu
 
 *******************************************************************************/
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <cm.h>

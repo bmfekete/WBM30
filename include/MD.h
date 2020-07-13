@@ -41,8 +41,160 @@ extern "C" {
 
 #define MDOptIrrigatedAreaMap                "IrrigatedAreaMap"
 #define MDOptSoilAvailableWaterCapacity		 "SoilWaterCapacity"
-#define MDOptThermalInputs					 "ThermalInputs"
+#define MDOptThermalInputs3					 "ThermalInputs3" //change to thermalinputs3 - AM 042415
 
+
+#define MDOptWetBulbTemp             "WetBulbTemp"
+#define MDOptSpecificHumidity             "SpecificHumidity"
+
+//WETBULB
+#define MDVarSpecificHumidity        "SpecificHumidity" //for wet bulb
+#define MDVarAirPressure             "AirPressure"      //for wet bulb
+#define MDVarWetBulbTemp             "WetBulbTemp"      //for wet bulb
+#define MDVarRelativeHumidity        "RelativeHumidity" //for wet bulb
+#define MDOptRelativeHumidity        "RelativeHumidity" //for wet bulb
+
+
+//SOLAR TO CLOUD
+#define MDOptCloudCover		     "CloudCover"	//cloud cover fraction AM sep2015
+#define MDVarCloudCover              "CloudCover"
+
+
+//TP2M
+#define MDVarLossToWater					"LossToWater"
+#define MDVarLossToInlet                                        "LossToInlet"
+
+#define MDVarAvgEfficiency                                       "AvgEfficiency"                // RJS 062012
+#define MDVarAvgDeltaTemp                                        "AvgDeltaTemp"                 // RJS 062012
+#define MDVarApproach                                            "Approach"                     // RJS 062012
+#define MDVarBypassPercent                                       "BypassPercent"                        // RJS 062012
+#define MDVarDeltaT                                                      "DeltaT"                               // RJS 030613
+#define MDVarEfficiency1                                         "Efficiency1"                  // RJS 062012
+#define MDVarEfficiency2                                         "Efficiency2"                  // RJS 062012
+#define MDVarEfficiency3                                         "Efficiency3"                  // RJS 062012
+#define MDVarEfficiency4                                         "Efficiency4"                  // RJS 062012
+#define MDVarEnergyDemand                                        "EnergyDemand"                 // RJS 062012
+#define MDVarHeatToRiv                                           "HeatToRiv"                    // RJS 112712
+#define MDVarHeatToSink                                          "HeatToSink"                   // RJS 112712
+#define MDVarHeatToEng                                           "HeatToEng"                    // RJS 112712
+#define MDVarHeatToElec                                          "HeatToElec"                   // RJS 112912
+#define MDVarHeatToEvap                                          "HeatToEvap"                   // RJS 120212
+#define MDVarLakeOcean1                                          "LakeOcean1"           // RJS 062012
+#define MDVarLHFract                                             "LHFract"                      // RJS 071112
+#define MDVarLHFractPost                                         "LHFractPost"          // RJS 071112
+
+#define MDVarNamePlate1                                          "NamePlate1"           //RJS 013012
+#define MDVarNamePlate2                                          "NamePlate2"           //RJS 013012
+#define MDVarNamePlate3                                          "NamePlate3"           //RJS 013012
+#define MDVarNamePlate4                                          "NamePlate4"           //RJS 013012
+
+#define MDVarDemand1                                          "Demand1"           //RJS 013012
+#define MDVarDemand2                                          "Demand2"           //RJS 013012
+#define MDVarDemand3                                          "Demand3"           //RJS 013012
+#define MDVarDemand4                                          "Demand4"           //RJS 013012
+
+#define MDVarOptDeltaT                                           "OptDeltaT"            //RJS 013012
+#define MDVarPlantCode1                                          "PlantCode1"           // RJS 062012
+#define MDVarPowerOutput1                                        "PowerOutput1"         //RJS 013112
+#define MDVarPowerOutput2                                        "PowerOutput2"         //RJS 013112
+#define MDVarPowerOutput3                                        "PowerOutput3"         //RJS 013112
+#define MDVarPowerOutput4                                        "PowerOutput4"         //RJS 013112
+#define MDVarPowerDeficit1                                       "PowerDeficit1"                //RJS 013112
+#define MDVarPowerDeficit2                                       "PowerDeficit2"                //RJS 013112
+#define MDVarPowerDeficit3                                       "PowerDeficit3"                //RJS 013112
+#define MDVarPowerDeficit4                                       "PowerDeficit4"                //RJS 013112
+#define MDVarPowerPercent1                                       "PowerPercent1"                //RJS 013112
+#define MDVarPowerPercent2                                       "PowerPercent2"                //RJS 013112
+#define MDVarPowerPercent3                                       "PowerPercent3"                //RJS 013112
+#define MDVarPowerPercent4                                       "PowerPercent4"                //RJS 013112
+#define MDVarPowerOutputTotal                            "PowerOutputTotal"             //RJS 013112
+#define MDVarPowerOutputTotal1                            "PowerOutputTotal1"             //RJS 013112
+#define MDVarPowerOutputTotal2                            "PowerOutputTotal2"             //RJS 013112
+#define MDVarPowerOutputTotal3                            "PowerOutputTotal3"             //RJS 013112
+#define MDVarPowerOutputTotal4                            "PowerOutputTotal4"             //RJS 013112
+
+#define MDVarGeneration                            "Generation"             //RJS 013112
+#define MDVarGeneration1                            "Generation1"             //RJS 013112
+#define MDVarGeneration2                            "Generation2"             //RJS 013112
+#define MDVarGeneration3                            "Generation3"             //RJS 013112
+#define MDVarGeneration4                            "Generation4"             //RJS 013112
+
+#define MDVarPowerDeficitTotal                           "PowerDeficitTotal"    //RJS 013112
+#define MDVarPowerPercentTotal                           "PowerPercentTotal"    //RJS 013112
+#define MDVarLakeOcean                                           "LakeOcean"                    // RJS 062012
+#define MDVarQpp1                                                        "Qpp1"                 //RJS 071112
+#define MDVarOptQO1                                                      "OptQO1"               //RJS 071112
+#define MDVarRiverThreshT                                        "RiverThreshT"                         // RJS 062012
+#define MDVarState                                                       "State"                                // RJS 062012
+#define MDVarTechnology1                                                 "Technology1"          // RJS 062012
+#define MDVarTechnology2                                                 "Technology2"          // RJS 062012
+#define MDVarTechnology3                                                 "Technology3"          // RJS 062012
+#define MDVarTechnology4                                                 "Technology4"          // RJS 062012
+#define MDVarTempLimit                                           "TempLimit"            //RJS 013012
+
+#define MDVarCWA_316b_OnOff                                           "CWA_316b_OnOff"
+#define MDVarDownstream_OnOff                                           "Downstream_OnOff"
+#define MDVarCWA_OnOff                                           "CWA_OnOff"
+#define MDVarCWA_Delta                                           "CWA_Delta"
+#define MDVarCWA_Limit                                           "CWA_Limit"
+#define MDVarGW_Temp						 "GW_Temp"
+#define MDVarEquil_Temp                                             "Equil_Temp"
+
+#define MDVarTempIn1                                                     "TempIn1"                      //RJS 111812
+#define MDVarTpp1                                                                "Tpp1"                         //RJS 111812
+#define MDVarTotalHoursRun                                               "TotalHoursRun"        // RJS 030213
+#define MDVarTotal2008                                           "Total2008"                    //RJS 062012
+#define MDVarTotalThermalWdls                            "TotalThermalWdls"             //RJS 013112
+#define MDVarTotalOptThermalWdls                         "TotalOptThermalWdls"  //RJS 020212
+#define MDVarTotalEvaporation                            "TotalEvaporation"             // RJS 062012
+#define MDVarTotalEnergyDemand                           "TotalEnergyDemand"    // RJS 062012
+#define MDVarTotalReturnFlow                             "TotalReturnFlow"              // RJS 062012
+#define MDVarThermalWdl                                          "ThermalWdl"           //RJS 081711
+#define MDVarCondenserInlet                                     "CondenserInlet"                        //RJS 122112
+#define MDVarCondenserInlet1                                     "CondenserInlet1"                        //RJS 122112
+#define MDVarCondenserInlet2                                     "CondenserInlet2"                        //RJS 122112
+#define MDVarCondenserInlet3                                     "CondenserInlet3"                        //RJS 122112
+#define MDVarCondenserInlet4                                     "CondenserInlet4"                        //RJS 122112
+#define MDVarSimEfficiency                                      "SimEfficiency"                         //RJS 122112
+#define MDVarTotalExternalWater					"TotalExternalWater"		//MIARA 042815
+
+#define MDVarLossToInlet1                                     "LossToInlet1"                        //RJS 122112
+#define MDVarLossToInlet2                                     "LossToInlet2"                        //RJS 122112
+#define MDVarLossToInlet3                                     "LossToInlet3"                        //RJS 122112
+#define MDVarLossToInlet4                                     "LossToInlet4"                        //RJS 122112
+
+#define MDVarHeatToRiver1                                     "HeatToRiver1"                        //RJS 122112
+#define MDVarHeatToRiver2                                     "HeatToRiver2"                        //RJS 122112
+#define MDVarHeatToRiver3                                     "HeatToRiver3"                        //RJS 122112
+#define MDVarHeatToRiver4                                     "HeatToRiver4"                        //RJS 122112
+
+
+// Water Temperature Variables
+// Runoff Temperature
+#define MDVarWTempGrdWater                   "GroundWaterTemperature"
+#define MDVarWTempRiver                      "RiverTemperature"
+#define MDVarWTempSurfRunoff                 "SurfaceROTemperature"
+#define MDVarWTempSurfRunoffPool                         "SurfaceROPoolTemperature"
+// Routing Temperature
+#define MDVarBgcLocalIn_QxT                  "QxT_LocalIn"
+#define MDVarRemoval_QxT                     "QxT_Removal"
+#define MDVarFlux_QxT                        "QxT_Flux"
+#define MDVarStorage_QxT                     "QxT_Storage"
+#define MDVarDeltaStorage_QxT                "QxT_DeltaStorage"
+#define MDVarWTemp_QxT                       "QxT_WaterTemp"
+#define MDVarWTempDeltaT_QxT                 "QxT_deltaT"
+#define MDVarWithdrawal_QxT                                      "Withdrawal_QxT"       //081311
+#define MDVarFluxMixing_QxT                  "QxT_FluxMixing"
+#define MDVarStorageMixing_QxT               "QxT_StorageMixing"
+#define MDVarDeltaStorageMixing_QxT          "QxT_DeltaStorageMixing"
+#define MDVarWTempMixing_QxT                 "QxT_WaterTempMixing"
+#define MDVarPAR2Bottom                      "PAR2Bottom"
+#define MDVarPAR2Reach                       "PAR2Reach"
+#define MDVarDingmanOnOff                                        "DingmanOnOff"                 // RJS 073012
+
+
+
+//REST
 #define MDVarAccBalance                      "AccumBalance"
 #define MDVarAccPrecipitation                "AccumPrecipitation"
 #define MDVarAccEvapotranspiration           "AccumEvapotranspiration"
@@ -93,7 +245,6 @@ extern "C" {
 #define MDVarCParamGLMax                     "CParamGLMax"
 #define MDVarCParamLPMax                     "CParamLPMax"
 #define MDVarCParamZ0g                       "CParamZ0g"
-#define MDVarCloudCover                      "CloudCover"
 
 #define MDVarDischarge                       "Discharge"
 #define MDVarDischarge0                      "Discharge0"
@@ -102,6 +253,10 @@ extern "C" {
 #define MDVarDischMean                       "DischargeMean"
 
 #define MDVarEvapotranspiration              "Evapotranspiration"
+#define MDVarFuelType1						 "FuelType1"			//RJS 013012
+#define MDVarFuelType2						 "FuelType2"			//RJS 013012
+#define MDVarFuelType3						 "FuelType3"			//RJS 013012
+#define MDVarFuelType4						 "FuelType4"			//RJS 013012
 #define MDVarGrossRadiance                   "GrossRadiance"
 #define MDVarGroundWater                     "GroundWater"
 #define MDVarGroundWaterChange               "GroundWaterChange"
@@ -140,6 +295,48 @@ extern "C" {
 #define MDVarMuskingumC1                     "MuskingumC1"
 #define MDVarMuskingumC2                     "MuskingumC2"
 
+#define MDVarNamePlate1						 "NamePlate1"		//RJS 013012
+#define MDVarNamePlate2						 "NamePlate2"		//RJS 013012
+#define MDVarNamePlate3						 "NamePlate3"		//RJS 013012
+#define MDVarNamePlate4						 "NamePlate4"		//RJS 013012
+#define MDVarNamePlate5						 "NamePlate5"		//RJS 013012
+#define MDVarNamePlate6						 "NamePlate6"		//RJS 013012
+#define MDVarNamePlate7						 "NamePlate7"		//RJS 013012
+#define MDVarNamePlate8						 "NamePlate8"		//RJS 013012
+
+#define MDVarOptDeltaT						 "OptDeltaT"		//RJS 013012
+
+#define MDVarPowerOutput1					 "PowerOutput1"		//RJS 013112
+#define MDVarPowerOutput2					 "PowerOutput2"		//RJS 013112
+#define MDVarPowerOutput3					 "PowerOutput3"		//RJS 013112
+#define MDVarPowerOutput4					 "PowerOutput4"		//RJS 013112
+#define MDVarPowerOutput5					 "PowerOutput5"		//RJS 013112
+#define MDVarPowerOutput6					 "PowerOutput6"		//RJS 013112
+#define MDVarPowerOutput7					 "PowerOutput7"		//RJS 013112
+#define MDVarPowerOutput8					 "PowerOutput8"		//RJS 013112
+
+#define MDVarPowerDeficit1					 "PowerDeficit1"		//RJS 013112
+#define MDVarPowerDeficit2					 "PowerDeficit2"		//RJS 013112
+#define MDVarPowerDeficit3					 "PowerDeficit3"		//RJS 013112
+#define MDVarPowerDeficit4					 "PowerDeficit4"		//RJS 013112
+#define MDVarPowerDeficit5					 "PowerDeficit5"		//RJS 013112
+#define MDVarPowerDeficit6					 "PowerDeficit6"		//RJS 013112
+#define MDVarPowerDeficit7					 "PowerDeficit7"		//RJS 013112
+#define MDVarPowerDeficit8					 "PowerDeficit8"		//RJS 013112
+
+#define MDVarPowerPercent1					 "PowerPercent1"		//RJS 013112
+#define MDVarPowerPercent2					 "PowerPercent2"		//RJS 013112
+#define MDVarPowerPercent3					 "PowerPercent3"		//RJS 013112
+#define MDVarPowerPercent4					 "PowerPercent4"		//RJS 013112
+#define MDVarPowerPercent5					 "PowerPercent5"		//RJS 013112
+#define MDVarPowerPercent6					 "PowerPercent6"		//RJS 013112
+#define MDVarPowerPercent7					 "PowerPercent7"		//RJS 013112
+#define MDVarPowerPercent8					 "PowerPercent8"		//RJS 013112
+
+#define MDVarPowerOutputTotal				 "PowerOutputTotal"		//RJS 013112
+#define MDVarPowerDeficitTotal				 "PowerDeficitTotal"	//RJS 013112
+#define MDVarPowerPercentTotal				 "PowerPercentTotal"	//RJS 013112
+
 #define MDVarPrecipitation                   "Precipitation"
 #define MDVarPrecipFraction                  "PrecipitationFraction"
 #define MDVarPrecipMonthly                   "MonthlyPrecipitation"
@@ -164,12 +361,12 @@ extern "C" {
 #define MDVarReservoirStorage                "ReservoirStorage" 
 #define MDVarReservoirStorageChange          "ReservoirStorageChange"
 
-#define MDVarRelHumidity                     "RelativeHumidity"
 #define MDVarRelSoilMoisture                 "RelativeSoilMoisture"	
 #define MDVarRiverbedAvgDepthMean            "RiverbedAvgDepthMean"
 #define MDVarRiverbedSlope                   "RiverbedSlope"
 #define MDVarRiverbedShapeExponent           "RiverbedShapeExponent"
 #define MDVarRiverbedWidthMean               "RiverbedWidthMean"
+
 #define MDVarRiverbedVelocityMean            "RiverbedVelocityMean"
 #define MDVarRiverDepth                      "RiverDepth"
 #define MDVarRiverStorage                    "RiverStorage"
@@ -202,11 +399,13 @@ extern "C" {
 #define MDVarSoilMoistChange                 "SoilMoistureChange"
 #define MDVarSoilWiltingPoint                "WiltingPoint"
 #define MDVarSoilBulkDensity                 "SoilBulkDensity"
+#define MDVarTempLimit						 "TempLimit"		//RJS 013012
+#define MDVarTotalThermalWdls				 "TotalThermalWdls"	//RJS 013112
+#define MDVarTotalOptThermalWdls			 "TotalOptThermalWdls" //RJS 020212
 #define	MDVarTransferEffRip					 "TransferEffRip"	//RJS 061511
 #define MDVarTransferEffSep					 "TransferEffSep"	//RJS 061511
 
 #define MDVarThermalWdl						 "ThermalWdl"		//RJS 081711
-#define MDVarPowerPlantCap					 "PowerPlantCapacity"   //AM  011312
 
 #define MDVarLakeArea                        "LakeArea" // TODO I think this is Wil's addition but not used yet
 #define MDVarReservoirArea                   "ReservoirArea" // TODO I think this is Wil's addition but not used yet
@@ -439,7 +638,6 @@ int MDRainSMoistChgDef();
 int MDRainSurfRunoffDef();
 int MDRainWaterSurplusDef();
 int MDWetlandRunoffDef();
-int MDRelHumidityDef(); // TODO Not Used!
 int MDRiverbedShapeExponentDef();
 int MDRiverWidthDef();
 
@@ -462,11 +660,10 @@ int MDPrecipitationDef();
 int MDWetDaysDef();
 int MDWetlandAreaDef();
 int MDPermafrostDef();
-int MDThermalPowerPlantDef ();
 int MDWTempGrdWaterDef();
 int MDWTempRiverDef();
 int MDWTempRiverRouteDef();
-int MDThermalInputsDef();
+int MDThermalInputs3Def();  //changed AM 042415
 
 int MDWTempSurfRunoffDef();
 

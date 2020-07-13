@@ -10,7 +10,6 @@ dominink.wisser@unh.edu
 
 *******************************************************************************/
 
-#include <stdio.h>
 #include <cm.h>
 #include <MF.h>
 #include <MD.h>

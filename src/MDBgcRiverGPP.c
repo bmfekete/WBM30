@@ -12,7 +12,6 @@ Calculate GPP in rivers
 
 *******************************************************************************/
 
-#include <stdio.h>
 #include <string.h>
 #include <cm.h>
 #include <MF.h>

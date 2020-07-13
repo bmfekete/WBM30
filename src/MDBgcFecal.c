@@ -9,7 +9,7 @@ MDFecal.c  - Routing and processing of fecal coliform
 wil.wollheim@unh.edu
 
 *******************************************************************************/
-#include <stdio.h>
+
 #include <cm.h>
 #include <MF.h>
 #include <MD.h>

@@ -9,11 +9,11 @@ MDIrrRefETFAO.c
 dominink.wisser@unh.edu
 
 *******************************************************************************/
-#include<stdio.h>
-#include<math.h>
-#include<cm.h>
-#include<MF.h>
-#include<MD.h>
+
+#include <math.h>
+#include <cm.h>
+#include <MF.h>
+#include <MD.h>
 
 // Input
 static int _MDInAtMeanID            = MFUnset;

@@ -9,7 +9,7 @@ MDBgc_DIN.c  - Routing and processing of DIN
 wil.wollheim@unh.edu
 
 *******************************************************************************/
-#include <stdio.h>
+
 #include <cm.h>
 #include <MF.h>
 #include <MD.h>

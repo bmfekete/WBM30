@@ -12,7 +12,6 @@ Calculate the temperature in runoff from the local grid cell.  Weight groundwate
 
 *******************************************************************************/
 
-#include <stdio.h>
 #include <string.h>
 #include <cm.h>
 #include <MF.h>
@@ -65,9 +64,9 @@ static void _MDWTempRiver (int itemID) {
    	   //TemperatureRO = MDMinimum(TemperatureRO, 40);
    	    MFVarSetFloat(_MDOutWTempRiverID,itemID,TemperatureRO); 
 
-//   	    if (itemID == 60646) printf("TempRO = %f, RechargeT = %f, GrdWaterT = %f, SurfaceRO = %f, GrdWaterRO = %f\n", TemperatureRO, RechargeT, GrdWaterT, SurfaceRO, GrdWaterRO);	//RJS 061611
-//  	    if (TemperatureRO > 1000) printf("itemID = %d, TempRO = %f, RechargeT = %f, GrdWaterT = %f, SurfaceRO = %f, GrdWaterRO = %f\n", itemID, TemperatureRO, RechargeT, GrdWaterT, SurfaceRO, GrdWaterRO);	//RJS 061611
-
+//if ( ((SurfaceRO>0) || (GrdWaterRO > 0)) && (RechargeT > 0) && (GrdWaterT > 0) ) {
+//	printf("itemID = %d, SurfaceRO = %f, RechargeT = %f, GrdWaterRO = %f, GrdWaterT = %f, TemperatureRO = %f \n", itemID, SurfaceRO, RechargeT, GrdWaterRO, GrdWaterT, TemperatureRO);
+//}
 
 //	 }															//here
 // 	 else {														//here

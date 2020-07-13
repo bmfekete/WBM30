@@ -12,7 +12,6 @@ Estimate light inputs to water surface and to river bottom
 
 *******************************************************************************/
 
-#include <stdio.h>
 #include <string.h>
 #include <cm.h>
 #include <MF.h>
