@@ -65,8 +65,8 @@ enum { MDnone, MDcalculate };
 
 int MDDischLevel2Def() {
 	int optID = MFUnset, ret;
-	const char *optStr, *optName = "IrrUptakeRiver";
-	const char *options [] = { MDNoneStr, MDCalculateStr, (char *) NULL };
+	char *optStr, *optName = "IrrUptakeRiver";
+	char *options [] = { MDNoneStr, MDCalculateStr, (char *) NULL };
 
 	if (_MDOutDischLevel2ID != MFUnset) return (_MDOutDischLevel2ID);
 

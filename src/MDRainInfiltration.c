@@ -49,8 +49,8 @@ enum { MDinput, MDsimple, MDvarying,MDSpatially};
 int MDRainInfiltrationDef () {
 	int  optID = MFUnset;
 	int ret =0;
-	const char *optStr, *optName = MDVarRainInfiltration;
-	const char *options [] = { MDInputStr, "simple", "varying","spatially" ,(char *) NULL };
+	char *optStr, *optName = MDVarRainInfiltration;
+	char *options [] = { MDInputStr, "simple", "varying","spatially" ,(char *) NULL };
 	float par;
 	//printf ("THE framework = greatest time sink ever invented\n");
 	if (_MDOutRainInfiltrationID != MFUnset) return (_MDOutRainInfiltrationID);

@@ -17,6 +17,7 @@ bfekete@gc.cuny.edu
 static int _MDInSoilFieldCapacityID  = MFUnset;
 static int _MDInSoilWiltingPointID   = MFUnset;
 static int _MDInSoilRootingDepthID   = MFUnset;
+
 // Output
 static int _MDOutSoilAvailWaterCapID = MFUnset;
 
@@ -32,15 +33,12 @@ static void _MDSoilAvailWaterCap (int itemID) {
 	
 	MFVarSetFloat (_MDOutSoilAvailWaterCapID, itemID, rootingDepth * (fieldCapacity - wiltingPoint));
 }
-/*static void _MDSoilAvailWaterCapInput (int itemID) {
-	
-	MFVarSetFloat (_MDOutSoilAvailWaterCapID, itemID, MFVarGetFloat(_MDOutSoilAvailWaterCapID,itemID,0.0));
-}*/
+
 enum { MDinput, MDcalculate};
 int MDSoilAvailWaterCapDef () {
 	int  optID = MFUnset;
-	const char *optStr, *optName = MDOptSoilAvailableWaterCapacity;
-	const char *options [] = { MDInputStr, MDCalculateStr,  (char *) NULL };
+	char *optStr, *optName = MDOptSoilAvailableWaterCapacity;
+	char *options [] = { MDInputStr, MDCalculateStr,  (char *) NULL };
 	
 	if (_MDOutSoilAvailWaterCapID != MFUnset) return (_MDOutSoilAvailWaterCapID);
 
@@ -53,7 +51,7 @@ int MDSoilAvailWaterCapDef () {
 			if (((_MDInSoilFieldCapacityID  = MFVarGetID (MDVarSoilFieldCapacity, "mm/m", MFInput,  MFState, MFBoundary)) == CMfailed) ||
 			    ((_MDInSoilWiltingPointID   = MFVarGetID (MDVarSoilWiltingPoint,  "mm/m", MFInput,  MFState, MFBoundary)) == CMfailed) ||
 			    ((_MDInSoilRootingDepthID   = MFVarGetID (MDVarSoilRootingDepth,  "mm",   MFInput,  MFState, MFBoundary)) == CMfailed) ||
-			    ((_MDOutSoilAvailWaterCapID = MFVarGetID (MDVarSoilAvailWaterCap, "mm",   MFOutput, MFFlux,  MFBoundary)) == CMfailed) ||
+			    ((_MDOutSoilAvailWaterCapID = MFVarGetID (MDVarSoilAvailWaterCap, "mm",   MFOutput, MFState, MFBoundary)) == CMfailed) ||
 			    (MFModelAddFunction (_MDSoilAvailWaterCap) == CMfailed)) return (CMfailed);
 			break;
 		default: MFOptionMessage (optName, optStr, options); return (CMfailed);

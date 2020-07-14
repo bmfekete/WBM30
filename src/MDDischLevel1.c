@@ -27,14 +27,13 @@ static void _MDDischLevel1 (int itemID) {
 		 discharge = MFVarGetFloat (_MDInDischReleasedID, itemID, 0.0);
 	else discharge = MFVarGetFloat (_MDInDischLevel2ID,   itemID, 0.0);
 
-//		if (itemID == 25014) printf("discharge= %f\n",discharge);
 	MFVarSetFloat (_MDOutDischLevel1ID, itemID, discharge);
 }
 
 int MDDischLevel1Def() {
 
    char *optStr;
-   const char *options [] = { MDNoneStr, (char *) NULL };
+   char *options [] = { MDNoneStr, (char *) NULL };
 
    
 	if (_MDOutDischLevel1ID != MFUnset) return (_MDOutDischLevel1ID);

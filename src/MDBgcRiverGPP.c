@@ -123,8 +123,8 @@ static void _MDRiverGPP (int itemID) {
 
 int MDBgcRiverGPPDef () {
 	int optID = MFUnset;
-    const char *optStr;
-		const char *options [] = { "none", "calculate", (char *) NULL };
+    char *optStr;
+		char *options [] = { "none", "calculate", (char *) NULL };
 
 	if (_MDRiverGPPID != MFUnset) return (_MDRiverGPPID);
 

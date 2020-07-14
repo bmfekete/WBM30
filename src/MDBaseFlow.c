@@ -101,7 +101,7 @@ static void _MDBaseFlow (int itemID) {
 
 int MDBaseFlowDef () {
 	float par;
-	const char *optStr;
+	char *optStr;
 
 	if (_MDOutBaseFlowID != MFUnset) return (_MDOutBaseFlowID);
 

@@ -10,7 +10,6 @@ bfekete@gc.cuny.edu
 
 *******************************************************************************/
 
-#include <math.h>
 #include <MF.h>
 #include <MD.h>
 
@@ -51,17 +50,10 @@ static void _MDDischLevel3Muskingum (int itemID) {
 	inDischCurrent  = MFVarGetFloat (_MDInDischargeID,     itemID, 0.0) + runoff;
 	storage         = MFVarGetFloat (_MDOutRiverStorageID, itemID, 0.0);
 
-	//float _inDischCurrent;
-	//float _outDisch;
-	//_outDisch =outDisch;
-	//for (i=1;i<24:i++){
-		
 	outDisch = C0 * inDischCurrent + C1 * inDischPrevious + C2 * outDisch;
-	
 	storChg  = inDischCurrent - outDisch;
 	storage = storage + storChg > 0.0 ? storage + storChg : 0.0;
-	//}
-	
+
 	MFVarSetFloat (_MDOutDischAux0ID,    itemID, inDischCurrent);
 	MFVarSetFloat (_MDOutDischAux1ID,    itemID, outDisch);
 	MFVarSetFloat (_MDOutDischLevel3ID,  itemID, outDisch);

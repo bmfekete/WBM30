@@ -141,8 +141,8 @@ printf("S = %f, Q = %f, pl1 = %f, pl2 = %f, pl3 = %f, pl4 = %f, pl5 = %f, pl6 = 
 
     int MDWetBulbTempDef() {
         int optID = MFUnset;
-        const char *optStr, *optName = MDOptWetBulbTemp;
-        const char *options [] = { MDNoneStr, MDInputStr, MDCalculateStr, (char *) NULL};
+        char *optStr, *optName = MDOptWetBulbTemp;
+        char *options [] = { MDNoneStr, MDInputStr, MDCalculateStr, (char *) NULL};
 
         if ((optStr = MFOptionGet(optName)) != (char *) NULL) optID = CMoptLookup(options, optStr, true);
         if ((optID == MDnone) || (_MDOutWetBulbTempID != MFUnset)) return (_MDOutWetBulbTempID);

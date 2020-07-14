@@ -34,8 +34,8 @@ enum { MDinput, MDcalculate };
 
 int MDDischMeanDef () {
 	int  optID = MFUnset;
-	const char *optStr, *optName = MDVarDischMean;
-	const char *options [] = { MDInputStr, MDCalculateStr, (char *) NULL };
+	char *optStr, *optName = MDVarDischMean;
+	char *options [] = { MDInputStr, MDCalculateStr, (char *) NULL };
 
 	if (_MDOutDischMeanID != MFUnset) return (_MDOutDischMeanID);
 	MFDefEntering ("Discharge Mean");

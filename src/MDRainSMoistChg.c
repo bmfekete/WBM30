@@ -107,7 +107,7 @@ enum { MFnone, MFcalculate };
 int MDRainSMoistChgDef () {
 	int ret = 0;
 	float par;
-	const char *optStr;
+	char *optStr;
 	if (_MDOutSMoistChgID != MFUnset) return (_MDOutSMoistChgID);
 	const char *soilTemperatureOptions [] = { "none", "calculate", (char *) NULL };
 

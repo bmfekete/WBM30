@@ -41,7 +41,6 @@ static int _MDTimeSteps = 1;
 // 
 // Input
  
- 
 static int _MDInPrecipID            = MFUnset;
 static int _MDInPotETID             = MFUnset;
 static int _MDInInterceptID         = MFUnset;
@@ -52,22 +51,20 @@ static int _MDInSoilRootingDepthID  = MFUnset;
 static int _MDOutSatExcessFlowID	= MFUnset;
 static int _MDOutSoilDebugID	    =MFUnset;
 static int _MDInIsInitialID			=MFUnset;
+
 // for each SoilLayer ===========================================
- 
-
-
 static int *_MDInSoilpctSiltIDs		        = (int *) NULL;
 static int *_MDInSoilpctClayIDs		        = (int *) NULL;
 static int *_MDInSoilpctSandIDs		        = (int *) NULL;
 static int _MDInSoilOrganicLayerID;
 static int *_MDSoilRelativeSoilMoistIDs = (int *) NULL;
 
- 
 static int *_MDOutSMLiquidIDs				= (int *) NULL;
 static int *_MDOutSMIceDs					= (int *) NULL;
 static int *_MDInSoilDepthIDs				=(int *) NULL;
 // ============================================================
 int soilTemperatureID;
+
 // Output
 static int _MDOutEvaptrsID          = MFUnset;
 static int _MDOutSoilMoistCellID    = MFUnset;
@@ -88,10 +85,9 @@ static void _MDRainSMoistChg (int itemID) {
 	float waterTableDepthParameter =1.0;
 	int i;
 	float isInitial = MFVarGetFloat(_MDInIsInitialID,itemID,0.0);
-	float rootDepth;			//in mm to be consistent with old WBMplus data!
+	float rootDepth;			//in mm to be consistent with WBMstable data!
 // Local
 	float liquidIn;
- 
  
 	int numSoilLayers;
 	numSoilLayers 	= 	_MDNumberOfSoilMoistureLayers;
@@ -103,7 +99,6 @@ static void _MDRainSMoistChg (int itemID) {
 	rootDepth 	    = 		MFVarGetFloat (_MDInSoilRootingDepthID,  itemID, 0.0);
  
 	float snowMelt;
-	
 	
 	  if (snowpackChg >  0.0) //Snow Accumulation, no liquid precipitation
 		 snowMelt = 0.0; 
@@ -205,11 +200,6 @@ static void _MDRainSMoistChg (int itemID) {
 //		
 		VanGm = VGm(VanGn,numSoilLayers);
 		
-//		printf ("PWP1 %f PWP2 %f PWP3 %f PWP4 %f\n", permWP[0], permWP[1], permWP[2], permWP[3]);
-//	  	printf ("Doy = %i FC1 %f FC2 %f FC3 %f FC4 %f\n", MFDateGetDayOfYear(),fieldCap[0], fieldCap[1], fieldCap[2], fieldCap[3]);
-//	if (itemID==300)	printf ("max1 %f max2 %f max3 %f max4 %f soilDph%f \n", maxSoilMoist[0], maxSoilMoist[1], maxSoilMoist[2], maxSoilMoist[3], soilDepth[3]);
-//		printf ("resSM1 %f resSM2 %f resSM3 %f resSM4 %f soilDph%f \n", residSoilMoist[0], residSoilMoist[1], residSoilMoist[2], residSoilMoist[3], soilDepth[3]);
-						
 		//TODO FieldCapacity(pctSand,pctClay,pctOrganicM,numSoilLayers);
 		//time step limit courant number..
 		
@@ -223,12 +213,10 @@ static void _MDRainSMoistChg (int itemID) {
 			
 		}
 		
-		
 		potETP=MFVarGetFloat (_MDInPotETID,             itemID, 0.0)/_MDTimeSteps;
 		//DEBUG
 		//liquidIn=0;
 		//if (MFDateGetDayOfYear ()== 1) liquidIn =10; 
-	 
 				
 		float gamma = 0.8;
 		 
@@ -274,22 +262,12 @@ static void _MDRainSMoistChg (int itemID) {
 				matrHead1= MatrixPotential( VanGa[i], _liq[i], VanGm[i], VanGn[i], residSoilMoist[i], maxSoilMoist[i] );	
 				matrHead2 = MatrixPotential( VanGa[i+1], _liq[i+1], VanGm[i+1], VanGn[i+1], residSoilMoist[i+1], maxSoilMoist[i+1] );	
 				
-
 				float Grad = (matrHead1 - matrHead2) / ((soilDepth[i] + soilDepth[i+1])/2);
 			 vertFlow[i]=-Grad * meanKS ;
 			 vertFlow[i]=MDMinimum(vertFlow[i],_liq[i]);
 			 vertFlow[i]=MDMaximum(vertFlow[i],0);
 
-	//	printf ("Vert %f vertSimple %f \n", vertFlow[i], junk);
-		//	printf ("i = %i LIQ = %f K1 = %f K2 = %f meanKS %f matrHEAD1 %F matrHead2 %f soilDepth1 %f soilDepth2 %f Grad %f vertFlow %f \n",i, _liq[i],K1, K2, meanKS, matrHead1, matrHead2,soilDepth[i],soilDepth[i+1],Grad,vertFlow[i]);
-		//	if (itemID ==3) printf ("i+1 = %i LIQ = %f K1 = %f K2 = %f meanKS %f matrHEAD1 %F matrHead2 %f soilDepth1 %f soilDepth2 %f Grad %f vertFlow %f \n",i, _liq[i+1],K1, K2, meanKS, matrHead1, matrHead2,soilDepth[i],soilDepth[i+1],Grad,vertFlow[i]);
-		//	if (itemID ==3) printf ("i = %i VanGA = %f Vangm = %f Vangn = %f resid %f max %f \n",i, VanGa[i],VanGm[i],VanGn[i], residSoilMoist[i], maxSoilMoist[i]);
-								 	
-			// 	if (itemID ==200)printf("LAYTER %i, vertflow %f \n",i,vertFlow[i]);
 			_liq[i]=_liq[i]-vertFlow[i];	
-		//	if (itemID ==139 && _liq[i] < 0 )printf ("Liq < 0 = %f  \n", _liq[i]);
-		//	if (itemID ==139 && _liq[i] > maxSoilMoist[i] )printf ("Liq = %f .. maxSoilMoist = %f for item %i at layer %i \n", _liq[i],maxSoilMoist[i], itemID, i);
-					
 		} //numSoilLayers
 		
 ////			
@@ -439,7 +417,7 @@ int MDRainSMoistChgLayeredSoilDef () {
 	int ret = 0;
 	float par;
 	int i;
-	char soilLiquidName [12];
+	char soilLiquidName [16];
 	char soilSiltFractionName[22];
 	char soilClayFractionName[22];
 	char soilSandFractionName[22];
@@ -447,17 +425,15 @@ int MDRainSMoistChgLayeredSoilDef () {
 		
 	char soilIceName[20];
 	char soilDepthName[20];
-	const char *optStr;
+	char *optStr;
 	const char *soilTemperatureOptions [] = { "none", "calculate", (char *) NULL };
 
 	if (_MDOutSMoistChgID != MFUnset) return (_MDOutSMoistChgID);
-
 
 		if (((optStr = MFOptionGet (MDOptSoilTemperature))  == (char *) NULL) || ((soilTemperatureID = CMoptLookup (soilTemperatureOptions, optStr, true)) == CMfailed)) {
 						CMmsgPrint(CMmsgUsrError," Soil TemperatureOption not specifed! Options = 'none' or 'calculate'\n");
 						return CMfailed;
 		}
-
 
 		MFDefEntering ("Rainfed Layered Soil Moisture");
 		if (soilTemperatureID ==1){
@@ -470,8 +446,6 @@ int MDRainSMoistChgLayeredSoilDef () {
 			 if  ((_MDActiveLayerDepthID          = MFVarGetID (MDVarActiveLayerDepth,             "m", MFOutput,  MFState, MFBoundary)) == CMfailed)return CMfailed;
 				 
 		}
-		
-		
 		
 	if (((optStr = MFOptionGet (MDParSoilMoistALPHA))  != (char *) NULL) && (sscanf (optStr,"%f",&par) == 1)) _MDSoilMoistALPHA = par;
 	if (((optStr = MFOptionGet ("SoilMoistureTimeSteps"))  != (char *) NULL) && (sscanf (optStr,"%f",&par) == 1)) _MDTimeSteps = par;
@@ -491,18 +465,13 @@ int MDRainSMoistChgLayeredSoilDef () {
 			_MDInSoilpctSiltIDs  = (int *) realloc (_MDInSoilpctSiltIDs,     (i + 1) * sizeof (int));
 			_MDSoilRelativeSoilMoistIDs  = (int *) realloc (_MDSoilRelativeSoilMoistIDs,     (i + 1) * sizeof (int));
 				
-							
-		//	printf ("Reading Layer  = %i of %i\n",i, _MDNumberOfSoilMoistureLayers);
-			
-			sprintf (soilDepthName, "SoilDepth_%02d", i + 1); //  
+			sprintf (soilDepthName,  "SoilDepth_%02d",  i + 1); //
 			sprintf (soilLiquidName, "SoilLiquid_%02d", i + 1); //  
 			sprintf (soilIceName, "SoilIce_%02d", i + 1); //  
 			sprintf (soilSiltFractionName, "SoilSiltPercentage_%02d", i + 1); //  	
 			sprintf (soilSandFractionName, "SoilSandPercentage_%02d", i + 1); //
 			sprintf (soilClayFractionName, "SoilClayPercentage_%02d", i + 1); //
 			sprintf (soilRelativeSoilMoistName, "SoilRelativeSoilMoisture_%02d", i + 1); //
-			//printf ("SDepth = %s\n", soilLiquidName);
-			//printf ("ID = %i\n",_MDInSoilDepthIDs [i]);
 			
 			if ((_MDInSoilDepthIDs [i] = MFVarGetID (soilDepthName, "mm", MFInput,  MFState, MFBoundary)) == CMfailed) {
 				printf("CMfailed in MDInSoilInputDataID \n");
@@ -551,11 +520,6 @@ int MDRainSMoistChgLayeredSoilDef () {
 			 
 		}
 		
-		
-			
-	
-	
-	
 	   if ((_MDOutRainInfiltrationID= MFVarGetID (MDVarRainInfiltration, "mm", MFOutput, MFState, MFBoundary))  == CMfailed) return CMfailed;	
 	   if ((_MDOutSatExcessFlowID= MFVarGetID (MDVarSaturationExcessflow, "mm", MFOutput, MFState, MFBoundary))  == CMfailed) return CMfailed;	
 	   if ((_MDOutSoilDebugID = MFVarGetID(MDVarOutSoilDebug,"mm", MFOutput, MFState, MFBoundary))  == CMfailed) return CMfailed;	
@@ -576,8 +540,6 @@ int MDRainSMoistChgLayeredSoilDef () {
 	    ((_MDOutSoilMoistID        = MFVarGetID (MDVarRainSoilMoisture,           "mm",   MFOutput, MFState, MFBoundary)) == CMfailed) ||
 	         
 	    ((_MDOutSMoistChgID        = MFVarGetID (MDVarRainSoilMoistChange,        "mm",   MFOutput, MFState, MFBoundary)) == CMfailed) ||
-        
-        
         
         (MFModelAddFunction (_MDRainSMoistChg) == CMfailed)) return (CMfailed);
 
@@ -637,19 +599,10 @@ for (i=0;i<numSoilLayers-1;i++){
 		
 	}		
 	// et[i]=0;
-	//DEBUG 
-	//if (et[i]> soilMoist[i]){printf ("ET higher than soil moisture in ET function!\n");} 
-	if (et[i]>10 ){printf ("ET outof control  =%f  sm %f RD =%f accumSoilDepth %f\n", et[i], soilMoist[i], rootDepth, accumSoilDepth[i] );} 
-//	et[i]=0;
-//	printf ("ET from Layer %i = %f RD = %f Depth %f potETp %f  \n", i,et[i], rootDepth, accumSoilDepth[i-1], potETP);
 }
 
-//if (accum > (potETP) *1.0001) printf ("PET = %f Greater AET %f \n", potETP, accum);
 et[numSoilLayers -1]=0; // no et from lowest layer - baseflow
-// printf("et from l1 = %f  l2 = %f l3 =%f l4 =%f Total %f potETp %f stressFractor %f FC %f WP %f SM1 %f\n", et[0],et[1],et[2],et[3],accum, potETP, stressFactor, fieldCap[1], wiltPnt[1],soilMoist[1]);
-if (accum > potETP*1.001)printf ("Actual ET= %f greater than potential %f! \n", accum, potETP);
 return et;//et[soilLayerNum];
-
 }
 
 // c sucks soo much 

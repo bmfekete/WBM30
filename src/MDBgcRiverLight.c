@@ -113,8 +113,8 @@ static void _MDRiverLight (int itemID) {
 
 int MDBgcRiverLightDef () {
 	int optID = MFUnset;
-    const char *optStr;
-		const char *options [] = { "none", "calculate", (char *) NULL };
+    char *optStr;
+		char *options [] = { "none", "calculate", (char *) NULL };
 
 	if (_MDRiverLightID != MFUnset) return (_MDRiverLightID);
 

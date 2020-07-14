@@ -53,7 +53,7 @@ enum { FAO_ID = 0, IWMI_ID = 1 };
 int MDIrrigatedAreaDef (){
 	const char *mapOptions [] = { "FAO", "IWMI", (char *) NULL };
 	int optionID;
-	const char *optStr;
+	char *optStr;
 	if (((optStr = MFOptionGet (MDOptIrrigatedAreaMap))  == (char *) NULL) || ((optionID = CMoptLookup (mapOptions, optStr, true)) == CMfailed)) {
 		CMmsgPrint(CMmsgUsrError,"Typ of Irr Area not specifed! Options = 'FAO' or 'IWMI'\n");
 		return CMfailed;

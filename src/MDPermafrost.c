@@ -599,7 +599,7 @@ int MDPermafrostDef () {
 	char soilDepthName[20];
 	
 	
-	const char *optStr;
+	char *optStr;
     int i;
     
     if (_MDOutActiveLayerDepthID != MFUnset) return (_MDOutActiveLayerDepthID);

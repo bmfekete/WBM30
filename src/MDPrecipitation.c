@@ -13,9 +13,7 @@ bfekete@gc.cuny.edu
 #include <MF.h>
 #include <MD.h>
 
-bool MDEvent (int nSteps,int nEvents,int step)
-
-	{
+bool MDEvent (int nSteps,int nEvents,int step) {
   	bool inv = false;
 	int event;
 	float freq;
@@ -29,15 +27,14 @@ bool MDEvent (int nSteps,int nEvents,int step)
 		if ((int) (rint (event * freq + freq / 2.0)) == step) return (inv ? false : true);
 
 	return (inv ? true : false);
-	}
+}
 
 static int _MDInPrecipID     = MFUnset;
 static int _MDInWetDaysID    = MFUnset;
 static int _MDInPrecipFracID = MFUnset;
 static int _MDOutPrecipID    = MFUnset;
 
-static void _MDPrecipWetDays (int itemID)
-	{
+static void _MDPrecipWetDays (int itemID) {
 // Input 
 	float precipIn;
 	int  wetDays;
@@ -54,10 +51,9 @@ static void _MDPrecipWetDays (int itemID)
 	precipOut = MDEvent (nDays,wetDays,day) ? precipIn * (float) nDays / (float) wetDays : 0.0;
 
 	MFVarSetFloat (_MDOutPrecipID,itemID,precipOut);
-	}
+}
 
-static void _MDPrecipFraction (int itemID)
-	{
+static void _MDPrecipFraction (int itemID) {
 // Input 
 	float precipIn;
 	float precipFrac;
@@ -66,26 +62,25 @@ static void _MDPrecipFraction (int itemID)
 // Local 
 	int nDays    = MFDateGetMonthLength ();
 
-	if (MFVarTestMissingVal (_MDInPrecipID,     itemID) ||
-		 MFVarTestMissingVal (_MDInPrecipFracID, itemID)) { MFVarSetMissingVal (_MDOutPrecipID,itemID); return; }
+	if (MFVarTestMissingVal (_MDInPrecipID,     itemID) || MFVarTestMissingVal (_MDInPrecipFracID, itemID)) {
+		MFVarSetMissingVal (_MDOutPrecipID,itemID);
+		return;
+	}
 
 	precipIn   = MFVarGetFloat (_MDInPrecipID,     itemID, 0.0);
 	precipFrac = MFVarGetFloat (_MDInPrecipFracID, itemID, 1.0 / nDays);
 
-	precipOut = precipIn *  precipFrac* nDays;
-	if (precipOut <0){printf ("Precip negative! precipIn=%f precipFrac =%f itemID = %i \n", precipIn, precipFrac, itemID);}
-//if (itemID==2)printf("PrecipOut %f nDays %i precipFrac %f precipIn %f \n",precipOut, nDays,precipFrac,precipIn);
+	precipOut = precipIn *  precipFrac * nDays;
+	if (precipOut < 0.0){ CMmsgPrint (CMmsgUsrError, "Precip negative! itemID=%d precipIn=%f precipFrac =%fprecipFrac", itemID, precipIn, precipFrac);}
 	MFVarSetFloat (_MDOutPrecipID,itemID,precipOut);
-	}
+}
 
 enum { MDinput, MDwetdays, MDfraction };
 
-int MDPrecipitationDef ()
-
-	{
+int MDPrecipitationDef () {
 	int optID = MFUnset;
-	const char *optStr, *optName = MDVarPrecipitation;
-	const char *options [] = { MDInputStr, "wetdays", "fraction",(char *) NULL };
+	char *optStr, *optName = MDVarPrecipitation;
+	char *options [] = { MDInputStr, "wetdays", "fraction",(char *) NULL };
 
 	if (_MDOutPrecipID != MFUnset) return (_MDOutPrecipID);
 
@@ -95,9 +90,7 @@ int MDPrecipitationDef ()
  
 	switch (optID)
 		{
-		case MDinput: _MDOutPrecipID = MFVarGetID (MDVarPrecipitation, "mm", MFInput,  MFFlux,  MFBoundary);
- 
-		break;
+		case MDinput: _MDOutPrecipID = MFVarGetID (MDVarPrecipitation, "mm", MFInput,  MFFlux,  MFBoundary); break;
 		case MDwetdays:
 			if (((_MDInWetDaysID    = MDWetDaysDef ()) == CMfailed) ||
 			    ((_MDInPrecipID     = MFVarGetID (MDVarPrecipMonthly,  "mm", MFInput,  MFFlux,  MFBoundary)) == CMfailed) ||
@@ -114,4 +107,4 @@ int MDPrecipitationDef ()
 		}
 	MFDefLeaving ("Precipitation");
 	return (_MDOutPrecipID);
-	}
+}

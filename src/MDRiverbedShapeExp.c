@@ -32,7 +32,9 @@ static void _MDRiverbedShapeExponent (int itemID) {
 	float wMean;     // River width at mean discharge [m]
 // Local
 	float dL;        // Reach length [m]
-	float eta = 0.25, nu = 0.4, tau = 8.0, phi = 0.58;
+//	float eta = 0.25, nu = 0.4,  tau = 8.0,  phi = 0.58;    //old
+//	float eta = 0.36, nu = 0.37, tau = 3.55, phi = 0.51;	//new based on Knighton (avg)
+	float eta = 0.33, nu = 0.35, tau = 3.67, phi = 0.45;	// Hey and Thorn (1986)
 
 	if (MFVarTestMissingVal (_MDInDischMeanID, itemID)) {
 		MFVarSetFloat (_MDOutRiverbedAvgDepthMeanID,  itemID, 0.0);
@@ -68,8 +70,8 @@ enum { MDinput, MDindependent, MDdependent };
 
 int MDRiverbedShapeExponentDef () {
 	int  optID = MFUnset;
-	const char *optStr, *optName = MDOptRiverbed;
-	const char *options [] = { MDInputStr, "slope-independent", "slope-dependent", (char *) NULL };
+	char *optStr, *optName = MDOptRiverbed;
+	char *options [] = { MDInputStr, "slope-independent", "slope-dependent", (char *) NULL };
 
 	if (_MDOutRiverbedShapeExponentID != MFUnset) return (_MDOutRiverbedShapeExponentID);
 

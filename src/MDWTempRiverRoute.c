@@ -374,8 +374,8 @@ if (isnan(Q_WTemp_new)){
 
 int MDWTempRiverRouteDef () {
    int optID = MFUnset, waterBalanceID;
-   const char *optStr;
-   const char *options [] = { "none", "calculate", (char *) NULL };
+   char *optStr;
+   char *options [] = { "none", "calculate", (char *) NULL };
   
 	if (_MDWTempRiverRouteID != MFUnset) return (_MDWTempRiverRouteID);
 

@@ -96,8 +96,8 @@ enum { MDinput, MDLCSAGEVeg, MDLCTEMVeg };
 
 int MDLandCoverDef () {
 	int optID = MFUnset;
-	const char *optStr, *optName = MDVarWBMCover;
-	const char *options [] = { MDInputStr, "SAGEVeg", "TEMVeg",(char *) NULL };
+	char *optStr, *optName = MDVarWBMCover;
+	char *options [] = { MDInputStr, "SAGEVeg", "TEMVeg",(char *) NULL };
 
 	if (_MDOutCoverID != MFUnset) return (_MDOutCoverID);
 

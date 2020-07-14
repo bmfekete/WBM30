@@ -18,6 +18,7 @@ bfekete@gc.cuny.edu
 static int _MDInAtMeanID    = MFUnset;
 static int _MDInPrecipID    = MFUnset;
 static int _MDInWinterOnsetID = MFUnset;
+
 // Output
 static int _MDOutSnowPackID = MFUnset;
 static int _MDOutSPackChgID = MFUnset;
@@ -37,7 +38,7 @@ static void _MDSPackChg (int itemID) {
 	float initialDensity = 150;
 	float sDensitySlope = 3;
 	if( _MDCalculateSoilTempID==1)winterOnsetDoY = MFVarGetFloat(_MDInWinterOnsetID, itemID,1.0);
-//	printf ("Anf SnowPackChange \n");
+
 	// Local
 	float sPack;
 	float sPackChg = 0.0;
@@ -51,8 +52,6 @@ static void _MDSPackChg (int itemID) {
 		snowAge = 365 - winterOnsetDoY + MFDateGetDayOfYear();
 	}
 	
-		
-	
 	sPack  = MFVarGetFloat (_MDOutSnowPackID, itemID, 0.0);
 	if (MFVarTestMissingVal (_MDInAtMeanID,itemID) || MFVarTestMissingVal (_MDInPrecipID, itemID)) {
 		MFVarSetFloat (_MDOutSnowFallID, itemID, 0.0);
@@ -62,7 +61,6 @@ static void _MDSPackChg (int itemID) {
 		return; 
 	}
 
-//printf ("SnowMeltThreshold= %f SnoFall %f\n",_MDSnowMeltThreshold, _MDFallThreshold);
 	airT   = MFVarGetFloat (_MDInAtMeanID,    itemID, 0.0);
 	precip = MFVarGetFloat (_MDInPrecipID,    itemID, 0.0);
 
@@ -86,23 +84,19 @@ static void _MDSPackChg (int itemID) {
 		MFVarSetFloat (_MDOutSnowPackID, itemID, sPack);	
 		MFVarSetFloat (_MDOutSPackChgID, itemID, 0.0);
 	}
-	
-	
+
 		sDensity = (initialDensity + (snowAge * sDensitySlope));
 		if (sPack > 0.0 ) sDepth = sPack  * densityOfWater / sDensity; //in mm
-	//	printf ("sAge %i sDens %f sPack %f sDepth %f \n", snowAge, sDensity, sPack, sDepth);
 
 		MFVarSetFloat(_MDOutSnowDensityID,itemID,sDensity);  
 		MFVarSetFloat(_MDOutSnowDepthID,itemID, sDepth); 
-	//	printf ("Ende SnowPackChange \n");
-	
 }
 
 int MDSPackChgDef () {
 
 	if (_MDOutSPackChgID != MFUnset) return (_MDOutSPackChgID);
 	MFDefEntering ("Snow Pack Change");
-	const char *optStr;
+	char *optStr;
 	const char *soilTemperatureOptions [] = { "none", "calculate", (char *) NULL };
 	int soilTemperatureID;
 	float par;
@@ -144,4 +138,3 @@ int MDSPackMeltDef () {
 		return (CMfailed);
 	return (_MDOutSnowMeltID);
 }
-

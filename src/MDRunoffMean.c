@@ -34,8 +34,8 @@ enum { MDinput, MDcalculate };
 
 int MDRunoffMeanDef () {
 	int  optID = MFUnset;
-	const char *optStr, *optName = MDVarRunoffMean;
-	const char *options [] = { MDInputStr, MDCalculateStr, (char *) NULL };
+	char *optStr, *optName = MDVarRunoffMean;
+	char *options [] = { MDInputStr, MDCalculateStr, (char *) NULL };
 
 	if (_MDOutRunoffMeanID != MFUnset) return (_MDOutRunoffMeanID);
 	MFDefEntering ("Runoff Mean");

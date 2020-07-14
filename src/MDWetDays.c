@@ -53,8 +53,8 @@ enum { MDinput, MDlbg };
 int MDWetDaysDef ()
 	{
 	int optID = MFUnset;
-	const char *optStr, *optName = MDVarWetDays;
-	const char *options [] = { MDInputStr, "LBG", (char *) NULL };
+	char *optStr, *optName = MDVarWetDays;
+	char *options [] = { MDInputStr, "LBG", (char *) NULL };
 
 	if (_MDOutWetDaysID != MFUnset) return (_MDOutWetDaysID);
 

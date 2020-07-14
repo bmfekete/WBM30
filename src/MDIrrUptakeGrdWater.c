@@ -19,8 +19,8 @@ enum { MDnone, MDcalculate };
 
 int MDIrrUptakeGrdWaterDef() {
 	int optID = MFUnset;
-	const char *optStr, *optName = "IrrUptakeGrdWater";
-	const char *options [] = { MDNoneStr, MDCalculateStr, (char *) NULL };
+	char *optStr, *optName = "IrrUptakeGrdWater";
+	char *options [] = { MDNoneStr, MDCalculateStr, (char *) NULL };
 
 	if ((optStr = MFOptionGet (optName)) != (char *) NULL) optID = CMoptLookup (options, optStr, true);
 		
