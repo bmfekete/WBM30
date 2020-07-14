@@ -44,8 +44,8 @@ enum { MDinput, MDstandard };
 
 int MDLeafAreaIndexDef () {
 	int optID = MFUnset;
-	char *optStr, *optName = MDVarLeafAreaIndex;
-	char *options [] = { MDInputStr, "standard", (char *) NULL };
+	const char *optStr, *optName = MDVarLeafAreaIndex;
+	const char *options [] = { MDInputStr, "standard", (char *) NULL };
 
 	if (_MDOutLeafAreaIndexID != MFUnset) return (_MDOutLeafAreaIndexID);
 
@@ -89,8 +89,8 @@ static void _MDStemAreaIndex (int itemID) {
 
 int MDStemAreaIndexDef () {
 	int optID = MFUnset;
-	char *optStr, *optName = MDVarStemAreaIndex;
-	char *options [] = { MDInputStr, "standard", (char *) NULL };
+	const char *optStr, *optName = MDVarStemAreaIndex;
+	const char *options [] = { MDInputStr, "standard", (char *) NULL };
 
 	if (_MDOutStemAreaIndexID != MFUnset) return (_MDOutStemAreaIndexID);
 

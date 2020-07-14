@@ -61,8 +61,8 @@ enum {
 
 int MDRelativeHumidityDef() {
     int optID = MFUnset;
-    char *optStr, *optName = MDOptRelativeHumidity;
-    char *options [] = { MDNoneStr, MDInputStr, MDCalculateStr, (char *) NULL};
+    const char *optStr, *optName = MDOptRelativeHumidity;
+    const char *options [] = { MDNoneStr, MDInputStr, MDCalculateStr, (char *) NULL};
     
     if ((optStr = MFOptionGet(optName)) != (char *) NULL) optID = CMoptLookup(options, optStr, true);
     if ((optID == MDnone) || (_MDOutRelativeHumidityID != MFUnset)) return (_MDOutRelativeHumidityID);

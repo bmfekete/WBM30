@@ -376,8 +376,8 @@ enum { MDnone, MDinput, MDcalculate };
 
 int MDIrrGrossDemandDef () {
 	int optID = MFUnset;
-	char *optStr, *optName = MDOptIrrigation;
-	char *options [] = { MDNoneStr, MDInputStr, MDCalculateStr, (char *) NULL };
+	const char *optStr, *optName = MDOptIrrigation;
+	const char *options [] = { MDNoneStr, MDInputStr, MDCalculateStr, (char *) NULL };
 	const char *mapOptions   [] = { "FAO", "IWMI", (char *) NULL };
 	const char *distrOptions [] = { "FirstSeason","Distributed", (char *) NULL }; 
 	 

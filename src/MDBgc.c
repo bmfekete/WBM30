@@ -293,8 +293,8 @@ static void _MDBgcRouting (int itemID) {
 
 // define the variable needed by the function
 int MDBgcRoutingDef () {
-	char *optStr;
-	char *options [] = { MDNoneStr, (char *) NULL };
+	const char *optStr;
+	const char *options [] = { MDNoneStr, (char *) NULL };
 
 	if (_MDFlux_NO3ID != MFUnset)	return (_MDFlux_NO3ID);
 

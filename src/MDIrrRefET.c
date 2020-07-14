@@ -19,8 +19,8 @@ enum { MDinput, MDhamon, MDfao };
 
 int MDIrrRefEvapotransDef () {
 	int optID = MFUnset;
-	char *optStr, *optName = MDOptIrrReferenceET;
-	char *options [] = { MDInputStr, "Hamon", "FAO", (char *) NULL };
+	const char *optStr, *optName = MDOptIrrReferenceET;
+	const char *options [] = { MDInputStr, "Hamon", "FAO", (char *) NULL };
 
 	if (_MDOutIrrRefEvapotransID != MFUnset) return (_MDOutIrrRefEvapotransID);
 

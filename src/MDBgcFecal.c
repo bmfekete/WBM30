@@ -162,8 +162,8 @@ static void _MDFecalRouting (int itemID) {
 
 int MDFecalRoutingDef () {
 	float par;
-	char *optStr;
-	char *options [] = { MDNoneStr, (char *) NULL };
+	const char *optStr;
+	const char *options [] = { MDNoneStr, (char *) NULL };
 
 	if (_MDFlux_FecalID != MFUnset)	return (_MDFlux_FecalID);
 

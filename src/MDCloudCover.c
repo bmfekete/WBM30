@@ -66,8 +66,8 @@ enum {
 
 int MDCloudCoverDef() {
     int optID = MFUnset;
-    char *optStr, *optName = MDOptCloudCover;
-    char *options [] = {MDNoneStr, MDInputStr, MDCalculateStr, (char *) NULL};
+    const char *optStr, *optName = MDOptCloudCover;
+    const char *options [] = {MDNoneStr, MDInputStr, MDCalculateStr, (char *) NULL};
 
     if ((optStr = MFOptionGet(optName)) != (char *) NULL) optID = CMoptLookup(options, optStr, true);
     if ((optID == MDnone) || (_MDOutCloudCoverID != MFUnset)) return (_MDOutCloudCoverID);

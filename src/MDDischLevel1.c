@@ -32,8 +32,8 @@ static void _MDDischLevel1 (int itemID) {
 
 int MDDischLevel1Def() {
 
-   char *optStr;
-   char *options [] = { MDNoneStr, (char *) NULL };
+   const char *optStr;
+   const char *options [] = { MDNoneStr, (char *) NULL };
 
    
 	if (_MDOutDischLevel1ID != MFUnset) return (_MDOutDischLevel1ID);

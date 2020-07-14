@@ -52,7 +52,7 @@ int MDRainWaterSurplusDef () {
 
 	if (_MDOutRainWaterSurplusID != MFUnset) return (_MDOutRainWaterSurplusID);
 
-	char *optStr;
+	const char *optStr;
 	const char *soilTemperatureOptions [] = { "none", "calculate", (char *) NULL };
 
  

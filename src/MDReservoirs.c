@@ -105,8 +105,8 @@ enum { MDnone, MDcalculate };
 
 int MDReservoirDef () {
 	int optID = MFUnset;
-	char *optStr, *optName = MDOptReservoirs;
-	char *options [] = { MDNoneStr, MDCalculateStr, (char *) NULL };
+	const char *optStr, *optName = MDOptReservoirs;
+	const char *options [] = { MDNoneStr, MDCalculateStr, (char *) NULL };
  
 	if ((optStr = MFOptionGet (optName)) != (char *) NULL) optID = CMoptLookup (options, optStr, true);
  

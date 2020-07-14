@@ -79,8 +79,8 @@ enum { MDinput, MDwetdays, MDfraction };
 
 int MDPrecipitationDef () {
 	int optID = MFUnset;
-	char *optStr, *optName = MDVarPrecipitation;
-	char *options [] = { MDInputStr, "wetdays", "fraction",(char *) NULL };
+	const char *optStr, *optName = MDVarPrecipitation;
+	const char *options [] = { MDInputStr, "wetdays", "fraction",(char *) NULL };
 
 	if (_MDOutPrecipID != MFUnset) return (_MDOutPrecipID);
 

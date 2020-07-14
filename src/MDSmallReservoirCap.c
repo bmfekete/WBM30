@@ -59,8 +59,8 @@ enum { MDnone, MDinput, MDcalculate };
 int MDSmallReservoirCapacityDef () {
 
 	int  optID = MFUnset;
-	char *optStr, *optName = MDVarSmallResCapacity;
-	char *options [] = { MDNoneStr, MDInputStr, MDCalculateStr, (char *) NULL };
+	const char *optStr, *optName = MDVarSmallResCapacity;
+	const char *options [] = { MDNoneStr, MDInputStr, MDCalculateStr, (char *) NULL };
 
 	if ((optStr = MFOptionGet (optName)) != (char *) NULL) optID = CMoptLookup (options, optStr, true);
 		

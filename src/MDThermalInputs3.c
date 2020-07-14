@@ -1238,8 +1238,8 @@ enum { MDnone, MDinput };
 
 int MDThermalInputs3Def () {
 	int optID = MFUnset;
-	char *optStr, *optName = MDOptThermalInputs3;
-	char *options [] = { MDNoneStr, MDInputStr, (char *) NULL };
+	const char *optStr, *optName = MDOptThermalInputs3;
+	const char *options [] = { MDNoneStr, MDInputStr, (char *) NULL };
 
 	if ((optStr = MFOptionGet (optName)) != (char *) NULL) optID = CMoptLookup (options, optStr, true);
 

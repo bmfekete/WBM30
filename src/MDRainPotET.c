@@ -19,8 +19,8 @@ enum { MDinput, MDHamon, MDJensen, MDPsTaylor, MDPstd, MDPMday, MDPMdn, MDSWGday
 
 int MDRainPotETDef () {
 	int optID = MFUnset;
-	char *optStr, *optName = MDVarRainPotEvapotrans;
-	char *options [] = { MDInputStr, "Hamon", "Jensen", "PsTaylor", "Pstd", "PMday", "PMdn", "SWGday", "SWGdn", "Turc", (char *) NULL };
+	const char *optStr, *optName = MDVarRainPotEvapotrans;
+	const char *options [] = { MDInputStr, "Hamon", "Jensen", "PsTaylor", "Pstd", "PMday", "PMdn", "SWGday", "SWGdn", "Turc", (char *) NULL };
 
 	if (_MDPotETID != MFUnset) return (_MDPotETID);
 

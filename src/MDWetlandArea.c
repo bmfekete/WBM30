@@ -24,8 +24,8 @@ enum { MDnone, MDinput, MDcalculate };
 int MDWetlandAreaDef (){
 	
 	int  optID = MFUnset;
-	char *optStr, *optName = MDVarWetlandAreaFraction;
-	char *options [] = { MDNoneStr, MDInputStr, MDCalculateStr, (char *) NULL };
+	const char *optStr, *optName = MDVarWetlandAreaFraction;
+	const char *options [] = { MDNoneStr, MDInputStr, MDCalculateStr, (char *) NULL };
     if ((optStr = MFOptionGet (optName)) != (char *) NULL) optID = CMoptLookup (options, optStr, true);
 	if ((optID == MDnone) || (_MDWetlandAreaFracID != MFUnset)) return (_MDWetlandAreaFracID);
 

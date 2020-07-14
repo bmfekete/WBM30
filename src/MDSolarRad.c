@@ -145,8 +145,8 @@ enum { MDinput, MDcloud, MDsun };
 
 int MDSolarRadDef () {
 	int optID = MFUnset;
-	char *optStr, *optName = MDVarSolarRadiation;
-	char *options [] = { MDInputStr, "cloud", "sun", (char *) NULL };
+	const char *optStr, *optName = MDVarSolarRadiation;
+	const char *options [] = { MDInputStr, "cloud", "sun", (char *) NULL };
 
 	if (_MDOutSolarRadID != MFUnset) return (_MDOutSolarRadID);
 

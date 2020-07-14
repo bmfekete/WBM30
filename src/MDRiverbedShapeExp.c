@@ -70,8 +70,8 @@ enum { MDinput, MDindependent, MDdependent };
 
 int MDRiverbedShapeExponentDef () {
 	int  optID = MFUnset;
-	char *optStr, *optName = MDOptRiverbed;
-	char *options [] = { MDInputStr, "slope-independent", "slope-dependent", (char *) NULL };
+	const char *optStr, *optName = MDOptRiverbed;
+	const char *options [] = { MDInputStr, "slope-independent", "slope-dependent", (char *) NULL };
 
 	if (_MDOutRiverbedShapeExponentID != MFUnset) return (_MDOutRiverbedShapeExponentID);
 

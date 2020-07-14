@@ -96,7 +96,7 @@ int MDSPackChgDef () {
 
 	if (_MDOutSPackChgID != MFUnset) return (_MDOutSPackChgID);
 	MFDefEntering ("Snow Pack Change");
-	char *optStr;
+	const char *optStr;
 	const char *soilTemperatureOptions [] = { "none", "calculate", (char *) NULL };
 	int soilTemperatureID;
 	float par;

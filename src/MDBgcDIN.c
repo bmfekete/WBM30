@@ -232,9 +232,9 @@ static void _MDDINRouting (int itemID) {
 
 int MDBgcDINRoutingDef () {
 	int optID = MFUnset;
-	char *optStr;
-	char *options [] = { "none", "calculate", (char *) NULL };
-     //char *options [] = { MDNoneStr, (char *) NULL };
+	const char *optStr;
+	const char *options [] = { "none", "calculate", (char *) NULL };
+     //const char *options [] = { MDNoneStr, (char *) NULL };
 
 	if (_MDFlux_DINID != MFUnset)	return (_MDFlux_DINID);
 

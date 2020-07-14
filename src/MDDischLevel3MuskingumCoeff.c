@@ -89,8 +89,8 @@ enum { MDinput, MDstatic };
 
 int MDDischLevel3MuskingumCoeffDef () {
 	int  optID = MFUnset;
-	char *optStr, *optName = MDOptMuskingum;
-	char *options [] = { MDInputStr, "static", (char *) NULL };
+	const char *optStr, *optName = MDOptMuskingum;
+	const char *options [] = { MDInputStr, "static", (char *) NULL };
 
 	if (_MDOutMuskingumC0ID != MFUnset) return (_MDOutMuskingumC0ID);
 

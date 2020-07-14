@@ -62,8 +62,8 @@ enum { MDnone, MDinput, MDcalc };
 
 int MDRainInterceptDef () {
 	int optID = MFUnset;
-	char *optStr, *optName = MDVarRainInterception;
-	char *options [] = { MDNoneStr, MDInputStr, MDCalculateStr, (char *) NULL };
+	const char *optStr, *optName = MDVarRainInterception;
+	const char *options [] = { MDNoneStr, MDInputStr, MDCalculateStr, (char *) NULL };
 
 	if ((optStr = MFOptionGet (optName)) != (char *) NULL) optID = CMoptLookup (options,optStr,true);
 

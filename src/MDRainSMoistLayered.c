@@ -425,7 +425,7 @@ int MDRainSMoistChgLayeredSoilDef () {
 		
 	char soilIceName[20];
 	char soilDepthName[20];
-	char *optStr;
+	const char *optStr;
 	const char *soilTemperatureOptions [] = { "none", "calculate", (char *) NULL };
 
 	if (_MDOutSMoistChgID != MFUnset) return (_MDOutSMoistChgID);
