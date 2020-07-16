@@ -55,6 +55,7 @@ extern "C" {
 
 //SOLAR TO CLOUD
 #define MDOptCloudCover		     "CloudCover"	//cloud cover fraction AM sep2015
+#define MDVarCloudCover		     "CloudCover"	//cloud cover fraction AM sep2015
 
 
 //TP2M
