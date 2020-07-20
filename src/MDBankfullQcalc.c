@@ -10,6 +10,7 @@ last update: May 16 2011
 *******************************************************************************/
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <math.h>
 #include <MF.h>
@@ -76,7 +77,7 @@ static void _MDBankfullQcalc (int itemID) {
 			if(fpt == NULL)
 			{
 			printf("\nError: File couldn't be opened (1).\n");
-			exit(-1);
+			exit (-1);
 			}
 //geting the values from the text file (generated at the BQARTpreprocess run) 
 			//printf("before fscanf loop\n");	

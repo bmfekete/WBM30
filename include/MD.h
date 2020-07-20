@@ -2,11 +2,11 @@
 
  GHAAS Water Balance/Transport Model V3.0
  Global Hydrologic Archive and Analysis System
- Copyright 1994-2011, UNH - CCNY/CUNY
+ Copyright 1994-2020, UNH - ASRC/CUNY
 
  MD.h
 
- balazs.fekete@unh.edu
+ bfekete@gc.cuny.edu
 
  *******************************************************************************/
 
@@ -28,15 +28,12 @@ extern "C" {
 #define MDOptModel                           "Model"
 #define MDOptReservoirs                      "Reservoirs"
 #define MDOptRiverbed                        "Riverbed"
-#define MDOptRunoff							 "RunoffSwitch"		//RJS 111710
 #define MDOptRouting                         "Routing"
 #define MDOptMuskingum                       "Muskingum"
 #define MDOptIrrReferenceET                  "IrrReferenceETP"
 #define MDOptIrrIntensity                    "DoubleCropping"
-#define MDOptIrrExcessWater                  "ExcessWater"
 #define MDOptSoilMoisture					 "SoilMoisture"
 #define MDOptSoilTemperature				 "SoilTemperature"
-#define MDOptAllWithdrawals					 "AllWithdrawals"
 
 #define MDOptIrrigatedAreaMap                "IrrigatedAreaMap"
 #define MDOptSoilAvailableWaterCapacity		 "SoilWaterCapacity"
@@ -52,11 +49,9 @@ extern "C" {
 #define MDVarRelativeHumidity        "RelativeHumidity" //for wet bulb
 #define MDOptRelativeHumidity        "RelativeHumidity" //for wet bulb
 
-
 //SOLAR TO CLOUD
 #define MDOptCloudCover		     "CloudCover"	//cloud cover fraction AM sep2015
 #define MDVarCloudCover		     "CloudCover"	//cloud cover fraction AM sep2015
-
 
 //TP2M
 #define MDVarLossToWater					"LossToWater"
@@ -140,7 +135,6 @@ extern "C" {
 #define MDVarHeatToRiver2                                     "HeatToRiver2"                        //RJS 122112
 #define MDVarHeatToRiver3                                     "HeatToRiver3"                        //RJS 122112
 #define MDVarHeatToRiver4                                     "HeatToRiver4"                        //RJS 122112
-
 
 #define MDVarWTempGrdWater                   "GroundWaterTemperature"
 #define MDVarWTempRiver                      "RiverTemperature"
@@ -384,23 +378,6 @@ extern "C" {
 #define MDVarWetlandStorage					"WetlandStorage"	
 #define MDVarWetlandWaterLevelDepth			"WetlandWaterLevelDepth"
 
-// Water Temperature Variables
-// Runoff Temperature
-#define MDVarWTempGrdWater                   "GroudWaterTemperature"
-#define MDVarWTempRiver                      "RiverTemperature"
-#define MDVarWTempSurfRunoff                 "SurfaceROTemperature"
-// Routing Temperature
-#define MDVarBgcLocalIn_QxT                  "QxT_LocalIn"
-#define MDVarRemoval_QxT                     "QxT_Removal"
-#define MDVarFlux_QxT                        "QxT_Flux"
-#define MDVarStorage_QxT                     "QxT_Storage"
-#define MDVarDeltaStorage_QxT                "QxT_DeltaStorage"
-#define MDVarWTemp_QxT                       "QxT_WaterTemp"
-#define MDVarWTempDeltaT_QxT                 "QxT_deltaT"
-#define MDVarFluxMixing_QxT                  "QxT_FluxMixing"
-#define MDVarStorageMixing_QxT               "QxT_StorageMixing"
-#define MDVarDeltaStorageMixing_QxT          "QxT_DeltaStorageMixing"
-#define MDVarWTempMixing_QxT                 "QxT_WaterTempMixing"
 
 #define MDParGrossRadTAU                     "GrossRadTAU"
 #define MDParGroundWatBETA                   "GroundWaterBETA"
@@ -464,6 +441,12 @@ int MDBQARTpreprocessDef(); //NEW !!!!!  (S.C)
 int MDBankfullQcalcDef();//NEW !!!!!  (S.C)
 int MDBedloadFluxDef();//NEW !!!!!  (S.C)
 int MDSedimentFluxDef(); //NEW !!!!!  (S.C)
+int MDDischargeBFDef ();
+
+int MDCloudCoverDef ();
+int MDRelativeHumidityDef ();
+int MDSpecificHumidityDef ();
+int MDWetBulbTempDef();
 
 int MDCParamAlbedoDef();
 int MDCParamCHeightDef();
