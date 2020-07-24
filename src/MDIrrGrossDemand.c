@@ -379,15 +379,12 @@ int MDIrrGrossDemandDef () {
 	const char *optStr, *optName = MDOptIrrigation;
 	const char *options [] = { MDNoneStr, MDInputStr, MDCalculateStr, (char *) NULL };
 	const char *mapOptions   [] = { "FAO", "IWMI", (char *) NULL };
-	const char *distrOptions [] = { "FirstSeason","Distributed", (char *) NULL }; 
-	 
+	const char *distrOptions [] = { "FirstSeason","Distributed", (char *) NULL };
 	int i;
-
 	char varname [20];
 	char cropETName [20];
 	char cropGrossDemandName[20];
 	int mapOptionID = MFUnset;
-
 	int irrDistribuedID = MFUnset;
 
 	if ((optStr = MFOptionGet (optName)) != (char *) NULL) optID = CMoptLookup (options,optStr,true);

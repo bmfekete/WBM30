@@ -46,11 +46,15 @@ static void _MDRainWaterSurplus (int itemID) {
 }
 
 int MDRainWaterSurplusDef () {
+    int ret;
 	if (_MDOutRainWaterSurplusID != MFUnset) return (_MDOutRainWaterSurplusID);
 
 	MFDefEntering ("Rainfed Water Surplus");
-	if (((_MDInIrrAreaFracID       = MDIrrigatedAreaDef ()) == CMfailed) ||
-	    ((_MDInRainSMoistChgID     = MDRainSMoistChgDef ()) == CMfailed) ||
+    if (((ret = MDIrrGrossDemandDef ()) == CMfailed) ||
+        ((ret != MFUnset) && ((_MDInIrrAreaFracID = MDIrrigatedAreaDef ()) ==  CMfailed)))
+        return (CMfailed);
+
+    if (((_MDInRainSMoistChgID     = MDRainSMoistChgDef ()) == CMfailed) ||
 	    ((_MDInPrecipID            = MDPrecipitationDef ()) == CMfailed) ||
 	    ((_MDInSPackChgID          = MDSPackChgDef      ()) == CMfailed) ||
 	    ((_MDInRainEvapoTransID    = MFVarGetID (MDVarRainEvapotranspiration, "mm", MFInput,  MFFlux,  MFBoundary)) == CMfailed) ||
