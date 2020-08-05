@@ -89,7 +89,6 @@ static void _MDSmallReservoirRelease (int itemID) {
 		else {
 			smallResRelease = smallResStorage;
 			smallResStorage = 0.0;
-			if (smallResRelease < -0.0001) printf ("Small Reservoir release %f\n",smallResRelease);
 		}
 		smallResStorageChg = smallResStorage - smallResPrevStorage;
       

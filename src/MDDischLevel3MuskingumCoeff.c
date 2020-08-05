@@ -49,36 +49,27 @@ static void _MDDischRouteMuskingumCoeff (int itemID) {
 	wMean     = MFVarGetFloat (_MDInRiverbedWidthMeanID,     itemID, 0.0);
 	vMean     = MFVarGetFloat (_MDInRiverbedVelocityMeanID,  itemID, 0.0);
 	beta      = MFVarGetFloat (_MDInRiverbedShapeExponentID, itemID, 0.0);
-	if (CMmathEqualValues (vMean,     0.0)) {
-		MFVarSetFloat (_MDOutMuskingumC0ID, itemID, 0.0);
-		MFVarSetFloat (_MDOutMuskingumC1ID, itemID, 0.0);
-		MFVarSetFloat (_MDOutMuskingumC2ID, itemID, 0.0);
-		MFVarSetFloat (_MDOutCourantID,     itemID, 0.0);
-		return;
-	}
-	if (CMmathEqualValues (dL,        0.0) ||
-	    CMmathEqualValues (slope,     0.0) ||
-	    CMmathEqualValues (yMean,     0.0) ||
-	    CMmathEqualValues (wMean,     0.0) ||
-	    (beta  < 0.0)) { 
+
+	if ((dL    <= 0.0) || (slope <= 0.0) || (yMean <= 0.0) || (wMean <= 0.0) || (vMean <= 0.0) || (beta  <= 0.0)) { 
 	    // Falling back to flow-accumulation
-		MFVarSetFloat (_MDOutMuskingumC0ID, itemID, 1.0);
-		MFVarSetFloat (_MDOutMuskingumC1ID, itemID, 0.0);
-		MFVarSetFloat (_MDOutMuskingumC2ID, itemID, 0.0);
-		MFVarSetFloat (_MDOutCourantID,     itemID, 0.0);
-		return;
+		C0 = 1.0;
+		C1 = C2 = C = 0.0;
 	}
-	dt = MFModelGet_dt (); 
+	else {
+		dt = MFModelGet_dt (); 
 
-	xi = 1 + beta * (2.0 / 3.0) / (beta + 1);
-	C = xi * vMean * dt / dL;
-	D = yMean / (dL * slope * xi);
+		xi = 1 + beta * (2.0 / 3.0) / (beta + 1);
+		C = xi * vMean * dt / dL;
+		D = yMean / (dL * slope * xi);
 
-	C0 = (-1 + C + D) / (1 + C + D);
-	C1 = ( 1 + C - D) / (1 + C + D);
-	C2 = ( 1 - C + D) / (1 + C + D);
-//	if ((C0 < 0.0) || (C1 < 0.0) || (C2 < 0.0)) { C0 = 1.0; C1 = 0; C2 = 0; } // According to Pounce C1 and C2 can be negative
+		C0 = (-1 + C + D) / (1 + C + D);
+		C1 = ( 1 + C - D) / (1 + C + D);
+		C2 = ( 1 - C + D) / (1 + C + D);
 
+		// According to Pounce C1 and C2 can be negative, but negative values appear to cause negative discharge
+		if (C0 < 0.0) { C0 = 1.0; C1 = 0; C2 = 0; }
+//		if ((C0 < 0.0) || (C1 < 0.0) || (C2 < 0.0)) { C0 = 1.0; C1 = 0; C2 = 0; }
+	}
 	MFVarSetFloat (_MDOutMuskingumC0ID, itemID, C0);
 	MFVarSetFloat (_MDOutMuskingumC1ID, itemID, C1);
 	MFVarSetFloat (_MDOutMuskingumC2ID, itemID, C2);

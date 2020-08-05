@@ -182,16 +182,12 @@ static void _MDIrrGrossDemand (int itemID) {
 		if (irrIntensity > 2.0) irrIntensity=2.0;
 		curDepl=0;
 		sumOfCropFractions=0;
-		for (i = 0; i < _MDNumberOfIrrCrops; i++) {
-			sumOfCropFractions += MFVarGetFloat(_MDInCropFractionIDs [i],itemID, 0.0);	
-		}
+		for (i = 0; i < _MDNumberOfIrrCrops; i++) { sumOfCropFractions += MFVarGetFloat(_MDInCropFractionIDs [i],itemID, 0.0);	}
 		if (sumOfCropFractions==0) { // No Cropdata for irrigated cell: default to some cereal crop
 			MFVarSetFloat(_MDInCropFractionIDs [2],itemID, 0.3);
+			sumOfCropFractions = 0.3;
 		}
 
-		sumOfCropFractions=0;
-	  	for (i = 0; i < _MDNumberOfIrrCrops; i++) {sumOfCropFractions += MFVarGetFloat(_MDInCropFractionIDs [i],itemID, 0.0);	}
- 
 		meanSMChange=0;totalCropETP=0;
 
 		for (i = 0; i < _MDNumberOfIrrCrops; i++) { // cropFraction[_MDNumberOfIrrCrops] is bare soil Area!
@@ -319,7 +315,6 @@ static void _MDIrrGrossDemand (int itemID) {
 			if (curDepl < 0) {	
 				curDepl = 0;	
 				deepPercolation=dailyEffPrecip - prevSoilMstDepl -cropWR;
-				
 			}
 			if (curDepl >= totAvlWater) {
 				cropWR = totAvlWater - prevSoilMstDepl + dailyEffPrecip;
@@ -329,7 +324,6 @@ static void _MDIrrGrossDemand (int itemID) {
  			smChange = prevSoilMstDepl - curDepl;
 			bareSoilBalance=dailyEffPrecip -smChange- cropWR - netIrrDemand -deepPercolation;
   			MFVarSetFloat (_MDOutCropDeficitIDs [_MDNumberOfIrrCrops], itemID, curDepl);	
-  
 		}
 		else {
 			cropWR          = 0.0;
@@ -437,7 +431,7 @@ int MDIrrGrossDemandDef () {
 			    ((_MDGrowingSeason1ID        = MFVarGetID (MDVarIrrGrowingSeason1Start, "DoY",  MFInput,  MFState, MFBoundary)) == CMfailed) ||
 			    ((_MDGrowingSeason2ID        = MFVarGetID (MDVarIrrGrowingSeason2Start, "DoY",  MFInput,  MFState, MFBoundary)) == CMfailed) ||
 				((_MDNonIrrFractionID        = MFVarGetID (MDNonIrrigatedFraction, "-",  MFOutput ,  MFState, MFBoundary)) == CMfailed) ||
-				((_MDRicePercolationRateID = MFVarGetID (MDVarIrrDailyRicePerolationRate, "mm/day",  MFInput ,  MFState, MFBoundary)) == CMfailed) ||
+				((_MDRicePercolationRateID   = MFVarGetID (MDVarIrrDailyRicePerolationRate, "mm/day",  MFInput ,  MFState, MFBoundary)) == CMfailed) ||
 				((_MDInIrrEfficiencyID       = MFVarGetID (MDVarIrrEfficiency,          "-",    MFInput,  MFState, MFBoundary)) == CMfailed) ||
 			    ((_MDOutIrrGrossDemandID     = MFVarGetID (MDVarIrrGrossDemand,         "mm",   MFOutput, MFFlux,  MFBoundary)) == CMfailed) ||
 			    ((_MDOutIrrReturnFlowID      = MFVarGetID (MDVarIrrReturnFlow,          "mm",   MFOutput, MFFlux,  MFBoundary)) == CMfailed) ||

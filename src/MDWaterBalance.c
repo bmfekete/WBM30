@@ -113,7 +113,7 @@ int MDWaterBalanceDef() {
 	        ((_MDInIrrUptakeRiverID      = MDIrrUptakeRiverDef    ()) == CMfailed) ||
 	        ((_MDInIrrUptakeGrdWaterID   = MDIrrUptakeGrdWaterDef ()) == CMfailed) ||
 	        ((_MDInIrrSoilMoistChgID     = MDIrrSoilMoistChgDef   ()) == CMfailed) ||
-	        ((_MDInIrrAreaFracID         = MDIrrigatedAreaDef    ())==  CMfailed) ||
+	        ((_MDInIrrAreaFracID         = MDIrrigatedAreaDef     ())==  CMfailed) ||
 	        ((_MDInIrrEvapotranspID      = MFVarGetID (MDVarIrrEvapotranspiration, "mm",   MFInput,  MFFlux,  MFBoundary)) == CMfailed) ||
 	        ((_MDInIrrReturnFlowID       = MFVarGetID (MDVarIrrReturnFlow,         "mm",   MFInput,  MFFlux,  MFBoundary)) == CMfailed) || 
 	        ((_MDInIrrUptakeExcessID     = MFVarGetID (MDVarIrrUptakeExcess,       "mm",   MFInput,  MFFlux,  MFBoundary)) == CMfailed) ||
@@ -127,6 +127,7 @@ int MDWaterBalanceDef() {
 			    return (CMfailed);
 		}
 	}
+
 	MFDefLeaving ("WaterBalance");
 	return (_MDOutWaterBalanceID);	
 }
