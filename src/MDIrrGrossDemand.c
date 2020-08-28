@@ -172,7 +172,7 @@ static int _MDIrrReadCropParameters (const char *filename) {
 		       &(_MDirrigCropStruct [cropID].cropSeasLength [2]),
 		       &(_MDirrigCropStruct [cropID].cropSeasLength [3]),
 		       &(_MDirrigCropStruct [cropID].cropRootingDepth),
-		       &(_MDirrigCropStruct [cropID].cropDepletionFactor)) != 13) return (CMfailed);
+		       &(_MDirrigCropStruct [cropID].cropDepletionFactor)) != 13) break;
 			_MDirrigCropStruct [cropID].cropIsRice = strcmp (_MDirrigCropStruct [cropID].cropName , "Rice") == 0 ? 1 : 0;
 			cropID += 1;
 		}
