@@ -16,7 +16,7 @@ bfekete@gc.cuny.edu
 #include <MF.h>
 #include <MD.h>
 
-typedef struct {
+typedef struct MDIrrigatedCrop_s {
     int   ID;
     int   DW_ID;
     char  cropName [80];
@@ -26,7 +26,6 @@ typedef struct {
     float cropKc [4 - 1];
     float cropRootingDepth;
     float cropDepletionFactor;
-    float cropLeachReq;
 } MDIrrigatedCrop;
 
 static MDIrrigatedCrop *_MDirrigCropStruct = (MDIrrigatedCrop *) NULL;
@@ -211,9 +210,7 @@ static void _MDIrrGrossDemand (int itemID) {
 	float cropSMoist, cropActSMoist, cropPrevSMoist, cropPrevActSMoist;
 	float cropSMoistChg;
 	float bareSoil;
-	float loss;
 	float sumOfCropFractions;
-	float nonRiceWaterBalance;
 	float refETP;
 	
 	curDay = MFDateGetDayOfYear ();
@@ -279,11 +276,7 @@ static void _MDIrrGrossDemand (int itemID) {
 						cropMaxRootingDepth  = _MDirrigCropStruct [cropID].cropRootingDepth;
 						cropPrevRootingDepth = _MDIrrCropRootingDepth (daysSincePlanted - 1, cropID);
 						cropCurRootingDepth  = _MDIrrCropRootingDepth (daysSincePlanted, cropID);
-
-						if (cropCurRootingDepth < cropPrevRootingDepth) CMmsgPrint (CMmsgWarning, "Negative rooting depth growth!");
-						if (cropPrevSMoist - cropPrevActSMoist)         CMmsgPrint (CMmsgWarning, "Negative incactive soil moisture!");
 						cropPrevActSMoist += (cropCurRootingDepth - cropPrevRootingDepth) * (cropPrevSMoist - cropPrevActSMoist) / (cropMaxRootingDepth - cropPrevRootingDepth);
-
 						cropAvlWater  = (fldCap - wltPnt) * cropCurRootingDepth;
 						cropMinSMoist = cropAvlWater * _MDIrrCorrDeplFactor (cropETP, cropID);
 	/* Rainfed */		if (precip + cropPrevActSMoist > cropETP + cropMinSMoist) {
@@ -307,7 +300,6 @@ static void _MDIrrGrossDemand (int itemID) {
 			    cropETP         = precip < refETP >= 0.0 ? precip : refETP;
 			    cropNetDemand   = cropGrossDemand = cropSMoist = cropSMoistChg   = 0.0;
 			    cropReturnFlow  = precip - cropETP;
-                if (cropReturnFlow < 0.0) CMmsgPrint(CMmsgWarning,"Negative return flow in %d\n",__LINE__);
             }
 			irrCropETP       += cropETP         * cropFraction [cropID];
 			irrNetDemand     += cropNetDemand   * cropFraction [cropID];
@@ -411,12 +403,9 @@ int MDIrrGrossDemandDef () {
 }
 
 int MDIrrReturnFlowDef() {
-	int ret;
-
-	if (_MDOutIrrReturnFlowID != MFUnset) return (_MDOutIrrReturnFlowID);
-
-	if ((ret = MDIrrGrossDemandDef ()) == CMfailed) return (CMfailed);
-	if (ret == MFUnset) return (MFUnset);
-	_MDOutIrrReturnFlowID = MFVarGetID (MDVarIrrReturnFlow,     "mm",   MFInput, MFFlux,  MFBoundary);
-    return (_MDOutIrrReturnFlowID);
+	switch (MDIrrGrossDemandDef ()) {
+        case CMfailed: return (CMfailed);
+	    case MFUnset:  return (MFUnset);
+        default: return (MFVarGetID (MDVarIrrReturnFlow, "mm", MFInput, MFFlux,  MFBoundary));
+    }
 }
