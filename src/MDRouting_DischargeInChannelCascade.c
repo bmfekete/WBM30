@@ -4,14 +4,15 @@ GHAAS Water Balance/Transport Model
 Global Hydrologic Archive and Analysis System
 Copyright 1994-2020, UNH - ASRC/CUNY
 
-wbm.h
+MDDichLevel3Cascade.c
 
-balazs.fekete@unh.edu
+bfekete@gc.cuny.edu
 
 *******************************************************************************/
 
-#include <stdio.h>
-
-#include <cm.h>
 #include <MF.h>
 #include <MD.h>
+
+int MDRouting_DischargeInChannelCascadeDef () {
+	return (CMfailed);
+}

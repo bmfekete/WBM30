@@ -1,6 +1,6 @@
 /******************************************************************************
 
-GHAAS Water Balance/Transport Model V2.0
+GHAAS Water Balance/Transport Model
 Global Hydrologic Archive and Analysis System
 Copyright 1994-2020, UNH - ASRC/CUNY
 
@@ -30,7 +30,7 @@ typedef enum { MDpet,
 int main (int argc,char *argv []) {
     int argNum;
     int optID = MDbalance;
-    const char *optStr, *optName = MDOptModel;
+    const char *optStr, *optName = MDOptConfig_Model;
     const char *options[] = {"pet",
                              "surplus",
                              "infiltration",
@@ -53,20 +53,20 @@ int main (int argc,char *argv []) {
     if ((optStr = MFOptionGet(optName)) != (char *) NULL) optID = CMoptLookup(options, optStr, true);
 
     switch (optID) {
-        case MDpet:             return (MFModelRun(argc, argv, argNum, MDRainPotETDef));
-        case MDsurplus:         return (MFModelRun(argc, argv, argNum, MDRainWaterSurplusDef));
-        case MDinfiltration:    return (MFModelRun(argc, argv, argNum, MDRainInfiltrationDef));
-        case MDrunoff:          return (MFModelRun(argc, argv, argNum, MDRunoffDef));
-        case MDdischarge:       return (MFModelRun(argc, argv, argNum, MDDischargeDef));
-        case MDbankfullQcalc:   return (MFModelRun(argc, argv, argNum, MDBankfullQcalcDef));
-        case MDRiverbedShape:   return (MFModelRun(argc, argv, argNum, MDRiverbedShapeExponentDef));
-        case MDgeometry:        return (MFModelRun(argc, argv, argNum, MDRiverWidthDef));
-        case MDbalance:         return (MFModelRun(argc, argv, argNum, MDWaterBalanceDef));
-        case MDwatertemp:       return (MFModelRun(argc, argv, argNum, MDWTempRiverRouteDef));
-        case MDthermal:         return (MFModelRun(argc, argv, argNum, MDThermalInputs3Def));
-        case MDBQARTpreprocess: return (MFModelRun(argc, argv, argNum, MDBQARTpreprocessDef));
-        case MDsedimentflux:    return (MFModelRun(argc, argv, argNum, MDSedimentFluxDef));
-        case MDbedloadflux:     return (MFModelRun(argc, argv, argNum, MDBedloadFluxDef));
+        case MDpet:             return (MFModelRun(argc, argv, argNum, MDCore_RainPotETDef));
+        case MDsurplus:         return (MFModelRun(argc, argv, argNum, MDCore_RainWaterSurplusDef));
+        case MDinfiltration:    return (MFModelRun(argc, argv, argNum, MDCore_RainInfiltrationDef));
+        case MDrunoff:          return (MFModelRun(argc, argv, argNum, MDCore_RunoffDef));
+        case MDdischarge:       return (MFModelRun(argc, argv, argNum, MDRouting_DischargeDef));
+        case MDbankfullQcalc:   return (MFModelRun(argc, argv, argNum, MDSediment_BankfullQcalcDef));
+        case MDRiverbedShape:   return (MFModelRun(argc, argv, argNum, MDRouting_RiverbedShapeExponentDef));
+        case MDgeometry:        return (MFModelRun(argc, argv, argNum, MDRouting_RiverWidthDef));
+        case MDbalance:         return (MFModelRun(argc, argv, argNum, MDCore_WaterBalanceDef));
+        case MDwatertemp:       return (MFModelRun(argc, argv, argNum, MDTP2M_WTempRiverRouteDef));
+        case MDthermal:         return (MFModelRun(argc, argv, argNum, MDTP2M_ThermalInputsDef));
+        case MDBQARTpreprocess: return (MFModelRun(argc, argv, argNum, MDSediment_BQARTpreprocessDef));
+        case MDsedimentflux:    return (MFModelRun(argc, argv, argNum, MDSediment_FluxDef));
+        case MDbedloadflux:     return (MFModelRun(argc, argv, argNum, MDSediment_BedloadFluxDef));
     }
     MFOptionMessage(optName, optStr, options);
     return (CMfailed);
