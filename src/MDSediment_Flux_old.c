@@ -19,35 +19,34 @@ from >0.1 to >0.0
 #include <stdlib.h>
 
 // Input
-static int _MDInDischargeID   	      = MFUnset;
-static int _MDInDischMeanID	  	      = MFUnset;
-static int _MDInAirTempID   	      = MFUnset;
+static int _MDInDischargeID           = MFUnset;
+static int _MDInDischMeanID           = MFUnset;
+static int _MDInAirTempID             = MFUnset;
 static int _MDInContributingAreaAccID = MFUnset;
-static int _MDInReliefID 	   	      = MFUnset;
+static int _MDInReliefID              = MFUnset;
 static int _MDInAirTempAcc_timeID     = MFUnset;
-static int _MDInTimeStepsID 	      = MFUnset;
-static int _MDInIceCoverID 	   	      = MFUnset;
+static int _MDInTimeStepsID           = MFUnset;
+static int _MDInIceCoverID            = MFUnset;
 static int _MDInSmallResCapacityID    = MFUnset;
 static int _MDInBQART_LithologyID     = MFUnset;
-static int _MDInBQART_GNPID	   	      = MFUnset;
-static int _MDInPopulationID	      = MFUnset;
+static int _MDInBQART_GNPID           = MFUnset;
+static int _MDInPopulationID          = MFUnset;
 static int _MDInResCapacityAccID      = MFUnset;
-static int _MDInResCapacityID 	      = MFUnset;
-static int _MDInTeAaccID		      = MFUnset;
-static int _MDOutBQART_TeID 	      = MFUnset; 
+static int _MDInResCapacityID         = MFUnset;
+static int _MDInTeAaccID              = MFUnset;
+static int _MDOutBQART_TeID           = MFUnset; 
 static int _MDOutPopulationAccID      = MFUnset;
-static int _MDOutMeanGNPID		      = MFUnset;
-static int _MDOutBQART_EhID		      = MFUnset;
+static int _MDOutMeanGNPID            = MFUnset;
+static int _MDOutBQART_EhID           = MFUnset;
 static int _MDInAirTempAcc_spaceID    = MFUnset;
 static int _MDInUpStreamQsID 	      = MFUnset;
 static int _MDInBedloadFluxID 	      = MFUnset;
 static int _MDInMDVarSedPristineID    = MFUnset;		
-static int _MDInSedimentTrappingID    = MFUnset;
 // Output
-static int _MDOutSedimentFluxID 	  = MFUnset;
-static int _MDOutBQART_BID			  = MFUnset;
-static int _MDOutBQART_Qbar_km3yID 	  = MFUnset;
-static int _MDOutBQART_Qbar_m3sID 	  = MFUnset;
+static int _MDOutSedimentFluxID       = MFUnset;
+static int _MDOutBQART_BID            = MFUnset;
+static int _MDOutBQART_Qbar_km3yID    = MFUnset;
+static int _MDOutBQART_Qbar_m3sID     = MFUnset;
 static int _MDOutBQART_AID            = MFUnset;
 static int _MDOutBQART_RID            = MFUnset;
 static int _MDOutBQART_TID            = MFUnset;
@@ -104,8 +103,7 @@ static void _MDSedimentFlux (int itemID) {
 	Tacc = TupSlop + (T_time * PixSize_km2);
 	MFVarSetFloat (_MDInAirTempAcc_spaceID, itemID, Tacc);
 
-// Accumulate time steps
-	TimeStep = MFVarGetInt (_MDInTimeStepsID, itemID, 0) + 1;
+	TimeStep = (MFVarGetInt (_MDInTimeStepsID, itemID, 0) + 1);
 	MFVarSetInt (_MDInTimeStepsID, itemID, TimeStep); //	!!! Chnaged for constant 7/10/10
 	MFVarSetFloat (_MDOutBQART_AID, itemID, A);
 	MFVarSetFloat (_MDOutBQART_RID, itemID, R);
@@ -187,7 +185,7 @@ static void _MDSedimentFlux (int itemID) {
 		if (MeanGNP < 2500){
 			if (PopuDesity > 140)Eh = 2.0;
 		}	
-
+	
 	}
 	if (SedPristine == 1) { // Pristine sediment !!!!!
 		Te = 0.0;
@@ -195,7 +193,7 @@ static void _MDSedimentFlux (int itemID) {
 	}	
 	
 	if (SedPristine == 2) { // semi-Pristine sediment (no reservoirs !!!!!
-		// Calculating Eh
+		//Calculating Eh
 		// Calculating mean population density
 		PopulationAcc = MFVarGetFloat(_MDOutPopulationAccID, itemID, 0.0) + MFVarGetFloat(_MDInPopulationID, itemID, 0.0); //devided by 25 for the 06min simulation in order to account for the smaler pixel size.
 		MFVarSetFloat (_MDOutPopulationAccID, itemID, PopulationAcc);
@@ -211,7 +209,6 @@ static void _MDSedimentFlux (int itemID) {
 		MFVarSetFloat (_MDOutMeanGNPID, itemID, MeanGNP);
 	
 		Eh = 1.0;
-
 		if (MeanGNP > 20000){
 			if (PopuDesity > 30)Eh = 0.3;
 		}
@@ -222,34 +219,6 @@ static void _MDSedimentFlux (int itemID) {
 		Te = 0.0;
 	}	//end SedPristine == 2
 	
-	if (SedPristine == 3) { // Input sediment Trapping
-		Te = MFVarGetFloat(_MDInSedimentTrappingID, itemID, 0.0)/100;
-		if (Qbar_km3y == 0.0) Te = 0.0;
-		if (Te > 1) Te = 1.0;
-		if (Te < 0) Te = 0.0;
-			//Calculating Eh
-		// Calculating mean population density
-		PopulationAcc = MFVarGetFloat(_MDOutPopulationAccID, itemID, 0.0) + MFVarGetFloat(_MDInPopulationID, itemID, 0.0); 
-		MFVarSetFloat (_MDOutPopulationAccID, itemID, PopulationAcc);
-		PopuDesity = PopulationAcc/A;
-		MFVarSetFloat (_MDOutPopulationDensityID, itemID, PopuDesity);
-		// Calculating mean GNP
-		GNPAreaAcc = MFVarGetFloat(_MDOutGNPAreaAccID, itemID, 0.0) + (MFVarGetFloat(_MDInBQART_GNPID, itemID, 0.0) * PixSize_km2);
-		MFVarSetFloat (_MDOutGNPAreaAccID, itemID, GNPAreaAcc);
-		if (GNPAreaAcc == 0)
-			MeanGNP = 0;
-		else
-			MeanGNP = GNPAreaAcc/A;
-		MFVarSetFloat (_MDOutMeanGNPID, itemID, MeanGNP);
-	
-		Eh = 1.0;
-		if (MeanGNP > 20000){
-			if (PopuDesity > 30)Eh = 0.3;
-		}
-		if (MeanGNP < 2500){
-			if (PopuDesity > 140)Eh = 2.0;
-		}	
-	}//end SedPristine == 3
 	MFVarSetFloat (_MDOutBQART_TeID, itemID, Te);	
 	MFVarSetFloat (_MDOutBQART_EhID, itemID, Eh);
 	
@@ -294,13 +263,19 @@ yearlyRand = 0.00001;// Eliminate Yearly randomness!!!
 	else QsConc = 0;
 		
 	MFVarSetFloat (_MDOutSedimentFluxID, itemID, Qs);
+	// Calculate Qs budget
+	//upstream_Qs =  MFVarGetFloat (_MDInUpStreamQsID,itemID, 0.0);
+	//deltaQs = upstream_Qs - Qs; //local bedload budget
+//	MFVarSetFloat (_MDOutDeltaQsID, itemID, deltaQs); 
+//	MFVarSetFloat (_MDInUpStreamQsID , itemID, (upstream_Qs*-1));
+//	MFVarSetFloat (_MDInUpStreamQsID , itemID, Qs); 
 	MFVarSetFloat (_MDOutQsConcID, itemID, QsConc);
 	MFVarSetFloat (_MDOutQsYieldID, itemID, QsYield); 
 }
 
 enum { MDinput, MDcalculate, MDcorrected };
 
-int MDSediment_FluxDef() {
+int MDSediment_FluxOLDDef() {
 	
 	MFDefEntering ("SedimentFlux");
 	
@@ -308,20 +283,19 @@ int MDSediment_FluxDef() {
 		((_MDInSmallResCapacityID    = MDReservoir_FarmPondCapacityDef ()) == CMfailed) ||
 	    ((_MDInDischMeanID 		     = MDAux_MeanDiscargehDef ())          == CMfailed) ||
 	    ((_MDInAirTempID             = MFVarGetID (MDVarCommon_AirTemperature,              "degC",     MFInput,  MFState, MFBoundary)) == CMfailed) ||
-	    ((_MDInAirTempAcc_timeID     = MFVarGetID (MDVarSediment_AirTemperatureAcc_time,    "degC",     MFOutput, MFState, MFInitial))  == CMfailed) ||
-	    ((_MDInTimeStepsID           = MFVarGetID (MDVarSediment_TimeSteps,                 MFNoUnit,   MFOutput, MFState, MFInitial))  == CMfailed) ||
+	    ((_MDInAirTempAcc_timeID     = MFVarGetID (MDVarSediment_AirTemperatureAcc_time,    "degC",     MFInput,  MFState, MFInitial))  == CMfailed) ||
+	    ((_MDInTimeStepsID           = MFVarGetID (MDVarSediment_TimeSteps,                 MFNoUnit,   MFInput,  MFState, MFInitial))  == CMfailed) ||
 	    ((_MDInReliefID              = MFVarGetID (MDVarSediment_Relief,                    "m",        MFInput,  MFState, MFBoundary)) == CMfailed) ||
-	    ((_MDInIceCoverID            = MFVarGetID (MDVarCommon_IceCover,                    MFNoUnit,   MFInput,  MFState, MFBoundary)) == CMfailed) ||
-	    ((_MDInBQART_LithologyID     = MFVarGetID (MDVarSediment_BQART_Lithology,           MFNoUnit,   MFInput,  MFState, MFBoundary)) == CMfailed) ||
-	    ((_MDInBQART_GNPID           = MFVarGetID (MDVarSediment_BQART_GNP,                 MFNoUnit,   MFInput,  MFState, MFBoundary)) == CMfailed) ||
+	    ((_MDInIceCoverID            = MFVarGetID (MDVarCommon_IceCover,                    MFNoUnit,	MFInput,  MFState, MFBoundary)) == CMfailed) ||
+	    ((_MDInBQART_LithologyID     = MFVarGetID (MDVarSediment_BQART_Lithology,           MFNoUnit,	MFInput,  MFState, MFBoundary)) == CMfailed) ||
+	    ((_MDInBQART_GNPID           = MFVarGetID (MDVarSediment_BQART_GNP,                 MFNoUnit,	MFInput,  MFState, MFBoundary)) == CMfailed) ||
 	    ((_MDInPopulationID          = MFVarGetID (MDVarSediment_Population,                MFNoUnit,   MFInput,  MFState, MFBoundary)) == CMfailed) ||
-	    ((_MDInAirTempAcc_spaceID    = MFVarGetID (MDVarSediment_AirTemperatureAcc_space,   "degC",     MFRoute,  MFState, MFBoundary)) == CMfailed) ||
-	    ((_MDInResCapacityID         = MFVarGetID (MDVarReservoir_Capacity,                 "km3",      MFInput,  MFState, MFBoundary)) == CMfailed) ||
-	    ((_MDInTeAaccID              = MFVarGetID (MDVarSediment_TeAacc,                    "",         MFRoute,  MFState, MFBoundary)) == CMfailed) ||
+	    ((_MDInAirTempAcc_spaceID    = MFVarGetID (MDVarSediment_AirTemperatureAcc_space,   "degC" ,    MFRoute,  MFState, MFBoundary)) == CMfailed) ||
+	    ((_MDInResCapacityID         = MFVarGetID (MDVarReservoir_Capacity,                 "km3"	,   MFInput,  MFState, MFBoundary)) == CMfailed) ||
+	    ((_MDInTeAaccID              = MFVarGetID (MDVarSediment_TeAacc,                    MFNoUnit,   MFRoute,  MFState, MFBoundary)) == CMfailed) ||
 	    ((_MDInContributingAreaAccID = MFVarGetID (MDVarSediment_ContributingAreaAcc,       "km2",      MFRoute,  MFState, MFBoundary)) == CMfailed) ||
 	    ((_MDInUpStreamQsID          = MFVarGetID (MDVarSediment_UpStreamQs,                "kg/s",     MFRoute,  MFState, MFBoundary)) == CMfailed) ||
-	    ((_MDInMDVarSedPristineID    = MFVarGetID (MDVarSediment_Pristine,                  MFNoUnit,   MFInput,  MFState, MFBoundary)) == CMfailed) ||
-	    ((_MDInSedimentTrappingID    = MFVarGetID (MDVarSediment_Trapping,                  MFNoUnit,   MFInput,  MFState, MFBoundary)) == CMfailed) ||
+	    ((_MDInMDVarSedPristineID    = MFVarGetID (MDVarSediment_Pristine,                  MFNoUnit, 	MFInput,  MFState, MFBoundary)) == CMfailed) ||
 	    ((_MDOutSedimentFluxID       = MFVarGetID (MDVarSediment_SuspendedFlux,             "kg/s",     MFRoute,  MFState, MFBoundary)) == CMfailed) ||
 	    ((_MDOutBQART_BID            = MFVarGetID (MDVarSediment_BQART_B,                   MFNoUnit,   MFRoute,  MFState, MFBoundary)) == CMfailed) ||
 	    ((_MDOutBQART_Qbar_m3sID     = MFVarGetID (MDVarSediment_BQART_Qbar_m3s,            "m3/s",     MFRoute,  MFState, MFBoundary)) == CMfailed) ||
@@ -329,20 +303,20 @@ int MDSediment_FluxDef() {
 	    ((_MDOutBQART_AID            = MFVarGetID (MDVarSediment_BQART_A,                   "km2",      MFRoute,  MFState, MFBoundary)) == CMfailed) ||
 	    ((_MDOutBQART_RID            = MFVarGetID (MDVarSediment_BQART_R,                   "km" ,      MFRoute,  MFState, MFBoundary)) == CMfailed) ||
 	    ((_MDOutBQART_TID            = MFVarGetID (MDVarSediment_BQART_T,                   "degC",     MFRoute,  MFState, MFBoundary)) == CMfailed) ||
-   	    ((_MDOutPopulationAccID      = MFVarGetID (MDVarSediment_PopulationAcc,             "",         MFRoute,  MFState, MFBoundary)) == CMfailed) ||
+   	    ((_MDOutPopulationAccID      = MFVarGetID (MDVarSediment_PopulationAcc,             MFNoUnit,   MFRoute,  MFState, MFBoundary)) == CMfailed) ||
 	    ((_MDInResCapacityAccID      = MFVarGetID (MDVarSediment_ResStorageAcc,             "km3",      MFRoute,  MFState, MFBoundary)) == CMfailed) ||
 	    ((_MDOutPopulationDensityID  = MFVarGetID (MDVarSediment_PopulationDensity,         "km2",      MFOutput, MFState, MFBoundary)) == CMfailed) ||
-	    ((_MDOutGNPAreaAccID         = MFVarGetID (MDVarSediment_GNPAreaAcc,                " ",        MFRoute,  MFState, MFBoundary)) == CMfailed) ||
-	    ((_MDOutMeanGNPID            = MFVarGetID (MDVarSediment_MeanGNP,                   " ",        MFOutput, MFState, MFBoundary)) == CMfailed) ||
-	    ((_MDOutBQART_EhID           = MFVarGetID (MDVarSediment_BQART_Eh,                  " ",        MFOutput, MFState, MFBoundary)) == CMfailed) ||
-	    ((_MDOutBQART_TeID           = MFVarGetID (MDVarSediment_BQART_Te,                  " ",        MFOutput, MFState, MFBoundary)) == CMfailed) ||
+	    ((_MDOutGNPAreaAccID         = MFVarGetID (MDVarSediment_GNPAreaAcc,                MFNoUnit,   MFRoute,  MFState, MFBoundary)) == CMfailed) ||
+	    ((_MDOutMeanGNPID            = MFVarGetID (MDVarSediment_MeanGNP,                   MFNoUnit,   MFOutput, MFState, MFBoundary)) == CMfailed) ||
+	    ((_MDOutBQART_EhID           = MFVarGetID (MDVarSediment_BQART_Eh,                  MFNoUnit,   MFOutput, MFState, MFBoundary)) == CMfailed) ||
+	    ((_MDOutBQART_TeID           = MFVarGetID (MDVarSediment_BQART_Te,                  MFNoUnit,   MFOutput, MFState, MFBoundary)) == CMfailed) ||
 	    ((_MDOutQs_barID             = MFVarGetID (MDVarSediment_Qs_bar,                    "kg/s",     MFRoute,  MFState, MFBoundary)) == CMfailed) ||
- 	    ((_MDOutLithologyAreaAccID   = MFVarGetID (MDVarSediment_LithologyAreaAcc,          "",         MFRoute,  MFState, MFBoundary)) == CMfailed) ||
-	    ((_MDOutLithologyMeanID      = MFVarGetID (MDVarSediment_LithologyMean,             "" ,        MFOutput, MFState, MFBoundary)) == CMfailed) ||
+ 	    ((_MDOutLithologyAreaAccID   = MFVarGetID (MDVarSediment_LithologyAreaAcc,          MFNoUnit,   MFRoute,  MFState, MFBoundary)) == CMfailed) ||
+	    ((_MDOutLithologyMeanID      = MFVarGetID (MDVarSediment_LithologyMean,             MFNoUnit,   MFOutput, MFState, MFBoundary)) == CMfailed) ||
 	    ((_MDOutDeltaQsID            = MFVarGetID (MDVarSediment_DeltaQs,                   "kg/s",     MFOutput, MFState, MFBoundary)) == CMfailed) ||
 	    ((_MDOutQsConcID             = MFVarGetID (MDVarSediment_QsConc,                    "kg/m3",    MFOutput, MFState, MFBoundary)) == CMfailed) ||
 	    ((_MDOutQsYieldID            = MFVarGetID (MDVarSediment_QsYield,                   "kg/s/km2", MFOutput, MFState, MFBoundary)) == CMfailed) ||
-	(MFModelAddFunction (_MDSedimentFlux) == CMfailed)) return (CMfailed);
+	    (MFModelAddFunction (_MDSedimentFlux) == CMfailed)) return (CMfailed);
 
 	MFDefLeaving  ("SedimentFlux");
 	return (_MDOutSedimentFluxID);

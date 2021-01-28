@@ -13,21 +13,24 @@ MDQBARTpreprocess.c
 sagy.cohen@colorado.edu.au
 last update: May 16 2011
 *******************************************************************************/
-
 #include <stdlib.h>
-#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <cm.h>
 #include <MF.h>
 #include <MD.h>
+#include <math.h>
 
 // Input
-static int _MDInRouting_DischargeID   	   = MFUnset;
+static int _MDInDischargeID   	   = MFUnset;
 static int _MDInDischargeAccID	   = MFUnset;
-static int _MDInAux_MeanDischargeID	   = MFUnset;
-static int _MDInCommon_AirTemperatureID   	   = MFUnset;
+static int _MDInDischMeanID	   = MFUnset;
+static int _MDInAirTempID   	   = MFUnset;
 static int _MDInAirTempAcc_spaceID = MFUnset;
 static int _MDInAirTempAcc_timeID = MFUnset;
 static int _MDInTimeStepsID 	   = MFUnset;
 static int _MDInContributingAreaAccID = MFUnset;
+static int _MDInBankfullQ5ID =    MFUnset;
 
 // Output
 static int _MDOutBQART_Qbar_m3sID 	= MFUnset;
@@ -36,86 +39,74 @@ static int _MDOutBQART_TID 	= MFUnset;
 static int _MDOutBQART_AID 	= MFUnset;
 static int _MDOutBQART_RID 	= MFUnset;
 
+static int _MDOutDischMaxID = MFUnset;
+static int _MDOutYearCountID = MFUnset;
+static int _MDOutLogQMaxM2ID = MFUnset;
+static int _MDOutLogQMaxM3ID = MFUnset;
+static int _MDOutMeanLogQMaxID = MFUnset;
+
+// use global arrays rather than static local vars in function 
+
+
 static void _MDQBARTpreprocess (int itemID) {
-	int TimeStep,p,i,d,j;
+	int TimeStep;
 	float Qday, Qbar,Qacc, Qbar_km3y,Qbar_m3s;
+    float Qmax = 0;
 	float Tday,Tbar,Tacc,A,T_time,T_old;
 	float TupSlop,PixSize_km2;
-	static int Max_itemID = 0;
-	//static int year_count=1;
-	static float *PixelmaxQ;
-	static float **dailyQ; 
-	
-	if (itemID > Max_itemID) {
-		Max_itemID=itemID+1;
-		printf("Max_itemID:%d\n",Max_itemID);
-		PixelmaxQ = (float*) malloc(Max_itemID*sizeof(float));
-		dailyQ = (float**) malloc(Max_itemID*sizeof(float*));
-		for (i = 1; i < Max_itemID+1; i++)
-   			dailyQ[i] = (float*) malloc(366*sizeof(float));
-   		for (i = 1; i < 366; i++)
-			for (j = 1; j < Max_itemID; j++)
-				dailyQ[j][i] = 0.0;	
-	}	
 
-	//printf("sizeof(Max_itemID):%d\n",(sizeof(PixelmaxQ)/sizeof(float)));
-	static int pix=1;
-	static int day=1;
-	FILE * textfile;
-	//printf ("itemID:%d\n ", itemID);
-	//printf("Max_itemID:%d\n",Max_itemID);
-	Qday = MFVarGetFloat (_MDInRouting_DischargeID , itemID, 0.0);	// in m3/s	
-	//printf ("pix:%d\n ", pix);
-	dailyQ[pix][day]=Qday;
-	//if (pix==1) printf ("pix=1. Qday=:%f\n ", Qday);
-   	pix++;
+    int n, nA; 
+    float mu, muA, M2, M2A, M3, M3A, del;
+    float logQmax;
+    float dummy;
 
-   	if (itemID==1){ //last pixelID
-   		//printf ("day:%d\n ", day);
-   		if (day==365){
-   			printf("year count\n ");
-   			//year_count++;
-   			textfile = fopen("year_max_logQ.txt","a");
-   			printf ("Writing to Scripts/year_max_logQ.txt\n");
-   			for (p=1;p<Max_itemID;p++){
-   				PixelmaxQ[p] = dailyQ[p][1];
-   				//printf ("PixelmaxQ[p]:%f\n ", PixelmaxQ[p]);
-   				for (d=2; d<366; d++){
-   					if (PixelmaxQ[p] < dailyQ[p][d]) PixelmaxQ[p] = dailyQ[p][d];
-   				}
-   				if (PixelmaxQ[p]>0) PixelmaxQ[p]=log10(PixelmaxQ[p]);
-   				fprintf (textfile,"%f ", PixelmaxQ[p]);
-   			}
-			fprintf (textfile,"\n");
-			fclose (textfile);
-			Max_itemID = 0;
-			day = 0;
-		}
-		day++;
-   		pix=1;
-   	}	
-   	
-//Geting the values of these parameters
+
+    if (MFDateGetDayOfYear() == 1) {
+        MFVarSetFloat(_MDOutDischMaxID, itemID, 0.0);
+    }
+
+
+	Qday = MFVarGetFloat (_MDInDischargeID , itemID, 0.0);	// in m3/s	
+    Qmax = MFVarGetFloat(_MDOutDischMaxID, itemID, 0.0);
+    if (Qday > Qmax) {
+        MFVarSetFloat(_MDOutDischMaxID, itemID, Qday);
+    } else {
+        MFVarSetFloat(_MDOutDischMaxID, itemID, Qmax);
+    }
+
+
+    if (MFDateGetDayOfYear() == MFDateGetYearLength()) {
+        Qmax = MFVarGetFloat(_MDOutDischMaxID, itemID, 0.0);
+        logQmax = 0;
+        if (Qmax > 0) 
+            logQmax = log10(Qmax);
+        // online (onepass) variance calculation, continues in MDBankfullQcalc.c (T.Terriberry)
+        nA = MFVarGetInt(_MDOutYearCountID, itemID, 0);
+        n = nA + 1;
+        muA = MFVarGetFloat(_MDOutMeanLogQMaxID, itemID, 0.0);
+        M2A = MFVarGetFloat(_MDOutLogQMaxM2ID, itemID, 0.0);
+        M3A = MFVarGetFloat(_MDOutLogQMaxM3ID, itemID, 0.0);
+        del = logQmax - muA;
+        mu = muA + del / n;
+        M2 = M2A + (del * del * nA / n);
+        M3 = M3A + (del * del * del * nA * (nA - 1) / (n * n)) + (3 * -M2A * del / n);
+
+        MFVarSetInt(_MDOutYearCountID, itemID, n);
+        MFVarSetFloat(_MDOutMeanLogQMaxID, itemID, mu);
+        MFVarSetFloat(_MDOutLogQMaxM2ID, itemID, M2);
+        MFVarSetFloat(_MDOutLogQMaxM3ID, itemID, M3);
+
+        // call this just to make bankfull calcs and save vals
+        dummy = MFVarGetFloat(_MDInBankfullQ5ID, itemID, 0.0);
+    } 
 	
-	Qbar = MFVarGetFloat (_MDInAux_MeanDischargeID   , itemID, 0.0);	// in m3/s
-	Tday = MFVarGetFloat (_MDInCommon_AirTemperatureID     , itemID, 0.0);	// in C	
+    Qbar = MFVarGetFloat (_MDInDischMeanID   , itemID, 0.0);	// in m3/s
+	Tday = MFVarGetFloat (_MDInAirTempID     , itemID, 0.0);	// in C	
 //	A    = MFVarGetFloat (_MDInContributingAreaID, 	itemID, 0.0);	//in km2
 	A = MFVarGetFloat (_MDInContributingAreaAccID, itemID, 0.0) + (MFModelGetArea (itemID)/(pow(1000,2)));// convert from m2 to km2  //calculating the contributing area
 	MFVarSetFloat (_MDInContributingAreaAccID, itemID, A);
 	PixSize_km2 =(MFModelGetArea(itemID)/pow(1000,2));
-//	printf("PixSize_km2: %f\n",PixSize_km2);
-//	printf("A: %f\n",A);
-//Calculate Relief
-//	LocalElev = MFVarGetFloat (_MDInElevationID  , itemID, 0.0)/1000;//convert to km
-//	printf("LocalElev: %f\n",LocalElev);
-//	MaxElev = MFVarGetFloat (_MDOutElevationMaxID, itemID, 0.0);
-//	if (A == PixSize_km2) MaxElev=LocalElev;
-//	MFVarSetFloat (_MDOutElevationMaxID, itemID, -MaxElev);
-//	MFVarSetFloat (_MDOutElevationMaxID, itemID, LocalElev);
-//	printf("MaxElev: %f\n",MaxElev);
-//	R = MaxElev-LocalElev;
-//	printf("R: %f\n",R);
-	
+
 MFVarSetInt (_MDOutBQART_AID, itemID, A);
 //MFVarSetInt (_MDOutBQART_RID, itemID, R);
 //Accumulate temperature
@@ -149,25 +140,31 @@ MFVarSetInt (_MDOutBQART_AID, itemID, A);
 
 enum { MDinput, MDcalculate, MDcorrected };
 
-int MDSediment_BQARTpreprocessDef() {
+int MDSediment_BQARTpreprocessDef () {
+	
 	MFDefEntering ("QBARTpreprocess");
 	
-	if (((_MDInAux_MeanDischargeID           = MDAux_MeanDiscargehDef()) == CMfailed) ||
-        ((_MDInRouting_DischargeID           = MDRouting_DischargeDef()) == CMfailed) ||
-        ((_MDInCommon_AirTemperatureID             = MFVarGetID (MDVarCommon_AirTemperature, "degC", MFInput, MFState, MFBoundary)) == CMfailed) ||
-        ((_MDInContributingAreaAccID = MFVarGetID (MDVarSediment_ContributingAreaAcc, "km2", MFRoute, MFState, MFBoundary)) == CMfailed) ||
-        ((_MDInAirTempAcc_timeID     = MFVarGetID (MDVarSediment_AirTemperatureAcc_time, "degC", MFOutput, MFState, MFInitial)) == CMfailed) ||
-        ((_MDInAirTempAcc_spaceID    = MFVarGetID (MDVarSediment_AirTemperatureAcc_space, "degC", MFRoute, MFState, MFBoundary)) == CMfailed) ||
-        ((_MDInDischargeAccID        = MFVarGetID (MDVarSediment_DischargeAcc, "m3/s", MFOutput, MFState, MFInitial)) == CMfailed) ||
-        ((_MDInTimeStepsID           = MFVarGetID (MDVarSediment_TimeSteps, MFNoUnit, MFOutput, MFState, MFInitial)) == CMfailed) ||
+	if (((_MDInDischargeID  = MDSediment_DischargeBFDef ()) == CMfailed) || 
+	    ((_MDInDischMeanID  = MDAux_MeanDiscargehDef ())    == CMfailed) ||
+	    ((_MDInBankfullQ5ID = MDRouting_BankfullQcalcDef()) == CMfailed) ||
+        ((_MDInAirTempID             = MFVarGetID (MDVarCommon_AirTemperature,           "degC",    MFInput,  MFState, MFBoundary)) == CMfailed) ||
+	    ((_MDInContributingAreaAccID = MFVarGetID (MDVarSediment_ContributingAreaAcc,    "km2",     MFRoute,  MFState, MFBoundary)) == CMfailed) ||
+	    ((_MDInAirTempAcc_timeID     = MFVarGetID (MDVarSediment_AirTemperatureAcc_time, "degC",    MFOutput, MFState, MFInitial))  == CMfailed) ||
+	    ((_MDInAirTempAcc_spaceID    = MFVarGetID (MDVarSediment_AirTemperatureAcc_space, "degC",   MFRoute,  MFState, MFBoundary)) == CMfailed) ||
+	    ((_MDInDischargeAccID        = MFVarGetID (MDVarSediment_DischargeAcc,            "m3/s",   MFOutput, MFState, MFInitial))  == CMfailed) ||
+	    ((_MDInTimeStepsID           = MFVarGetID (MDVarSediment_TimeSteps,               MFNoUnit, MFOutput, MFState, MFInitial))  == CMfailed) ||
+        ((_MDOutBQART_AID            = MFVarGetID (MDVarSediment_BQART_A,                 "km2",    MFRoute,  MFState, MFBoundary)) == CMfailed) ||
+	    ((_MDOutBQART_RID            = MFVarGetID (MDVarSediment_BQART_R,                 "km" ,    MFRoute,  MFState, MFBoundary)) == CMfailed) ||
+	    ((_MDOutBQART_Qbar_m3sID     = MFVarGetID (MDVarSediment_BQART_Qbar_m3s,          "m3s",    MFOutput, MFState, MFBoundary)) == CMfailed) ||
+	    ((_MDOutBQART_Qbar_km3yID    = MFVarGetID (MDVarSediment_BQART_Qbar_km3y,         "km3/y",  MFOutput, MFState, MFBoundary)) == CMfailed) ||
+	    ((_MDOutBQART_TID            = MFVarGetID (MDVarSediment_BQART_T,                 "degC",   MFOutput, MFState, MFBoundary)) == CMfailed) ||
+        ((_MDOutDischMaxID           = MFVarGetID (MDVarAux_DischMax,                     "m3/s",   MFOutput, MFState, MFInitial))  == CMfailed) ||
+        ((_MDOutYearCountID          = MFVarGetID (MDVarAux_YearCount,                    "yr",     MFOutput, MFState, MFInitial))  == CMfailed) ||
+        ((_MDOutLogQMaxM2ID          = MFVarGetID (MDVarRouting_LogQMaxM2,                "m3/s",   MFOutput, MFState, MFInitial))  == CMfailed) ||
+        ((_MDOutLogQMaxM3ID          = MFVarGetID (MDVarRouting_LogQMaxM3,                "m3/s",   MFOutput, MFState, MFInitial))  == CMfailed) ||
+        ((_MDOutMeanLogQMaxID        = MFVarGetID (MDVarRouting_MeanLogQMax ,             "m3/s",   MFOutput, MFState, MFInitial))  == CMfailed) ||
+       (MFModelAddFunction (_MDQBARTpreprocess) == CMfailed)) return (CMfailed);
 
-        // output
-	    ((_MDOutBQART_AID  	         = MFVarGetID (MDVarSediment_BQART_A, "km2", MFRoute, MFState, MFBoundary)) == CMfailed) ||
-            ((_MDOutBQART_RID            = MFVarGetID (MDVarSediment_BQART_R, "km" , MFRoute, MFState, MFBoundary)) == CMfailed) ||
-            ((_MDOutBQART_Qbar_m3sID     = MFVarGetID (MDVarSediment_BQART_Qbar_m3s, "m3s", MFOutput, MFState, MFBoundary)) == CMfailed) ||
-            ((_MDOutBQART_Qbar_km3yID    = MFVarGetID (MDVarSediment_BQART_Qbar_km3y, "km3/y", MFOutput, MFState, MFBoundary)) == CMfailed) ||
-            ((_MDOutBQART_TID            = MFVarGetID (MDVarSediment_QART_T, "degC", MFOutput, MFState, MFBoundary)) == CMfailed) ||
-            (MFModelAddFunction (_MDQBARTpreprocess) == CMfailed)) return (CMfailed);
 	MFDefLeaving  ("QBARTpreprocess");
 	return (_MDOutBQART_TID);
 }
